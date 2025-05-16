@@ -6,7 +6,9 @@ of Introduction to Programming II (us that wrote it).
 
 ## Description
 
-Something  
+Something
+
+[Details](https://github.com/lmarques7/projetos-ip2-2025-1/blob/main/reservas-jogos-tabuleiro.md)
 
 ### UML (Class Diagram)
 
@@ -18,7 +20,7 @@ Something
 * Marcos José - [marcos.santiago@ufrpe.br](marcos.santiago@ufrpe.br)
 * Cauan Abraão- [cauan.azevedo@ufrpe.br](cauan.azevedo@ufrpe.br)
 * Eduardo Henrique - [eduardo.halves@ufrpe.br](eduardo.halves@ufrpe.br)
-* Gustavo (sobrenome) - [gustavo_@ufrpe.br](gustavo_@ufrpe.br)
+* Gustavo Santiago - [gustavo.delfino@ufrpe.br](gustavo.delfino@ufrpe.br)
 
 ## Teacher
 
