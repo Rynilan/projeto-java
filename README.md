@@ -12,7 +12,7 @@ explained, [info](reservas-jogos-tabuleiro.md).
 ### UML (Class Diagram)
 
 That's the file that resembles the actual class diagram of the  
-project, [Class Diagram](diagrama_de_classe.png)
+project, [Class Diagram](diagrama_de_classes.png)
 
 ## Members  
 
