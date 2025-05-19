@@ -6,15 +6,15 @@ of Introduction to Programming II (us that wrote it).
 
 ## Description
 
-Something
-
-[Details](https://github.com/lmarques7/projetos-ip2-2025-1/blob/main/reservas-jogos-tabuleiro.md)
+See the file that contains the original details well  
+explained, [info](reservas-jogos-tabuleiro.md).
 
 ### UML (Class Diagram)
 
-[Class Diagram](https://github.com/Rynilan/projeto-java/blob/main/diagrama_de_classe.png)
+That's the file that resembles the actual class diagram of the  
+project, [Class Diagram](diagrama_de_classe.png)
 
-## Components  
+## Members  
 
 * Ilan Vitor - [ilan.vitor@ufrpe.br](ilan.vitor@ufrpe.br)
 * Marcos José - [marcos.santiago@ufrpe.br](marcos.santiago@ufrpe.br)
@@ -24,4 +24,7 @@ Something
 
 ## Teacher
 
-* [Leandro Marques](https://github.com/lmarques7) - [Email](leandro.marques@ufrpe.br)
+<br/><p>Name: <b>Leandro Marques</b></p>
+<a href='leandro.marques@ufrpe.br'><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a><br/>
+<a href='https://github.com/lmarques7'><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/></a>
+
