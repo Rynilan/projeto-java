@@ -18,7 +18,7 @@ project, there's it:
 ## Members  
 
 * Ilan Vitor - [ilan.vitor@ufrpe.br](ilan.vitor@ufrpe.br)
-* Marcos José - [marcos.santiago@ufrpe.br](marcos.santiago@ufrpe.br)
+* Marcos José - [marcos.santiago@ufrpe.br](mjwsantiago.neto@gmail.com)
 * Cauan Abraão- [cauan.azevedo@ufrpe.br](cauan.azevedo@ufrpe.br)
 * Eduardo Henrique - [eduardo.halves@ufrpe.br](eduardo.halves@ufrpe.br)
 * Gustavo Santiago - [gustavo.delfino@ufrpe.br](gustavo.delfino@ufrpe.br)
