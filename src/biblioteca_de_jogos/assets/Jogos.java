@@ -14,7 +14,7 @@ public class Jogos {
 
     /** Inicializa o repositório. */
     public Jogos() {
-        this jogos = new ArrayList<Jogo>();
+        this.jogos = new ArrayList<Jogo>();
     }
 
     /** Retorna o jogo com o determinado nome. */
@@ -50,11 +50,7 @@ public class Jogos {
         return pode;
     }
     
-    public void mostrarJogos() {
-        System.out.println();
-        for (Jogo jogo: this.jogos) {
-            System.out.println(jogo);
-        }
-        System.out.println();
+    public List<Jogo> getJogos() {
+		return this.jogos;
     }
 }

@@ -29,19 +29,6 @@ public class Usuarios {
         return retorno;
     }
 
-    /** Remove o usuário baseado no seu email. */
-    public boolean removerUsuario(String email) {
-        if (email == null) email = "É NULO!";
-        Usuario usuario = this.buscarUsuario(email);
-        if (usuario == null) {
-            boolean resultado = false;
-        } else {
-            this.usuarios.remove(usuario);
-            boolean resultado = true;
-        }
-        return resultado;
-    }
-
     /** Adiciona o usuário novo caso não haja nenhum com o mesmo email. */
     public boolean adicionarUsuario(Usuario usuario) {
         boolean pode = !(usuario == null || this.buscarUsuario(usuario.getNome()) != null);
@@ -50,11 +37,7 @@ public class Usuarios {
     }
 
     /** Lista todos os usuários da lista. */
-    public void mostrarUsuarios() {
-        System.out.println();
-        for (Usuario usuario: this.usuarios) {
-            System.out.println(usuario);
-        }
-        System.out.println();
+    public List<Usuario> getUsuarios() {
+		return this.usuarios;
     }
 }
