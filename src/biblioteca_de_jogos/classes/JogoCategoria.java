@@ -1,4 +1,6 @@
- public class JogoCategoria {
+package biblioteca_de_jogos.classes;
+
+public class JogoCategoria {
     private int idJogo;
     private int idCategoria;
 
@@ -24,5 +26,4 @@
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }
-}{
 }

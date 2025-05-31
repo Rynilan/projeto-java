@@ -17,12 +17,4 @@ public class Emprestimos {
         this.dataDevolucaoReal = null;
     }
 
-    public boolean emAtraso() {
-
-    }
-
-    public boolean renovar(){
-
-    }
-
 }

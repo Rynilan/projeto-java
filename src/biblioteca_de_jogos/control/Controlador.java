@@ -1,4 +1,4 @@
-package biblioteca_de_jogos.assets;
+package biblioteca_de_jogos.control;
 
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;

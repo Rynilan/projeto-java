@@ -1,3 +1,5 @@
+package biblioteca_de_jogos.classes;
+
 public class Jogo {
     private int id;
     private String nome;

@@ -19,7 +19,7 @@ public class Usuarios {
     /** Pega o usuário pelo email. */
     public Usuario buscarUsuario(String email) {
         if (email == null) email = "É NULO!";
-        Usuario retorno = null
+        Usuario retorno = null;
 
         for (Usuario usuario: this.usuarios) {
             if (usuario.getEmail().equalsIgnoreCase(email)) {
