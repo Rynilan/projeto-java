@@ -9,14 +9,17 @@ public class Penalidade {
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private int idUsuario;
+	private Emprestimo emprestimo;
 
-    public Penalidade(int id, String descricao, String tipo, LocalDate dataInicio, LocalDate dataFim, int idUsuario) {
+	/** Construtor base */
+    public Penalidade(int id, String descricao, String tipo, int idUsuario, Emprestimo emprestimo) {
         this.id = id;
         this.descricao = descricao;
         this.tipo = tipo;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.dataInicio = LocalDate.now();
+        this.dataFim = null;
         this.idUsuario = idUsuario;
+		this.emprestimo = emprestimo;
     }
 
     public int getId() {
@@ -67,4 +70,9 @@ public class Penalidade {
         this.idUsuario = idUsuario;
     }
 
+	public boolean terminou() {
+		boolean acabou = emprestimo.atrasado();
+		if (acabou) this.dataFim = LocalDate.now();
+		return acabou;
+	}
 }

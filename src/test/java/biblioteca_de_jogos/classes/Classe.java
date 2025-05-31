@@ -1,17 +1,17 @@
-package biblioteca_de_jogos.assets;
+package biblioteca_de_jogos.classes;
 
 /**
  * Só um arquivo para criar a pasta no repositório
  * do GitHub e um exemplo chocho de classe (não mexa
  * se não tem porquê).
  */ 	
-public class Asset {
+public class Classe {
 
 	/** Um atributo. */
 	private String atributo;
 
 	/** Um construtor. */
-	public Asset() {
+	public Classe() {
 		this.atributo = "Atributo";
 	}
 
@@ -20,4 +20,4 @@ public class Asset {
 		this.atributo.isEmpty();
 	}
 
-} 	
+}
