@@ -114,4 +114,8 @@ public class Gerencia {
 	public List<Reserva> pegarReservasDeUsuario(int idUsuario) {
 		return reservas.reservasDeUsuario(idUsuario);
 	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return this.emprestimos;
+	}
 }
