@@ -258,7 +258,7 @@ public class App {
 				user = "4";
 			}
 
-		} while (!(user == "0"));
+		} while (!user.equals("0"));
 
 		stdin.close();
 		print("Obrigado pela presença.");
