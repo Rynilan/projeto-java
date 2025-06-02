@@ -16,9 +16,9 @@ public class App {
 		System.out.println(string);
 	}
 
-	public static void print_lista(List<E> lista) {
-		for (E elemento: lista) {
-			System.out.println(lista);
+	public static void print_lista(List lista) {
+		for (int indice = 0; indice < lista.size(); indice++) {
+			System.out.println(lista.get(indice));
 		}
 	}
 
@@ -101,7 +101,7 @@ public class App {
 					print("Diga o id do usuário em questão: ");
 					int n = stdin.nextInt();
 					print("");
-					print_lista(gerencia.getEmprestimosPorUsuario(n));
+					print_lista(gerencia.getEmprestimosDoUsuario(n));
 					print("");
 					break;
 				}
@@ -146,14 +146,14 @@ public class App {
 					break;
 
 					case "3":
-					pritn("");
+					print("");
 					print_lista(jogos.getJogos());
-					pritn("");
+					print("");
 					break;
 
 					case "4":
 					print("");
-					print_lista(gerencia.pegarDisponiveis());
+					print_lista(gerencia.pegarDisponiveis(jogos.getJogos()));
 					print("");
 
 					case "5":
@@ -166,7 +166,7 @@ public class App {
 
 					case "6":
 					print("defina o valor para o dado parâmetro: ");
-					String arg2 = stdin.nextInt();
+					int arg2 = stdin.nextInt();
 					print("");
 					print_lista(jogos.buscarPorQuantiaDeJogadores(arg2));
 					print("");
@@ -174,9 +174,10 @@ public class App {
 
 					case "7":
 					print("defina o valor para o dado parâmetro: ");
-					String arg3 = stdin.nextInt();
+					String arg3 = stdin.nextLine();
 					print("");
-					print_lista(jogos.buscarPorCategoria(arg3));
+					/*print_lista(jogos.buscarPorCategoria(arg3));*/
+					/* Falta implementação de categorias para funcionar. */
 					print("");
 					break;
 
@@ -204,15 +205,15 @@ public class App {
 					case "1":
 					print("Diga o id do usuário e do jogo:");
 					if (gerencia.fazerEmprestimo(
-						stdin.nextInt(),
-						stdin.nextInt()
+						usuarios.buscarUsuario(stdin.nextInt()),
+						jogos.buscarJogo(stdin.nextInt())
 					)) { print("Empréstimo feito com sucesso."); 
 					} else { print("Empréstimo deu erro.");}
 					break;
 
 					case "2":
 					print("Defina o id do empréstimo a ser devolvido e se há alguma observação (s ou n).");
-					gerencia.fazerDevolucao(stdin.nextLine(), pegarObservacoes(stdin.nextLine()));
+					gerencia.fazerDevolucao(stdin.nextInt(), pegarObservacoes(stdin.nextLine(), stdin));
 					break;
 
 					case "3":
@@ -260,7 +261,7 @@ public class App {
 		} while (!(user == "0"));
 
 		stdin.close();
-		stdout.println("Obrigado pela presença.");
+		print("Obrigado pela presença.");
 	}
 
 }

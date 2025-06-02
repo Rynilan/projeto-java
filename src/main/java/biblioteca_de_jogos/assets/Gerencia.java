@@ -51,6 +51,25 @@ public class Gerencia {
 		return achados;
 	}
 
+	public List<Emprestimo> getEmprestimosDoUsuario(int idUsuario) {
+		List<Emprestimo> achados = new ArrayList<Emprestimo>();
+		for (Emprestimo emprestimo: this.emprestimos) {
+			if (emprestimo.getIdUsuario() == idUsuario) {
+				achados.add(emprestimo);
+			}
+		}
+		return achados;
+	}
+
+	public List<Emprestimo> getEmprestimosDoJogo(int idJogo) {
+		List<Emprestimo> achados = new ArrayList<Emprestimo>();
+		for (Emprestimo emprestimo: this.emprestimos) {
+			if (emprestimo.getIdJogo() == idJogo) {
+				achados.add(emprestimo);
+			}
+		}
+		return achados;
+	}
 	public boolean usuarioTemEmprestimoDesseJogo(int idUsuario, int idJogo) {
 		boolean tem = false;
 		for (Emprestimo emprestimo: this.emprestimos) {
