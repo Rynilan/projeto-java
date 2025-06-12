@@ -286,12 +286,25 @@ public class App {
                 switch (user) {
                     case "1":
                         print("Digite a data inicial (Formatação dd/mm/aaaa)");
-                        LocalDate inicio = LocalDate.parse(stdin.nextLine());
-                        print("Digite a data final (Formatação dd/mm/aaaa)");
-                        LocalDate fim = LocalDate.parse(stdin.nextLine());
 
-                        print("Emprestimos entre " + inicio + "e " + fim);
-                        String exportar_emprestimos = gerencia.getEmprestimos().stream().filter(e -> !e.getDataEmprestimo().isBefore(inicio) && !e.getDataEmprestimo().isAfter(fim)).forEach(System.out::println);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        LocalDate inicio = LocalDate.parse(stdin.nextLine(), formatter);
+
+                        print("Digite a data final (Formatação dd/mm/aaaa)");
+                        LocalDate fim = LocalDate.parse(stdin.nextLine(), formatter);
+
+
+                        List<Emprestimo> emprestimosFiltrados = gerencia.getEmprestimos().stream()
+                                .filter(e -> !e.getDataEmprestimo().isBefore(inicio) && !e.getDataEmprestimo().isAfter(fim))
+                                .collect(Collectors.toList());
+
+                        print("Emprestimos entre " + inicio.format(formatter) + " e " + fim.format(formatter) + ":");
+                        if (emprestimosFiltrados.isEmpty()) {
+                            print("Nenhum empréstimo encontrado no período.");
+                        } else {
+                            emprestimosFiltrados.forEach(System.out::println);
+                        }
+
 
                         print("Exportar para: ");
                         print("1. CSV");
@@ -301,25 +314,40 @@ public class App {
 
                         String temp1 = stdin.nextLine();
 
+
                         switch (temp1){
                             case "1":
-                                exportarCSV(exportar_emprestimos);
-                                print("Exportado com sucesso para CSV");
-                                break;
+                                    try {
+                                        EmprestimoExporter.exportarCSV(emprestimosFiltrados);
+                                        print("Exportado com sucesso para CSV em 'emprestimos.csv'");
+                                    } catch (IOException e) {
+                                        print("Erro ao exportar para CSV: " + e.getMessage());
+                                    }
+                                    break;
+
 
                             case "2":
-                                exportarPDF(exportar_emprestimos);
-                                print("Exportado com sucesso para PDF");
+                                try {
+                                    EmprestimoExporter.exportarPDF(emprestimosFiltrados);
+                                    print("Exportado com sucesso para PDF em 'emprestimos.pdf'");
+                                } catch (DocumentException | IOException e) {
+                                    print("Erro ao exportar para PDF: " + e.getMessage());
+                                }
                                 break;
 
                             case "3":
-                                exportarCSV(exportar_emprestimos);
-                                exportarPDF(exportar_emprestimos);
-                                print("Exportado com sucesso para PDF e CSV");
+                                try {
+                                    EmprestimoExporter.exportarCSV(emprestimosFiltrados);
+                                    print("Exportado com sucesso para CSV em 'emprestimos.csv'");
+                                    EmprestimoExporter.exportarPDF(emprestimosFiltrados);
+                                    print("Exportado com sucesso para PDF em 'emprestimos.pdf'");
+                                    print("Exportado com sucesso para PDF e CSV");
+                                } catch (DocumentException | IOException e) {
+                                    print("Erro ao exportar: " + e.getMessage());
+                                }
                                 break;
-
                             case "4":
-                                print("");
+                                print("Exportação cancelada.");
                                 break;
 
                             case default:
@@ -329,162 +357,268 @@ public class App {
                         break;
 
                     case "2":
-                        print_lista(usuarios.getUsuarios());
-                        String exportar_usuarios;
-
-
-                        print("Exportar para: ");
+                        print("Exportar usuários para: ");
                         print("1. CSV");
                         print("2. PDF");
                         print("3. PDF e CSV");
                         print("4. Não exportar.");
 
-                        String temp2 = stdin.nextLine();
+                        String exportOptionUsuario = stdinNextLine();
 
-                        switch (temp2){
+
+                        List<Usuario> usuariosParaExportar = usuariosManager.getUsuarios();
+
+                        switch (exportOptionUsuario) {
                             case "1":
-                                exportarCSV(exportar_usuarios);
-                                print("Exportado com sucesso para CSV");
+                                try {
+                                    UsuarioExporter.exportarCSV(usuariosParaExportar);
+                                    print("Exportado com sucesso para CSV em 'usuarios.csv'");
+                                } catch (IOException e) {
+                                    print("Erro ao exportar para CSV: " + e.getMessage());
+                                }
                                 break;
 
                             case "2":
-                                exportarPDF(exportar_usuarios);
-                                print("Exportado com sucesso para PDF");
+                                try {
+                                    UsuarioExporter.exportarPDF(usuariosParaExportar);
+                                    print("Exportado com sucesso para PDF em 'usuarios.pdf'");
+                                } catch (DocumentException | IOException e) {
+                                    print("Erro ao exportar para PDF: " + e.getMessage());
+                                }
                                 break;
 
                             case "3":
-                                exportarCSV(exportar_usuarios);
-                                exportarPDF(exportar_usuarios);
-                                print("Exportado com sucesso para PDF e CSV");
+                                try {
+                                    UsuarioExporter.exportarCSV(usuariosParaExportar);
+                                    UsuarioExporter.exportarPDF(usuariosParaExportar);
+                                    print("Exportado com sucesso para PDF e CSV em 'usuarios.pdf' e 'usuarios.csv'"); // Mensagem mais específica
+                                } catch (DocumentException | IOException e) {
+                                    print("Erro ao exportar: " + e.getMessage());
+                                }
                                 break;
 
                             case "4":
-                                print("");
+                                print("Exportação de usuários cancelada.");
                                 break;
 
-                            case default:
-                                print("Entrada inválida");
+                            default:
+                                print("Entrada inválida.");
                                 break;
-                        }
-                        break;
+
+
 
                     case "3":
-                        print_lista(jogos.getJogos());
-                        String exportar_jogos = gerencia.getJogos;
-                        print("Exportar para: ");
-                        print("1. CSV");
-                        print("2. PDF");
-                        print("3. PDF e CSV");
-                        print("4. Não exportar.");
 
-                        String temp3 = stdin.nextLine();
+                                print("\n--- Relatório de Jogos ---");
 
-                        switch (temp3){
-                            case "1":
-                                exportarCSV(exportar_jogos);
-                                print("Exportado com sucesso para CSV");
+                                List<Jogo> todosJogos = jogosManager.getJogos();
+                                if (todosJogos.isEmpty()) {
+                                    print("Nenhum jogo cadastrado.");
+                                } else {
+                                    print("Lista de Todos os Jogos:");
+
+                                    todosJogos.forEach(System.out::println);
+                                }
+
+                                print("Exportar jogos para: ");
+                                print("1. CSV");
+                                print("2. PDF");
+                                print("3. PDF e CSV");
+                                print("4. Não exportar.");
+
+                                String exportOptionJogo = stdinNextLine();
+
+                                switch (exportOptionJogo) {
+                                    case "1":
+                                        try {
+
+                                            JogoExporter.exportarCSV(todosJogos);
+                                            print("Exportado com sucesso para CSV em 'jogos.csv'");
+                                        } catch (IOException e) {
+                                            print("Erro ao exportar para CSV: " + e.getMessage());
+                                        }
+                                        break;
+
+                                    case "2":
+                                        try {
+
+                                            JogoExporter.exportarPDF(todosJogos);
+                                            print("Exportado com sucesso para PDF em 'jogos.pdf'");
+                                        } catch (DocumentException | IOException e) {
+                                            print("Erro ao exportar para PDF: " + e.getMessage());
+                                        }
+                                        break;
+
+                                    case "3":
+                                        try {
+                                            JogoExporter.exportarCSV(todosJogos);
+                                            JogoExporter.exportarPDF(todosJogos);
+                                            print("Exportado com sucesso para PDF e CSV em 'jogos.pdf' e 'jogos.csv'");
+                                        } catch (DocumentException | IOException e) {
+                                            print("Erro ao exportar: " + e.getMessage());
+                                        }
+                                        break;
+
+                                    case "4":
+                                        print("Exportação de jogos cancelada.");
+                                        break;
+
+                                    default:
+                                        print("Entrada inválida.");
+                                        break;
+                                }
                                 break;
-
-                            case "2":
-                                exportarPDF(exportar_jogos);
-                                print("Exportado com sucesso para PDF");
-                                break;
-
-                            case "3":
-                                exportarCSV(exportar_jogos);
-                                exportarPDF(exportar_jogos);
-                                print("Exportado com sucesso para PDF e CSV");
-                                break;
-
-                            case "4":
-                                print("");
-                                break;
-
-                            case default:
-                                print("Entrada inválida");
-                                break;
-                        }
-                        break;
 
                     case "4":
-                        String exportar_picos_vales_emprestimo;
+                        print("\n--- Análise de Picos e Vales de Empréstimos ---");
+                        Map<YearMonth, Long> contagemPorMes = gerencia.analisarPicosValesEmprestimos();
 
-                        print("Exportar para: ");
+                        if (contagemPorMes.isEmpty()) {
+                            print("Não há empréstimos registrados para analisar picos e vales.");
+                        } else {
+                            Map.Entry<YearMonth, Long> pico = contagemPorMes.entrySet().stream()
+                                    .max(Map.Entry.comparingByValue())
+                                    .orElse(null);
+
+                            Map.Entry<YearMonth, Long> vale = contagemPorMes.entrySet().stream()
+                                    .min(Map.Entry.comparingByValue())
+                                    .orElse(null);
+
+                            print("\nContagem de empréstimos por mês/ano:");
+                            contagemPorMes.entrySet().stream()
+                                    .sorted(Map.Entry.comparingByKey())
+                                    .forEach(entry -> {
+                                        print("  " + entry.getKey().format(DateTimeFormatter.ofPattern("MM/yyyy")) + ": " + entry.getValue() + " empréstimos");
+                                    });
+
+                            if (pico != null) {
+                                print("\nPico de Empréstimos: " + pico.getKey().format(DateTimeFormatter.ofPattern("MM/yyyy")) + " com " + pico.getValue() + " empréstimos.");
+                            }
+                            if (vale != null) {
+                                print("Vale de Empréstimos: " + vale.getKey().format(DateTimeFormatter.ofPattern("MM/yyyy")) + " com " + vale.getValue() + " empréstimos.");
+                            }
+                        }
+
+
+                        print("Exportar análise de picos e vales para: ");
                         print("1. CSV");
                         print("2. PDF");
                         print("3. PDF e CSV");
                         print("4. Não exportar.");
 
-                        String temp4 = stdin.nextLine();
+                        String exportOptionPicosVales = stdin.nextLine();
 
-                        switch (temp4){
+                        switch (exportOptionPicosVales) {
                             case "1":
-                                exportarCSV(exportar_picos_vales_emprestimo);
-                                print("Exportado com sucesso para CSV");
+                                try {
+                                    PicosValesEmprestimoExporter.exportarCSV(contagemPorMes);
+                                    print("Exportado com sucesso para CSV em 'picos_vales_emprestimo.csv'");
+                                } catch (IOException e) {
+                                    print("Erro ao exportar para CSV: " + e.getMessage());
+                                }
                                 break;
 
                             case "2":
-                                exportarPDF(exportar_picos_vales_emprestimo);
-                                print("Exportado com sucesso para PDF");
+                                try {
+                                    PicosValesEmprestimoExporter.exportarPDF(contagemPorMes);
+                                    print("Exportado com sucesso para PDF em 'picos_vales_emprestimo.pdf'");
+                                } catch (DocumentException | IOException e) {
+                                    print("Erro ao exportar para PDF: " + e.getMessage());
+                                }
                                 break;
 
                             case "3":
-                                exportarCSV(exportar_picos_vales_emprestimo);
-                                exportarPDF(exportar_picos_vales_emprestimo);
-                                print("Exportado com sucesso para PDF e CSV");
+                                try {
+                                    PicosValesEmprestimoExporter.exportarCSV(contagemPorMes);
+                                    PicosValesEmprestimoExporter.exportarPDF(contagemPorMes);
+                                    print("Exportado com sucesso para PDF e CSV em 'picos_vales_emprestimo.pdf' e 'picos_vales_emprestimo.csv'");
+                                } catch (DocumentException | IOException e) {
+                                    print("Erro ao exportar: " + e.getMessage());
+                                }
                                 break;
 
                             case "4":
-                                print("");
+                                print("Exportação da análise de picos e vales cancelada.");
                                 break;
 
-                            case default:
-                                print("Entrada inválida");
+                            default:
+                                print("Entrada inválida.");
                                 break;
                         }
-
-
                         print("");
                         break;
 
-                    case "5":
-                        String exportar_picos_vales_popularidade;
+                            case "0":
+                                print("Saindo do programa.");
+                                running = false;
+                                break;
 
-                        print("Exportar para: ");
+                            default:
+                                print("Opção inválida. Por favor, tente novamente.");
+                                break;
+                    case "5":
+                        print("\n--- Análise de Popularidade de Jogos ---");
+                        Map<Jogo, Long> popularidadeJogos = gerencia.analisarPicosValesPopularidadeJogos();
+
+                        if (popularidadeJogos.isEmpty()) {
+                            print("Não há empréstimos registrados para analisar a popularidade dos jogos.");
+                        } else {
+                            print("\nClassificação dos Jogos por Popularidade (Total de Empréstimos):");
+                            popularidadeJogos.entrySet().stream()
+                                    .sorted(Map.Entry.<Jogo, Long>comparingByValue().reversed()) // Ordena do mais popular para o menos
+                                    .forEach(entry -> {
+                                        print("  " + entry.getKey().getNome() + ": " + entry.getValue() + " empréstimos");
+                                    });
+                        }
+
+
+                        print("Exportar análise de popularidade para: ");
                         print("1. CSV");
                         print("2. PDF");
                         print("3. PDF e CSV");
                         print("4. Não exportar.");
 
-                        String temp5 = stdin.nextLine();
+                        String exportOptionPopularidade = stdin.nextLine();
 
-                        switch (temp5){
+                        switch (exportOptionPopularidade) {
                             case "1":
-                                exportarCSV(exportar_picos_vales_popularidade);
-                                print("Exportado com sucesso para CSV");
+                                try {
+                                    JogoPopularidadeExporter.exportarCSV(popularidadeJogos);
+                                    print("Exportado com sucesso para CSV em 'popularidade_jogos.csv'");
+                                } catch (IOException e) {
+                                    print("Erro ao exportar para CSV: " + e.getMessage());
+                                }
                                 break;
 
                             case "2":
-                                exportarPDF(exportar_picos_vales_popularidade);
-                                print("Exportado com sucesso para PDF");
+                                try {
+                                    JogoPopularidadeExporter.exportarPDF(popularidadeJogos);
+                                    print("Exportado com sucesso para PDF em 'popularidade_jogos.pdf'");
+                                } catch (DocumentException | IOException e) { // Captura ambas as exceções
+                                    print("Erro ao exportar para PDF: " + e.getMessage());
+                                }
                                 break;
 
                             case "3":
-                                exportarCSV(exportar_picos_vales_popularidade);
-                                exportarPDF(exportar_picos_vales_popularidade);
-                                print("Exportado com sucesso para PDF e CSV");
+                                try {
+                                    JogoPopularidadeExporter.exportarCSV(popularidadeJogos);
+                                    JogoPopularidadeExporter.exportarPDF(popularidadeJogos);
+                                    print("Exportado com sucesso para PDF e CSV em 'popularidade_jogos.pdf' e 'popularidade_jogos.csv'");
+                                } catch (DocumentException | IOException e) { // Captura ambas as exceções
+                                    print("Erro ao exportar: " + e.getMessage());
+                                }
                                 break;
 
                             case "4":
-                                print("");
+                                print("Exportação da análise de popularidade cancelada.");
                                 break;
 
-                            case default:
-                                print("Entrada inválida");
+                            default: // 'default' em minúsculas
+                                print("Entrada inválida.");
                                 break;
                         }
-                        break;
 
+                        break;
                     case default:
                         print("Entrada inválida");
                         break;

@@ -39,8 +39,6 @@ public class Relatorio {
 		}
     }
 
-	public void exportarCSV() {}
 
-	public void exportarPDF() {}
 
 }

@@ -31,12 +31,29 @@ public class Emprestimo {
 		return this.idUsuario;
 	}
 
+	public int getRenovacoes() {
+		return renovacoes;
+	}
+
+	public Long getIntervalo() {
+		return intervalo;
+	}
+
+	public List<String> getObservacoes() {
+		return observacoes;
+	}
+
+
 	public LocalDate getDevolucao() {
 		return this.dataDevolucaoReal;
 	}
 
 	public int getId() {
 		return this.id;
+	}
+
+	public LocalDate getDataEmprestimo() {
+		return this.dataEmprestimo;
 	}
 
 	public void devolver(List<String> observacoes) {
@@ -59,4 +76,7 @@ public class Emprestimo {
 		}
 		return pode;
 	}
+
+
+
 }
