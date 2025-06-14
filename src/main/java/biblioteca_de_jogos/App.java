@@ -131,7 +131,7 @@ public class App {
                         print("");
                         break;
 
-                    case default:
+                    default:
                         print("Entrada inválida");
                         break;
                 }
@@ -219,7 +219,7 @@ public class App {
                         print("");
                         break;
 
-                    case default:
+                    default:
                         print("Entrada inválida");
                         break;
                 }
@@ -265,7 +265,7 @@ public class App {
                         print("");
                         break;
 
-                    case default:
+                    default:
                         print("Entrada inválida");
                         break;
 
@@ -350,7 +350,7 @@ public class App {
                                 print("Exportação cancelada.");
                                 break;
 
-                            case default:
+                            default:
                                 print("Entrada inválida");
                                 break;
                         }
@@ -404,6 +404,7 @@ public class App {
                             default:
                                 print("Entrada inválida.");
                                 break;
+						}
 
 
 
@@ -617,12 +618,12 @@ public class App {
                                 print("Entrada inválida.");
                                 break;
                         }
+						break;
 
-                        break;
-                    case default:
-                        print("Entrada inválida");
-                        break;
-                }
+						default:
+							print("Entrada inválida");
+							break;
+					}
                 user = "4";
             }
 

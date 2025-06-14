@@ -51,25 +51,6 @@ public class Gerencia {
 		return achados;
 	}
 
-	public List<Emprestimo> getEmprestimosDoUsuario(int idUsuario) {
-		List<Emprestimo> achados = new ArrayList<Emprestimo>();
-		for (Emprestimo emprestimo: this.emprestimos) {
-			if (emprestimo.getIdUsuario() == idUsuario) {
-				achados.add(emprestimo);
-			}
-		}
-		return achados;
-	}
-
-	public List<Emprestimo> getEmprestimosDoJogo(int idJogo) {
-		List<Emprestimo> achados = new ArrayList<Emprestimo>();
-		for (Emprestimo emprestimo: this.emprestimos) {
-			if (emprestimo.getIdJogo() == idJogo) {
-				achados.add(emprestimo);
-			}
-		}
-		return achados;
-	}
 	public boolean usuarioTemEmprestimoDesseJogo(int idUsuario, int idJogo) {
 		boolean tem = false;
 		for (Emprestimo emprestimo: this.emprestimos) {
@@ -130,11 +111,47 @@ public class Gerencia {
 		return achados;
 	}
 
-	public List<Reserva> pegarReservasDeUsuario(int idUsuario) {
-		return reservas.reservasDeUsuario(idUsuario);
+
+
+	public Map<Jogo, Long> analisarPicosValesPopularidadeJogos() {
+		// Mapeia cada Jogo (resolvendo o ID para o objeto Jogo completo) para a contagem de empréstimos
+		Map<Integer, Long> contagemPorJogoId = emprestimos.stream()
+				.collect(
+						Collectors.groupingBy(
+								Emprestimo::getIdJogo, // Agrupa pelo ID do jogo
+								Collectors.counting()   // Conta os empréstimos por ID de jogo
+						)
+				);
+
+		// Converte o mapa de ID para Jogo, usando o jogosManager para buscar o objeto Jogo
+		Map<Jogo, Long> popularidadeJogos = new LinkedHashMap<>(); // LinkedHashMap para manter a ordem (opcional)
+		contagemPorJogoId.entrySet().stream()
+				.sorted(Map.Entry.<Integer, Long>comparingByValue().reversed()) // Ordena do mais popular para o menos
+				.forEach(entry -> {
+					Jogo jogo = jogosManager.buscarJogo(entry.getKey());
+					if (jogo != null) {
+						popularidadeJogos.put(jogo, entry.getValue());
+					}
+				});
+
+		return popularidadeJogos;
 	}
 
-	public List<Emprestimo> getEmprestimos() {
-		return this.emprestimos;
+
+	public Map<YearMonth, Long> analisarPicosValesEmprestimos() {
+		// Mapeia cada mês/ano para a contagem de empréstimos
+		Map<YearMonth, Long> contagemPorMes = emprestimos.stream()
+				.collect(
+						java.util.stream.Collectors.groupingBy(
+								emprestimo -> YearMonth.from(emprestimo.getDataEmprestimo()),
+								java.util.stream.Collectors.counting()
+						)
+				);
+
+		return contagemPorMes;
+	}
+
+	public List<Reserva> pegarReservasDeUsuario(int idUsuario) {
+		return reservas.reservasDeUsuario(idUsuario);
 	}
 }
