@@ -6,4 +6,4 @@ target/*
 .settings/*
 .classpath
 .project
-dependency_reduced-pom.xml
+dependency-reduced-pom.xml
