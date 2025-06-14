@@ -47,7 +47,7 @@ public class JogoExporter {
      * @throws DocumentException Se ocorrer um erro durante a geração do PDF.
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
-    public static void void exportarPDF(List<Jogo> jogos) throws DocumentException, IOException {
+    public static void exportarPDF(List<Jogo> jogos) throws DocumentException, IOException {
         String fileName = "jogos.pdf";
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(fileName));
