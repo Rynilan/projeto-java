@@ -24,10 +24,10 @@ public class Jogos {
 		return achado;
 	}
 
-	public Jogo criarJogo(String nome, String editor, String descricao, int tempoPartida, int minJogadores, int maxJogadores, int copias) {
+	public Jogo criarJogo(String nome, String editor, String descricao, int tempoPartida, int minJogadores, int maxJogadores, int copias, int idCategoria) {
 		Jogo jogo = null;
 		if (nome != null && editor != null && tempoPartida > 0 && minJogadores > 0 && minJogadores < maxJogadores && copias > 0) {
-			jogo = new Jogo(this.id, nome, editor, descricao, tempoPartida, minJogadores, maxJogadores, copias);
+			jogo = new Jogo(this.id, nome, editor, descricao, tempoPartida, minJogadores, maxJogadores, copias, idCategoria);
 		}
 		return jogo;
 	}
@@ -76,5 +76,15 @@ public class Jogos {
 
 	public List<Jogo> getJogos() {
 		return this.jogos;
+	}
+
+	public List<Jogo> buscarPorCategoria(int idCategoria) {
+		List<Jogo> achados = new ArrayList<Jogo>();
+		for (Jogo jogo: this.jogos) {
+			if (jogo.getIdCategoria() == idCategoria) {
+				achados.add(jogo);
+			}
+		}
+		return achados;
 	}
 }

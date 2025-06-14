@@ -1,16 +1,17 @@
-package biblioteca_de_jogos.classes;
+package biblioteca_de_jogos.assets;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import biblioteca_de_jogos.classes.Jogo;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.exceptions.PdfException;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileOutputStream;
 import java.util.Map;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public class JogoPopularidadeExporter {
 
@@ -49,45 +50,43 @@ public class JogoPopularidadeExporter {
      * O arquivo será salvo na raiz do projeto com o nome "popularidade_jogos.pdf".
      *
      * @param popularidadeJogos O mapa onde a chave é o objeto Jogo e o valor é a contagem de empréstimos.
-     * @throws DocumentException Se ocorrer um erro durante a geração do PDF.
+     * @throws PdfException Se ocorrer um erro durante a geração do PDF.
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
-    public static void exportarPDF(Map<Jogo, Long> popularidadeJogos) throws DocumentException, IOException {
-        String fileName = "popularidade_jogos.pdf";
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
+	public static void exportarPDF(Map<Jogo, Long> popularidadeJogos) throws IOException {
+		String fileName = "popularidade_jogos.pdf";
 
-        document.add(new Paragraph("Relatório de Popularidade dos Jogos"));
-        document.add(new Paragraph("\n"));
+		try (PdfWriter writer = new PdfWriter(fileName);
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf)) {
 
-        if (popularidadeJogos.isEmpty()) {
-            document.add(new Paragraph("Não há dados de popularidade de jogos para o relatório."));
-        } else {
-            document.add(new Paragraph("Classificação dos Jogos por Popularidade (Empréstimos):"));
-            document.add(new Paragraph("\n"));
+			document.add(new Paragraph("Relatório de Popularidade dos Jogos"));
+			document.add(new Paragraph("\n"));
 
+			if (popularidadeJogos.isEmpty()) {
+				document.add(new Paragraph("Não há dados de popularidade de jogos para o relatório."));
+			} else {
+				document.add(new Paragraph("Classificação dos Jogos por Popularidade (Empréstimos):"));
+				document.add(new Paragraph("\n"));
 
-            popularidadeJogos.entrySet().stream()
-                    .sorted(Map.Entry.<Jogo, Long>comparingByValue().reversed())
-                    .forEach(entry -> {
-                        Jogo jogo = entry.getKey();
-                        Long contagem = entry.getValue();
-                        try {
-                            document.add(new Paragraph("--------------------------------------------------"));
-                            document.add(new Paragraph("Jogo: " + jogo.getNome() + " (ID: " + jogo.getId() + ")"));
-                            document.add(new Paragraph("Editora: " + jogo.getEditor()));
-                            document.add(new Paragraph("Total de Empréstimos: " + contagem));
-                        } catch (DocumentException e) {
-                            throw new RuntimeException("Erro ao adicionar parágrafo ao PDF de popularidade: " + e.getMessage(), e);
-                        }
-                    });
-            document.add(new Paragraph("--------------------------------------------------"));
-        }
+				popularidadeJogos.entrySet().stream()
+					.sorted(Map.Entry.<Jogo, Long>comparingByValue().reversed())
+					.forEach(entry -> {
+						Jogo jogo = entry.getKey();
+						Long contagem = entry.getValue();
 
-        document.close();
-    }
+						document.add(new Paragraph("--------------------------------------------------"));
+						document.add(new Paragraph("Jogo: " + jogo.getNome() + " (ID: " + jogo.getId() + ")"));
+						document.add(new Paragraph("Editora: " + jogo.getEditor()));
+						document.add(new Paragraph("Total de Empréstimos: " + contagem));
+					});
 
+				document.add(new Paragraph("--------------------------------------------------"));
+			}
+		} catch (IOException e) {
+			throw new IOException("Erro ao gerar o arquivo PDF: " + e.getMessage(), e);
+		}
+	}
 
     private static String escapeCsv(String value) {
         if (value == null) {

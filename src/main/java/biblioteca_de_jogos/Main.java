@@ -1,19 +1,34 @@
 package biblioteca_de_jogos;
 
+import biblioteca_de_jogos.assets.EmprestimoExporter;
 import biblioteca_de_jogos.assets.Gerencia;
+import biblioteca_de_jogos.assets.JogoExporter;
+import biblioteca_de_jogos.assets.JogoPopularidadeExporter;
 import biblioteca_de_jogos.assets.Jogos;
+import biblioteca_de_jogos.assets.PicosValesEmprestimoExporter;
+import biblioteca_de_jogos.assets.UsuarioExporter;
 import biblioteca_de_jogos.assets.Usuarios;
+import biblioteca_de_jogos.classes.Emprestimo;
+import biblioteca_de_jogos.classes.Jogo;
+import biblioteca_de_jogos.classes.Usuario;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import com.itextpdf.kernel.exceptions.PdfException;
+
+import java.io.IOException;
 
 /** A classe estática que representa o sistema em funcionalidade,
  * faz as classes conversarem e interage com o usuário. */
-public class App {
+public class Main {
 
     public static void print(String string) {
         System.out.println(string);
@@ -69,7 +84,6 @@ public class App {
         Usuarios usuarios = new Usuarios();
         Jogos jogos = new Jogos();
         Gerencia gerencia = new Gerencia();
-        Relatorio relatorio = new Relatorio();
 
         Scanner stdin = new Scanner(System.in);
         String user = "0";
@@ -153,7 +167,7 @@ public class App {
 
                 switch (user) {
                     case "1":
-                        print("Defina o nome, editor, descrição, tempo de partida (em minutos), mínimo e máximo de jogadores e a quantidade de cópias desse jogo: ");
+                        print("Defina o nome, editor, descrição, tempo de partida (em minutos), mínimo e máximo de jogadores, a quantidade de cópias, e o id da categoria desse jogo: ");
                         if (jogos.adicionarJogo(
                                 jogos.criarJogo(
                                         stdin.nextLine(),
@@ -162,7 +176,8 @@ public class App {
                                         stdin.nextInt(),
                                         stdin.nextInt(),
                                         stdin.nextInt(),
-                                        stdin.nextInt()
+                                        stdin.nextInt(),
+										stdin.nextInt()
                                 )
                         )) { print("Jogo adicionado com sucesso.");
                         } else { print("Algum erro aconteceu."); }
@@ -205,7 +220,7 @@ public class App {
 
                     case "7":
                         print("defina o valor para o dado parâmetro: ");
-                        String arg3 = stdin.nextLine();
+                        int arg3 = stdin.nextInt();
                         print("");
                         print_lista(jogos.buscarPorCategoria(arg3));
                         print("");
@@ -295,7 +310,7 @@ public class App {
 
 
                         List<Emprestimo> emprestimosFiltrados = gerencia.getEmprestimos().stream()
-                                .filter(e -> !e.getDataEmprestimo().isBefore(inicio) && !e.getDataEmprestimo().isAfter(fim))
+                                .filter(e -> !e.getData().isBefore(inicio) && !e.getData().isAfter(fim))
                                 .collect(Collectors.toList());
 
                         print("Emprestimos entre " + inicio.format(formatter) + " e " + fim.format(formatter) + ":");
@@ -330,7 +345,7 @@ public class App {
                                 try {
                                     EmprestimoExporter.exportarPDF(emprestimosFiltrados);
                                     print("Exportado com sucesso para PDF em 'emprestimos.pdf'");
-                                } catch (DocumentException | IOException e) {
+                                } catch (PdfException | IOException e) {
                                     print("Erro ao exportar para PDF: " + e.getMessage());
                                 }
                                 break;
@@ -342,7 +357,7 @@ public class App {
                                     EmprestimoExporter.exportarPDF(emprestimosFiltrados);
                                     print("Exportado com sucesso para PDF em 'emprestimos.pdf'");
                                     print("Exportado com sucesso para PDF e CSV");
-                                } catch (DocumentException | IOException e) {
+                                } catch (PdfException | IOException e) {
                                     print("Erro ao exportar: " + e.getMessage());
                                 }
                                 break;
@@ -363,10 +378,10 @@ public class App {
                         print("3. PDF e CSV");
                         print("4. Não exportar.");
 
-                        String exportOptionUsuario = stdinNextLine();
+                        String exportOptionUsuario = stdin.nextLine();
 
 
-                        List<Usuario> usuariosParaExportar = usuariosManager.getUsuarios();
+                        List<Usuario> usuariosParaExportar = usuarios.getUsuarios();
 
                         switch (exportOptionUsuario) {
                             case "1":
@@ -382,7 +397,7 @@ public class App {
                                 try {
                                     UsuarioExporter.exportarPDF(usuariosParaExportar);
                                     print("Exportado com sucesso para PDF em 'usuarios.pdf'");
-                                } catch (DocumentException | IOException e) {
+                                } catch (PdfException | IOException e) {
                                     print("Erro ao exportar para PDF: " + e.getMessage());
                                 }
                                 break;
@@ -392,7 +407,7 @@ public class App {
                                     UsuarioExporter.exportarCSV(usuariosParaExportar);
                                     UsuarioExporter.exportarPDF(usuariosParaExportar);
                                     print("Exportado com sucesso para PDF e CSV em 'usuarios.pdf' e 'usuarios.csv'"); // Mensagem mais específica
-                                } catch (DocumentException | IOException e) {
+                                } catch (PdfException | IOException e) {
                                     print("Erro ao exportar: " + e.getMessage());
                                 }
                                 break;
@@ -412,7 +427,7 @@ public class App {
 
                                 print("\n--- Relatório de Jogos ---");
 
-                                List<Jogo> todosJogos = jogosManager.getJogos();
+                                List<Jogo> todosJogos = jogos.getJogos();
                                 if (todosJogos.isEmpty()) {
                                     print("Nenhum jogo cadastrado.");
                                 } else {
@@ -427,7 +442,7 @@ public class App {
                                 print("3. PDF e CSV");
                                 print("4. Não exportar.");
 
-                                String exportOptionJogo = stdinNextLine();
+                                String exportOptionJogo = stdin.nextLine();
 
                                 switch (exportOptionJogo) {
                                     case "1":
@@ -445,7 +460,7 @@ public class App {
 
                                             JogoExporter.exportarPDF(todosJogos);
                                             print("Exportado com sucesso para PDF em 'jogos.pdf'");
-                                        } catch (DocumentException | IOException e) {
+                                        } catch (PdfException | IOException e) {
                                             print("Erro ao exportar para PDF: " + e.getMessage());
                                         }
                                         break;
@@ -455,7 +470,7 @@ public class App {
                                             JogoExporter.exportarCSV(todosJogos);
                                             JogoExporter.exportarPDF(todosJogos);
                                             print("Exportado com sucesso para PDF e CSV em 'jogos.pdf' e 'jogos.csv'");
-                                        } catch (DocumentException | IOException e) {
+                                        } catch (PdfException | IOException e) {
                                             print("Erro ao exportar: " + e.getMessage());
                                         }
                                         break;
@@ -523,7 +538,7 @@ public class App {
                                 try {
                                     PicosValesEmprestimoExporter.exportarPDF(contagemPorMes);
                                     print("Exportado com sucesso para PDF em 'picos_vales_emprestimo.pdf'");
-                                } catch (DocumentException | IOException e) {
+                                } catch (PdfException | IOException e) {
                                     print("Erro ao exportar para PDF: " + e.getMessage());
                                 }
                                 break;
@@ -533,7 +548,7 @@ public class App {
                                     PicosValesEmprestimoExporter.exportarCSV(contagemPorMes);
                                     PicosValesEmprestimoExporter.exportarPDF(contagemPorMes);
                                     print("Exportado com sucesso para PDF e CSV em 'picos_vales_emprestimo.pdf' e 'picos_vales_emprestimo.csv'");
-                                } catch (DocumentException | IOException e) {
+                                } catch (PdfException | IOException e) {
                                     print("Erro ao exportar: " + e.getMessage());
                                 }
                                 break;
@@ -549,17 +564,13 @@ public class App {
                         print("");
                         break;
 
-                            case "0":
-                                print("Saindo do programa.");
-                                running = false;
-                                break;
+						default:
+							print("Opção inválida. Por favor, tente novamente.");
+							break;
 
-                            default:
-                                print("Opção inválida. Por favor, tente novamente.");
-                                break;
                     case "5":
                         print("\n--- Análise de Popularidade de Jogos ---");
-                        Map<Jogo, Long> popularidadeJogos = gerencia.analisarPicosValesPopularidadeJogos();
+                        Map<Jogo, Long> popularidadeJogos = gerencia.analisarPicosValesPopularidadeJogos(jogos);
 
                         if (popularidadeJogos.isEmpty()) {
                             print("Não há empréstimos registrados para analisar a popularidade dos jogos.");
@@ -595,7 +606,7 @@ public class App {
                                 try {
                                     JogoPopularidadeExporter.exportarPDF(popularidadeJogos);
                                     print("Exportado com sucesso para PDF em 'popularidade_jogos.pdf'");
-                                } catch (DocumentException | IOException e) { // Captura ambas as exceções
+                                } catch (PdfException | IOException e) { // Captura ambas as exceções
                                     print("Erro ao exportar para PDF: " + e.getMessage());
                                 }
                                 break;
@@ -605,7 +616,7 @@ public class App {
                                     JogoPopularidadeExporter.exportarCSV(popularidadeJogos);
                                     JogoPopularidadeExporter.exportarPDF(popularidadeJogos);
                                     print("Exportado com sucesso para PDF e CSV em 'popularidade_jogos.pdf' e 'popularidade_jogos.csv'");
-                                } catch (DocumentException | IOException e) { // Captura ambas as exceções
+                                } catch (PdfException | IOException e) { // Captura ambas as exceções
                                     print("Erro ao exportar: " + e.getMessage());
                                 }
                                 break;
@@ -619,10 +630,6 @@ public class App {
                                 break;
                         }
 						break;
-
-						default:
-							print("Entrada inválida");
-							break;
 					}
                 user = "4";
             }

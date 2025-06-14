@@ -2,6 +2,7 @@ package biblioteca_de_jogos.classes;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Relatorio {
 
@@ -13,29 +14,26 @@ public class Relatorio {
 	private List<Jogo> dadosJog;
 	private List<Usuario> dadosUsu;
 
-
-
-	public Relatorio(int id, String tipo, String tipoDeRelatorio, List dados) {
+	public Relatorio(int id, String tipo, String tipoDeRelatorio, List<Object> dados) {
         this.id = id;
         this.tipo = tipo;
 		this.tipoDeRelatorio = tipoDeRelatorio;
         this.dataGeracao = LocalDate.now();
-		switch (tipoDeRelatorio) {
-			case "emp":
-				this.dadosEmp = dados;
-				this.dadosJog = null;
-				this.dadosUsu = null;
-				break;
-			case "jog":
-				this.dadosJog = dados;
-				this.dadosEmp = null;
-				this.dadosUsu = null;
-				break;
-			case "usu":
-				this.dadosUsu = dados;
-				this.dadosEmp = null;
-				this.dadosJog = null;
-				break;
+		if (dados.get(0) instanceof Emprestimo) {
+			List<Emprestimo> newDados = dados.stream().map(objeto -> (Emprestimo) objeto).collect(Collectors.toList());
+			this.dadosEmp = newDados;
+			this.dadosJog = null;
+			this.dadosUsu = null;
+		} else if (dados.get(0) instanceof Jogo) {
+			List<Jogo> newDados = dados.stream().map(objeto -> (Jogo) objeto).collect(Collectors.toList());
+			this.dadosJog = newDados;
+			this.dadosEmp = null;
+			this.dadosUsu = null;
+		} else if (dados.get(0) instanceof Usuario) {
+			List<Usuario> newDados = dados.stream().map(objeto -> (Usuario) objeto).collect(Collectors.toList());
+			this.dadosUsu = newDados;
+			this.dadosEmp = null;
+			this.dadosJog = null;
 		}
     }
 

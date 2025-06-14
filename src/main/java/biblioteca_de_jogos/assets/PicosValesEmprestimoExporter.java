@@ -1,18 +1,16 @@
-package biblioteca_de_jogos.classes;
+package biblioteca_de_jogos.assets;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.exceptions.PdfException;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileOutputStream;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Map;
-import java.util.ArrayList; // Para usar na ordenação
 
 public class PicosValesEmprestimoExporter {
 
@@ -50,51 +48,51 @@ public class PicosValesEmprestimoExporter {
      * O arquivo será salvo na raiz do projeto com o nome "picos_vales_emprestimo.pdf".
      *
      * @param contagemPorMes O mapa onde a chave é o YearMonth e o valor é a contagem de empréstimos.
-     * @throws DocumentException Se ocorrer um erro durante a geração do PDF.
+     * @throws PdfException Se ocorrer um erro durante a geração do PDF.
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
-    public static void exportarPDF(Map<YearMonth, Long> contagemPorMes) throws DocumentException, IOException {
-        String fileName = "picos_vales_emprestimo.pdf";
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
+	public static void exportarPDF(Map<YearMonth, Long> contagemPorMes) throws IOException {
+		String fileName = "picos_vales_emprestimo.pdf";
 
-        document.add(new Paragraph("Relatório de Picos e Vales de Empréstimos"));
-        document.add(new Paragraph("\n"));
+		try (PdfWriter writer = new PdfWriter(fileName);
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf)) {
 
-        if (contagemPorMes.isEmpty()) {
-            document.add(new Paragraph("Não há dados de empréstimos para analisar picos e vales."));
-        } else {
-            // Encontrar o pico e o vale para incluir no PDF
-            Map.Entry<YearMonth, Long> pico = contagemPorMes.entrySet().stream()
-                    .max(Map.Entry.comparingByValue())
-                    .orElse(null);
+			document.add(new Paragraph("Relatório de Picos e Vales de Empréstimos"));
+			document.add(new Paragraph("\n"));
 
-            Map.Entry<YearMonth, Long> vale = contagemPorMes.entrySet().stream()
-                    .min(Map.Entry.comparingByValue())
-                    .orElse(null);
+			if (contagemPorMes.isEmpty()) {
+				document.add(new Paragraph("Não há dados de empréstimos para analisar picos e vales."));
+			} else {
+				// Encontrar o pico e o vale
+				Map.Entry<YearMonth, Long> pico = contagemPorMes.entrySet().stream()
+				.max(Map.Entry.comparingByValue())
+				.orElse(null);
 
-            document.add(new Paragraph("Contagem de empréstimos por mês/ano:"));
-            // Imprime os dados ordenados no PDF
-            contagemPorMes.entrySet().stream()
-                    .sorted(Map.Entry.comparingByKey())
-                    .forEach(entry -> {
-                        try {
-                            document.add(new Paragraph("  " + entry.getKey().format(MONTH_YEAR_FORMATTER) + ": " + entry.getValue() + " empréstimos"));
-                        } catch (DocumentException e) {
-                            throw new RuntimeException("Erro ao adicionar parágrafo ao PDF: " + e.getMessage(), e);
-                        }
-                    });
+				Map.Entry<YearMonth, Long> vale = contagemPorMes.entrySet().stream()
+				.min(Map.Entry.comparingByValue())
+				.orElse(null);
 
-            document.add(new Paragraph("\n")); // Espaçamento
+				document.add(new Paragraph("Contagem de empréstimos por mês/ano:"));
 
-            if (pico != null) {
-                document.add(new Paragraph("Pico de Empréstimos: " + pico.getKey().format(MONTH_YEAR_FORMATTER) + " com " + pico.getValue() + " empréstimos."));
-            }
-            if (vale != null) {
-                document.add(new Paragraph("Vale de Empréstimos: " + vale.getKey().format(MONTH_YEAR_FORMATTER) + " com " + vale.getValue() + " empréstimos."));
-            }
-        }
-        document.close();
-    }
+				// Imprime os dados ordenados no PDF
+				contagemPorMes.entrySet().stream()
+					.sorted(Map.Entry.comparingByKey())
+					.forEach(entry -> 
+						document.add(new Paragraph("  " + entry.getKey().format(MONTH_YEAR_FORMATTER) + ": " + entry.getValue() + " empréstimos"))
+					);
+
+				document.add(new Paragraph("\n")); // Espaçamento
+
+				if (pico != null) {
+					document.add(new Paragraph("Pico de Empréstimos: " + pico.getKey().format(MONTH_YEAR_FORMATTER) + " com " + pico.getValue() + " empréstimos."));
+				}
+				if (vale != null) {
+					document.add(new Paragraph("Vale de Empréstimos: " + vale.getKey().format(MONTH_YEAR_FORMATTER) + " com " + vale.getValue() + " empréstimos."));
+				}
+			}
+		} catch (IOException e) {
+			throw new IOException("Erro ao gerar o arquivo PDF: " + e.getMessage(), e);
+		}
+	}
 }

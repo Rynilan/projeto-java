@@ -9,10 +9,11 @@ public class Jogo {
     private int minJogadores;
     private int maxJogadores;
     private int qtdCopias;
+	private int idCategoria;
 
 
     public Jogo(int id, String nome, String editor, String descricao, int tempoPartida,
-                int minJogadores, int maxJogadores, int qtdCopias) {
+                int minJogadores, int maxJogadores, int qtdCopias, int idCategoria) {
         this.id = id;
         this.nome = nome;
         this.editor = editor;
@@ -21,6 +22,7 @@ public class Jogo {
         this.minJogadores = minJogadores;
         this.maxJogadores = maxJogadores;
         this.qtdCopias = qtdCopias;
+		this.idCategoria = idCategoria;
     }
 
 
@@ -60,8 +62,11 @@ public class Jogo {
         this.qtdCopias = qtdCopias;
     }
 
-
     public boolean estaDisponivel() {
         return qtdCopias > 0;
     }
+
+	public int getIdCategoria() {
+		return this.idCategoria;
+	}
 }

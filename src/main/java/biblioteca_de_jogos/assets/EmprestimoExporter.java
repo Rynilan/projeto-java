@@ -1,14 +1,18 @@
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.DocumentException;
+package biblioteca_de_jogos.assets;
+
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.exceptions.PdfException;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.File;
 import java.time.format.DateTimeFormatter;
+
 import java.util.List;
+
+import biblioteca_de_jogos.classes.Emprestimo;
 
 public class EmprestimoExporter {
 
@@ -30,7 +34,7 @@ public class EmprestimoExporter {
             // Dados dos empréstimos
             for (Emprestimo emprestimo : emprestimos) {
                 writer.append(String.valueOf(emprestimo.getId())).append(",");
-                writer.append(emprestimo.getDataEmprestimo().format(DATE_FORMATTER)).append(",");
+                writer.append(emprestimo.getData().format(DATE_FORMATTER)).append(",");
                 writer.append(emprestimo.getDevolucao() != null ? emprestimo.getDevolucao().format(DATE_FORMATTER) : "N/A").append(",");
 
                 writer.append(String.valueOf(emprestimo.getRenovacoes())).append(",");
@@ -47,31 +51,42 @@ public class EmprestimoExporter {
      * O arquivo será salvo na raiz do projeto com o nome "emprestimos.pdf".
      *
      * @param emprestimos A lista de objetos Emprestimo a ser exportada.
-     * @throws DocumentException Se ocorrer um erro durante a geração do PDF.
+     * @throws PdfException Se ocorrer um erro durante a geração do PDF.
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
-    public static void exportarPDF(List<Emprestimo> emprestimos) throws DocumentException, IOException {
-        String fileName = "emprestimos.pdf";
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
+    public static void exportarPDF(List<Emprestimo> emprestimos) throws IOException {
+    String nome = "emprestimos.pdf";
+    
+    // Criando os objetos necessários para o PDF
+    try (PdfWriter escritor = new PdfWriter(nome);
+         PdfDocument pdf = new PdfDocument(escritor);
+         Document documento = new Document(pdf)) {
 
-        document.add(new Paragraph("Relatório de Empréstimos"));
-        document.add(new Paragraph("\n")); // Adiciona um espaçamento
+        documento.add(new Paragraph("Relatório de Empréstimos"));
+        documento.add(new Paragraph("\n")); // Adiciona um espaçamento
 
         for (Emprestimo emprestimo : emprestimos) {
-            document.add(new Paragraph("ID: " + emprestimo.getId()));
-            document.add(new Paragraph("Data do Empréstimo: " + emprestimo.getDataEmprestimo().format(DATE_FORMATTER)));
-            document.add(new Paragraph("Data de Devolução Real: " + (emprestimo.getDevolucao() != null ? emprestimo.getDevolucao().format(DATE_FORMATTER) : "Pendente")));
+            documento.add(new Paragraph("ID: " + emprestimo.getId()));
+            
+            // Certifique-se de que `getDataEmprestimo()` existe e funciona corretamente
+            documento.add(new Paragraph("Data do Empréstimo: " + (emprestimo.getData() != null 
+                ? emprestimo.getData().format(DATE_FORMATTER) : "Não especificada")));
 
-            document.add(new Paragraph("Renovações: " + emprestimo.getRenovacoes()));
-            document.add(new Paragraph("Intervalo: " + emprestimo.getIntervalo()));
-            document.add(new Paragraph("ID Usuário: " + emprestimo.getIdUsuario()));
-            document.add(new Paragraph("ID Jogo: " + emprestimo.getIdJogo()));
-            document.add(new Paragraph("Observações: " + (emprestimo.getObservacoes() != null ? String.join(", ", emprestimo.getObservacoes()) : "Nenhuma")));
-            document.add(new Paragraph("--------------------------------------------------")); // Separador
+            documento.add(new Paragraph("Data de Devolução Real: " + (emprestimo.getDevolucao() != null 
+                ? emprestimo.getDevolucao().format(DATE_FORMATTER) : "Pendente")));
+            
+            documento.add(new Paragraph("Renovações: " + emprestimo.getRenovacoes()));
+            documento.add(new Paragraph("Intervalo: " + emprestimo.getIntervalo()));
+            documento.add(new Paragraph("ID Usuário: " + emprestimo.getIdUsuario()));
+            documento.add(new Paragraph("ID Jogo: " + emprestimo.getIdJogo()));
+            
+            documento.add(new Paragraph("Observações: " + (emprestimo.getObservacoes() != null 
+                ? String.join(", ", emprestimo.getObservacoes()) : "Nenhuma")));
+
+            documento.add(new Paragraph("--------------------------------------------------")); // Separador
         }
-
-        document.close();
+    } catch (IOException e) {
+        throw new IOException("Erro ao gerar o arquivo PDF: " + e.getMessage(), e);
     }
+}
 }

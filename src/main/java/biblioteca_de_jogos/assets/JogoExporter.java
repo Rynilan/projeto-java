@@ -1,13 +1,15 @@
-package biblioteca_de_jogos.classes;
+package biblioteca_de_jogos.assets;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.exceptions.PdfException;
+
+import biblioteca_de_jogos.classes.Jogo;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileOutputStream;
 import java.util.List;
 
 public class JogoExporter {
@@ -44,35 +46,37 @@ public class JogoExporter {
      * O arquivo será salvo na raiz do projeto com o nome "jogos.pdf".
      *
      * @param jogos A lista de objetos Jogo a ser exportada.
-     * @throws DocumentException Se ocorrer um erro durante a geração do PDF.
+     * @throws PdfException Se ocorrer um erro durante a geração do PDF.
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
-    public static void exportarPDF(List<Jogo> jogos) throws DocumentException, IOException {
-        String fileName = "jogos.pdf";
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
+    public static void exportarPDF(List<Jogo> jogos) throws IOException {
+		String fileName = "jogos.pdf";
 
-        document.add(new Paragraph("Relatório de Jogos"));
-        document.add(new Paragraph("\n"));
+		try (PdfWriter writer = new PdfWriter(fileName);
+			 PdfDocument pdf = new PdfDocument(writer);
+			 Document document = new Document(pdf)) {
 
-        if (jogos.isEmpty()) {
-            document.add(new Paragraph("Nenhum jogo encontrado para o relatório."));
-        } else {
-            for (Jogo jogo : jogos) {
-                document.add(new Paragraph("ID: " + jogo.getId()));
-                document.add(new Paragraph("Nome: " + jogo.getNome()));
-                document.add(new Paragraph("Editora: " + jogo.getEditor()));
-                document.add(new Paragraph("Descrição: " + jogo.getDescricao()));
-                document.add(new Paragraph("Tempo de Partida: " + jogo.getTempoPartida() + " min"));
-                document.add(new Paragraph("Jogadores: " + jogo.getMinJogadores() + " - " + jogo.getMaxJogadores()));
-                document.add(new Paragraph("Cópias Disponíveis: " + jogo.getQtdCopias()));
-                document.add(new Paragraph("--------------------------------------------------"));
-            }
-        }
+			document.add(new Paragraph("Relatório de Jogos"));
+			document.add(new Paragraph("\n"));
 
-        document.close();
-    }
+			if (jogos.isEmpty()) {
+				document.add(new Paragraph("Nenhum jogo encontrado para o relatório."));
+			} else {
+				for (Jogo jogo : jogos) {
+					document.add(new Paragraph("ID: " + jogo.getId()));
+					document.add(new Paragraph("Nome: " + jogo.getNome()));
+					document.add(new Paragraph("Editora: " + jogo.getEditor()));
+					document.add(new Paragraph("Descrição: " + jogo.getDescricao()));
+					document.add(new Paragraph("Tempo de Partida: " + jogo.getTempoPartida() + " min"));
+					document.add(new Paragraph("Jogadores: " + jogo.getMinJogadores() + " - " + jogo.getMaxJogadores()));
+					document.add(new Paragraph("Cópias Disponíveis: " + jogo.getQtdCopias()));
+					document.add(new Paragraph("--------------------------------------------------"));
+					}
+			}
+		} catch (IOException e) {
+			throw new IOException("Erro ao gerar o arquivo PDF: " + e.getMessage(), e);
+		}    
+	}
 
 
     private static String escapeCsv(String value) {

@@ -1,7 +1,11 @@
 package biblioteca_de_jogos.assets;
 
+import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.time.YearMonth;
+import java.util.stream.Collectors;
 
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Usuario;
@@ -113,7 +117,7 @@ public class Gerencia {
 
 
 
-	public Map<Jogo, Long> analisarPicosValesPopularidadeJogos() {
+	public Map<Jogo, Long> analisarPicosValesPopularidadeJogos(Jogos jogos) {
 		// Mapeia cada Jogo (resolvendo o ID para o objeto Jogo completo) para a contagem de empréstimos
 		Map<Integer, Long> contagemPorJogoId = emprestimos.stream()
 				.collect(
@@ -128,7 +132,7 @@ public class Gerencia {
 		contagemPorJogoId.entrySet().stream()
 				.sorted(Map.Entry.<Integer, Long>comparingByValue().reversed()) // Ordena do mais popular para o menos
 				.forEach(entry -> {
-					Jogo jogo = jogosManager.buscarJogo(entry.getKey());
+					Jogo jogo = jogos.buscarJogo(entry.getKey());
 					if (jogo != null) {
 						popularidadeJogos.put(jogo, entry.getValue());
 					}
@@ -143,7 +147,7 @@ public class Gerencia {
 		Map<YearMonth, Long> contagemPorMes = emprestimos.stream()
 				.collect(
 						java.util.stream.Collectors.groupingBy(
-								emprestimo -> YearMonth.from(emprestimo.getDataEmprestimo()),
+								emprestimo -> YearMonth.from(emprestimo.getData()),
 								java.util.stream.Collectors.counting()
 						)
 				);
@@ -153,5 +157,19 @@ public class Gerencia {
 
 	public List<Reserva> pegarReservasDeUsuario(int idUsuario) {
 		return reservas.reservasDeUsuario(idUsuario);
+	}
+
+	public List<Emprestimo> getEmprestimosDoUsuario(int idUsuario) {
+		List<Emprestimo> encontrados = new ArrayList<Emprestimo>();
+		for (Emprestimo emprestimo: this.emprestimos) {
+			if (emprestimo.getIdUsuario() == idUsuario) {
+				encontrados.add(emprestimo);
+			}
+		}
+		return encontrados;
+	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return this.emprestimos;
 	}
 }

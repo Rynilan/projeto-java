@@ -2,7 +2,7 @@ package biblioteca_de_jogos.classes;
 
 public class Usuario {
 
-    private int id;
+	private int id;
     public String nome;
     public String email;
     public String telefone;
@@ -27,4 +27,19 @@ public class Usuario {
         return false; // alteravel 
     }
 
+    public String getNome() {
+		return nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public String getStatus() {
+		return status;
+	}
 }

@@ -1,13 +1,15 @@
-package biblioteca_de_jogos.classes;
+package biblioteca_de_jogos.assets;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.exceptions.PdfException;
+
+import biblioteca_de_jogos.classes.Usuario;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileOutputStream;
 import java.util.List;
 
 public class UsuarioExporter {
@@ -38,33 +40,35 @@ public class UsuarioExporter {
      * O arquivo será salvo na raiz do projeto com o nome "usuarios.pdf".
      *
      * @param usuarios A lista de objetos Usuario a ser exportada.
-     * @throws DocumentException Se ocorrer um erro durante a geração do PDF.
+     * @throws PdfException Se ocorrer um erro durante a geração do PDF.
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
-    public static void exportarPDF(List<Usuario> usuarios) throws DocumentException, IOException {
-        String fileName = "usuarios.pdf";
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
+	public static void exportarPDF(List<Usuario> usuarios) throws IOException {
+		String fileName = "usuarios.pdf";
 
-        document.add(new Paragraph("Relatório de Usuários"));
-        document.add(new Paragraph("\n"));
+		try (PdfWriter writer = new PdfWriter(fileName);
+			 PdfDocument pdf = new PdfDocument(writer);
+			 Document document = new Document(pdf)) {
 
-        if (usuarios.isEmpty()) {
-            document.add(new Paragraph("Nenhum usuário encontrado para o relatório."));
-        } else {
-            for (Usuario usuario : usuarios) {
-                document.add(new Paragraph("ID: " + usuario.getId()));
-                document.add(new Paragraph("Nome: " + usuario.getNome()));
-                document.add(new Paragraph("Email: " + usuario.getEmail()));
-                document.add(new Paragraph("Telefone: " + usuario.getTelefone()));
-                document.add(new Paragraph("Status: " + usuario.getStatus()));
-                document.add(new Paragraph("--------------------------------------------------"));
-            }
-        }
-        document.close();
-    }
+			document.add(new Paragraph("Relatório de Usuários"));
+			document.add(new Paragraph("\n"));
 
+			if (usuarios.isEmpty()) {
+				document.add(new Paragraph("Nenhum usuário encontrado para o relatório."));
+			} else {
+				for (Usuario usuario : usuarios) {
+					document.add(new Paragraph("ID: " + usuario.getId()));
+					document.add(new Paragraph("Nome: " + usuario.getNome()));
+					document.add(new Paragraph("Email: " + usuario.getEmail()));
+					document.add(new Paragraph("Telefone: " + usuario.getTelefone()));
+					document.add(new Paragraph("Status: " + usuario.getStatus()));
+					document.add(new Paragraph("--------------------------------------------------"));
+				}
+			}
+		} catch (IOException e) {
+			throw new IOException("Erro ao gerar o arquivo PDF: " + e.getMessage(), e);
+		}
+	}
 
     private static String escapeCsv(String value) {
         if (value == null) { return ""; }

@@ -1,6 +1,7 @@
 package biblioteca_de_jogos.classes;
 
 import java.util.List;
+
 import java.time.LocalDate;
 
 public class Emprestimo {
@@ -37,6 +38,22 @@ public class Emprestimo {
 
 	public int getId() {
 		return this.id;
+	}
+
+	public LocalDate getData() {
+		return this.dataEmprestimo;
+	}
+
+	public int getRenovacoes() {
+		return this.renovacoes;
+	}
+
+	public Long getIntervalo() {
+		return this.intervalo;
+	}
+
+	public List<String> getObservacoes() {
+		return this.observacoes;
 	}
 
 	public void devolver(List<String> observacoes) {
