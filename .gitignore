@@ -2,3 +2,8 @@
 *.bat
 *.txt
 bin/*
+target/*
+.settings/*
+.classpath
+.project
+dependency_reduced-pom.xml
