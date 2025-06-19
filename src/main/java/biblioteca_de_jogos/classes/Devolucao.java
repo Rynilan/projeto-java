@@ -10,7 +10,7 @@ public class Devolucao {
 
     public Devolucao(int id, int idEmprestimo, boolean foiAtrasado) {
         this.id = id;
-        this.dataRealDevolucao = null;
+        this.dataRealDevolucao = LocalDate.now();;
         this.foiAtrasado = foiAtrasado;
         this.idEmprestimo = idEmprestimo;
     }
