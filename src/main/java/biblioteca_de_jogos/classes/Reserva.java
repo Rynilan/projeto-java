@@ -18,6 +18,7 @@ public class Reserva {
 		this.idJogo = idJogo;
 	}
 
+	@Override
         public String toString() {
 		return "Reserva {" +
 			"\n  id=" + id +
