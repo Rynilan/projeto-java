@@ -37,8 +37,37 @@ public class Relatorio {
 		}
     }
 
+        public String toString() {
+    String resultado = "Relatorio {" +
+        "\n  id=" + id +
+        ",\n  tipo='" + tipo + '\'' +
+        ",\n  dataGeracao=" + dataGeracao +
+        ",\n  tipoDeRelatorio='" + tipoDeRelatorio + '\'' +
+        ",\n  dados=[";
+
+    if (dadosEmp != null) {
+        for (int i = 0; i < dadosEmp.size(); i++) {
+            resultado += "\n    " + dadosEmp.get(i);
+        }
+    } else if (dadosJog != null) {
+        for (int i = 0; i < dadosJog.size(); i++) {
+            resultado += "\n    " + dadosJog.get(i);
+        }
+    } else if (dadosUsu != null) {
+        for (int i = 0; i < dadosUsu.size(); i++) {
+            resultado += "\n    " + dadosUsu.get(i);
+        }
+    }
+
+    resultado += "\n  ]\n}";
+
+    return resultado;
+}
+
+	
 	public void exportarCSV() {}
 
 	public void exportarPDF() {}
 
+	
 }
