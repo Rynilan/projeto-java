@@ -69,4 +69,21 @@ public class Jogo {
 	public int getIdCategoria() {
 		return this.idCategoria;
 	}
+
+
+
+    public String toString() {
+     return "Jogo{" +
+           "id=" + id +
+           ", nome='" + nome + '\'' +
+           ", editor='" + editor + '\'' +
+           ", descricao='" + descricao + '\'' +
+           ", tempoPartida=" + tempoPartida + " min" +
+           ", minJogadores=" + minJogadores +
+           ", maxJogadores=" + maxJogadores +
+           ", qtdCopias=" + qtdCopias +
+           ", idCategoria=" + idCategoria +
+           ", disponivel=" + (estaDisponivel() ? "Sim" : "Não") +
+           '}';
+}
 }
