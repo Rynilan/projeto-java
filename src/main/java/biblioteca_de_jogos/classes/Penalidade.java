@@ -75,4 +75,15 @@ public class Penalidade {
 		if (acabou) this.dataFim = LocalDate.now();
 		return acabou;
 	}
+    public String toString() {
+    return "Penalidade{" +
+           "id=" + id +
+           ", descricao='" + descricao + '\'' +
+           ", tipo='" + tipo + '\'' +
+           ", dataInicio=" + dataInicio +
+           ", dataFim=" + (dataFim != null ? dataFim : "Em aberto") +
+           ", idUsuario=" + idUsuario +
+           ", idEmprestimo=" + (emprestimo != null ? emprestimo.getId() : "Nenhum") +
+           '}';
+}
 }
