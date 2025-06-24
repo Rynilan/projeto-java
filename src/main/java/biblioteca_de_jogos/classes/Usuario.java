@@ -15,7 +15,7 @@ public class Usuario {
 		this.status = status;
 	}
 
-
+    @Override
     public String toString() {
 		return "Usuario {" +
 			"\n  id=" + id +
