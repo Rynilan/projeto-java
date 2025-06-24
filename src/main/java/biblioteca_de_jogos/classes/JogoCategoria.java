@@ -26,4 +26,11 @@ public class JogoCategoria {
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }
+
+    public String toString() {
+    return "JogoCategoria{" +
+           "idJogo=" + idJogo +
+           ", idCategoria=" + idCategoria +
+           '}';
+}
 }
