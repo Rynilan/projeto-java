@@ -14,6 +14,10 @@ public class Categoria{
 		this.id = id;
 	}
 
+        public String toString() {
+		return "Categoria{id=" + id + ", nome='" + nome + "'}";
+	}
+	
 	/** Retorna o nome da categoria */
 	public String getNome() {
 		return this.nome;
@@ -24,9 +28,4 @@ public class Categoria{
 		return this.id;
 	}
 
-	public String toString() {
-		return "Categoria{id=" + id + ", nome='" + nome + "'}";
-	}
-
-	
 }
