@@ -15,6 +15,18 @@ public class Usuario {
 		this.status = status;
 	}
 
+
+    public String toString() {
+		return "Usuario {" +
+			"\n  id=" + id +
+			",\n  nome='" + nome + '\'' +
+			",\n  email='" + email + '\'' +
+			",\n  telefone='" + telefone + '\'' +
+			",\n  status='" + status + '\'' +
+			"\n}";
+	}
+
+	
 	public int getId() {
 		return this.id;
 	}
