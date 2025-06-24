@@ -24,6 +24,24 @@ public class Emprestimo {
 		this.intervalo = 7L;
     }
 
+    @Override	
+    public String toString() {
+	String obsFormatadas = (observacoes != null && !observacoes.isEmpty())
+		? String.join("; ", observacoes)
+		: "Nenhuma";
+
+	return "Emprestimo{" +
+	       "id=" + id +
+	       ", dataEmprestimo=" + dataEmprestimo +
+	       ", dataDevolucaoReal=" + (dataDevolucaoReal != null ? dataDevolucaoReal : "Ainda não devolvido") +
+	       ", renovacoes=" + renovacoes +
+	       ", intervalo=" + intervalo + " dias" +
+	       ", idUsuario=" + idUsuario +
+	       ", idJogo=" + idJogo +
+	       ", observacoes=" + obsFormatadas +
+	       '}';
+}
+	
 	public int getIdJogo() {
 		return this.idJogo;
 	}
@@ -77,21 +95,4 @@ public class Emprestimo {
 		return pode;
 	}
 
-
-	public String toString() {
-	String obsFormatadas = (observacoes != null && !observacoes.isEmpty())
-		? String.join("; ", observacoes)
-		: "Nenhuma";
-
-	return "Emprestimo{" +
-	       "id=" + id +
-	       ", dataEmprestimo=" + dataEmprestimo +
-	       ", dataDevolucaoReal=" + (dataDevolucaoReal != null ? dataDevolucaoReal : "Ainda não devolvido") +
-	       ", renovacoes=" + renovacoes +
-	       ", intervalo=" + intervalo + " dias" +
-	       ", idUsuario=" + idUsuario +
-	       ", idJogo=" + idJogo +
-	       ", observacoes=" + obsFormatadas +
-	       '}';
-}
 }
