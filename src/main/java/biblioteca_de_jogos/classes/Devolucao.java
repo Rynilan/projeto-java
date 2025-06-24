@@ -14,4 +14,14 @@ public class Devolucao {
         this.foiAtrasado = foiAtrasado;
         this.idEmprestimo = idEmprestimo;
     }
+
+    public String toString() {
+        return "Devolucao{" +
+               "id=" + id +
+               ", dataRealDevolucao=" + dataRealDevolucao +
+               ", foiAtrasado=" + foiAtrasado +
+               ", idEmprestimo=" + idEmprestimo +
+               '}';
+    }
+    
 }
