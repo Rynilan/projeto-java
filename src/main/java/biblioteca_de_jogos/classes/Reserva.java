@@ -18,6 +18,16 @@ public class Reserva {
 		this.idJogo = idJogo;
 	}
 
+        public String toString() {
+		return "Reserva {" +
+			"\n  id=" + id +
+			",\n  notificado=" + notificado +
+			",\n  dataReserva=" + dataReserva +
+			",\n  idUsuario=" + idUsuario +
+			",\n  idJogo=" + idJogo +
+			"\n}";
+	}
+	
 	public int getIdJogo() {
 		return this.idJogo;
 	}
