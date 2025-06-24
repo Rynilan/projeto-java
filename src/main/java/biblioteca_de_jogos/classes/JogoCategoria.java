@@ -9,8 +9,16 @@ public class JogoCategoria {
         this.idJogo = idJogo;
         this.idCategoria = idCategoria;
     }
+    
+    @Override
+    public String toString() {
+    return "JogoCategoria{" +
+           "idJogo=" + idJogo +
+           ", idCategoria=" + idCategoria +
+           '}';
+} 
 
-
+    
     public int getIdJogo() {
         return idJogo;
     }
@@ -27,10 +35,5 @@ public class JogoCategoria {
         this.idCategoria = idCategoria;
     }
 
-    public String toString() {
-    return "JogoCategoria{" +
-           "idJogo=" + idJogo +
-           ", idCategoria=" + idCategoria +
-           '}';
-}
+   
 }
