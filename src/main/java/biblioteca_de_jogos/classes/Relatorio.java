@@ -37,6 +37,7 @@ public class Relatorio {
 		}
     }
 
+	@Override
         public String toString() {
     String resultado = "Relatorio {" +
         "\n  id=" + id +
