@@ -15,6 +15,7 @@ public class Devolucao {
         this.idEmprestimo = idEmprestimo;
     }
 
+    @Override
     public String toString() {
         return "Devolucao{" +
                "id=" + id +
