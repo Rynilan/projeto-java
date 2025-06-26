@@ -1,22 +1,31 @@
-package biblioteca_de_jogos.assets;
+package biblioteca_de_jogos.control;
 
 import biblioteca_de_jogos.classes.Reserva;
+import biblioteca_de_jogos.model.Reservas;
 
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Reservas {
+public class ReservasControl {
 	
 	private int id;
 	private Queue<Reserva> reservas;
-	private List<Reserva> historico;
+	private Reservas historico;
+	private static ReservasControl self;
 
-	public Reservas() {
+	private ReservasControl() {
 		this.id = -1;
 		this.reservas = new LinkedList<Reserva>();
-		this.historico = new ArrayList<Reserva>();
+		this.historico = Reservas.getInstance();
+	}
+
+	public static ReservasControl getInstance() {
+		if (ReservasControl.self == null) {
+			ReservasControl.self = new ReservasControl();
+		}
+		return ReservasControl.self;
 	}
 
 	public void fazerReserva(int idJogo, int idUsuario) {
