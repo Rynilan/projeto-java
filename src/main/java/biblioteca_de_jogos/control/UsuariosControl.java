@@ -1,8 +1,7 @@
 package biblioteca_de_jogos.control;
 
 import java.util.List;
-import java.util.ArrayList;
-
+ 
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.model.Usuarios;
 
