@@ -13,7 +13,7 @@ public class ReservasControl {
 	private int id;
 	private Queue<Reserva> reservas;
 	private Reservas historico;
-	private static ReservasControl self;
+	private static ReservasControl self = null;
 
 	private ReservasControl() {
 		this.id = -1;

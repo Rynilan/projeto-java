@@ -9,7 +9,7 @@ import biblioteca_de_jogos.model.Jogos;
 public class JogosControl {
 	private int id;
 	private Jogos jogos;
-	private static JogosControl self;
+	private static JogosControl self = null;
 	
 	private JogosControl() {
 		this.id = -1;

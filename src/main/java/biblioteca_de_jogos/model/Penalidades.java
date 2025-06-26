@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import biblioteca_de_jogos.classes.Penalidade;
 
 public class Penalidades {
-	private static Penalidades self;
-	private List<Penalidade> penalidades;
+	private static Penalidades self = null;
+ 	private List<Penalidade> penalidades;
 
 	private Penalidades() {
 		this.penalidades = new ArrayList<Penalidade>();

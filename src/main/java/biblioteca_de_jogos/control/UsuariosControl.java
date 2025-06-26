@@ -8,7 +8,7 @@ import biblioteca_de_jogos.model.Usuarios;
 public class UsuariosControl {
 	private int id;
 	private Usuarios usuarios;
-	private static UsuariosControl self;
+	private static UsuariosControl self = null;
 	
 	private UsuariosControl() {
 		this.id = -1;

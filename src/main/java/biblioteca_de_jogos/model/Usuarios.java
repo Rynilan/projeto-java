@@ -7,7 +7,7 @@ import biblioteca_de_jogos.classes.Usuario;
 
 public class Usuarios {
 	private List<Usuario> usuarios;
-	private static Usuarios self;
+	private static Usuarios self = null;
 
 	private Usuarios() {
 		usuarios = new ArrayList<Usuario>();

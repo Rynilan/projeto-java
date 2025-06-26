@@ -10,7 +10,7 @@ import biblioteca_de_jogos.model.Penalidades;
 
 public class PenalidadesControl {
 
-	private static PenalidadesControl self;
+	private static PenalidadesControl self = null;
 	private Penalidades penalidades;
 	private int id;
 

@@ -7,7 +7,7 @@ import biblioteca_de_jogos.classes.Reserva;
 
 public class Reservas {
 	private Queue<Reserva> reservas;
-	private static Reservas self;
+	private static Reservas self = null;
 
 	private Reservas() {
 		this.reservas = new LinkedList<Reserva>();

@@ -14,7 +14,7 @@ import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.model.Emprestimos;
 
 public class EmprestimosControl {
-	private static EmprestimosControl self;
+	private static EmprestimosControl self = null;
 	private Emprestimos emprestimos;
 	private int id;
 
