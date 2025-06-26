@@ -1,4 +1,4 @@
-package biblioteca_de_jogos.assets;
+package biblioteca_de_jogos.control;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
