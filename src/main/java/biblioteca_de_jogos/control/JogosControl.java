@@ -18,7 +18,7 @@ public class JogosControl {
 	}
 
 	/** Método para ter instância única da classe controle. */
-	public JogosControl getInstance() {
+	public static JogosControl getInstance() {
 		if (JogosControl.self != null) {
 			JogosControl.self = new JogosControl();
 		}
