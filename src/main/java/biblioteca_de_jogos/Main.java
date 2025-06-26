@@ -1,13 +1,13 @@
 package biblioteca_de_jogos;
 
-import biblioteca_de_jogos.assets.EmprestimoExporter;
-import biblioteca_de_jogos.assets.Gerencia;
-import biblioteca_de_jogos.assets.JogoExporter;
-import biblioteca_de_jogos.assets.JogoPopularidadeExporter;
-import biblioteca_de_jogos.assets.Jogos;
-import biblioteca_de_jogos.assets.PicosValesEmprestimoExporter;
-import biblioteca_de_jogos.assets.UsuarioExporter;
-import biblioteca_de_jogos.assets.Usuarios;
+import biblioteca_de_jogos.control.EmprestimoExporter;
+import biblioteca_de_jogos.control.EmprestimosControl;
+import biblioteca_de_jogos.control.JogoExporter;
+import biblioteca_de_jogos.control.JogoPopularidadeExporter;
+import biblioteca_de_jogos.control.JogosControl;
+import biblioteca_de_jogos.control.PicosValesEmprestimoExporter;
+import biblioteca_de_jogos.control.UsuarioExporter;
+import biblioteca_de_jogos.control.UsuariosControl;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;
@@ -81,9 +81,9 @@ public class Main {
 
     public static void main(String args[]) {
 
-        Usuarios usuarios = new Usuarios();
-        Jogos jogos = new Jogos();
-        Gerencia gerencia = new Gerencia();
+        UsuariosControl usuarios = UsuariosControl.getInstance();
+        JogosControl jogos = JogosControl.getInstance();
+        EmprestimosControl gerencia = EmprestimosControl.getInstance();
 
         Scanner stdin = new Scanner(System.in);
         String user = "0";
@@ -570,7 +570,7 @@ public class Main {
 
                     case "5":
                         print("\n--- Análise de Popularidade de Jogos ---");
-                        Map<Jogo, Long> popularidadeJogos = gerencia.analisarPicosValesPopularidadeJogos(jogos);
+                        Map<Jogo, Long> popularidadeJogos = gerencia.analisarPicosValesPopularidadeJogos();
 
                         if (popularidadeJogos.isEmpty()) {
                             print("Não há empréstimos registrados para analisar a popularidade dos jogos.");
