@@ -26,9 +26,15 @@ import com.itextpdf.kernel.exceptions.PdfException;
 
 import java.io.IOException;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /** A classe estática que representa o sistema em funcionalidade,
  * faz as classes conversarem e interage com o usuário. */
-public class Main {
+public class Main extends Application {
 
     public static void print(String string) {
         System.out.println(string);
@@ -80,6 +86,8 @@ public class Main {
     }
 
     public static void main(String args[]) {
+
+        launch();
 
         UsuariosControl usuarios = UsuariosControl.getInstance();
         JogosControl jogos = JogosControl.getInstance();
@@ -640,4 +648,13 @@ public class Main {
         print("Obrigado pela presença.");
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/Pagina_principal.fxml"));
+        Scene scene = new Scene(root, 650, 450);
+        stage.setTitle("Biblioteca de jogos");
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }
