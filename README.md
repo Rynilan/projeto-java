@@ -12,6 +12,12 @@ A seguir, apresenta-se uma imagem do diagrama UML do projeto, ilustrando as rela
 
 <img alt='Class Diagram' src='Diagrama UML.jpg'>
 
+### Diagrama de navegação
+
+O diagrama de navegação a seguir apresenta a estrutura de layout e a organização das interfaces do sistema, facilitando a compreensão do fluxo de uso.
+
+<img alt='Navigation Diagram' src='Telas/Diagrama de navegação/Diagrama de navegação.jpg'>
+
 ## Membros
 
 * Ilan Vitor - [ilan.vitor@ufrpe.br](ilan.vitor@ufrpe.br)
