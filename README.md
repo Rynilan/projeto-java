@@ -10,7 +10,7 @@ Sistema desenvolvido para gerenciar uma biblioteca de jogos de tabuleiro utiliza
 
 A seguir, apresenta-se uma imagem do diagrama UML do projeto, ilustrando as relações entre classes, objetos, métodos e atributos que compõem a estrutura do sistema.
 
-<img alt='Class Diagram' src='diagrama_de_classes.png'>
+<img alt='Class Diagram' src='Diagrama UML.jpg'>
 
 ## Membros
 
