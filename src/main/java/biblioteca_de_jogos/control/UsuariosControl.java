@@ -10,7 +10,7 @@ public class UsuariosControl {
 	private Usuarios usuarios;
 	private static UsuariosControl self = null;
 	
-	private UsuariosControl() {
+	public UsuariosControl() {
 		this.id = -1;
 		this.usuarios = Usuarios.getInstance();
 	}
@@ -26,6 +26,16 @@ public class UsuariosControl {
 		Usuario achado = null;
 		for (Usuario usuario: this.usuarios.getUsuarios()) {
 			if (usuario.getId() == id) {
+				achado = usuario;
+			}
+		}
+		return achado;
+	}
+
+	public Usuario buscarUsuario(String nome) {
+		Usuario achado = null;
+		for (Usuario usuario: this.usuarios.getUsuarios()) {
+			if (usuario.getNome().equalsIgnoreCase(nome)) {
 				achado = usuario;
 			}
 		}

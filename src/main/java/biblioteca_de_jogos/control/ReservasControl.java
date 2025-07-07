@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.control;
 
+import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Reserva;
 import biblioteca_de_jogos.model.Reservas;
 
@@ -64,5 +65,9 @@ public class ReservasControl {
 			}
 		}
 		return achadas;
+	}
+
+	public List<Reserva> gerReservas(){
+		return new LinkedList<>(reservas);
 	}
 }

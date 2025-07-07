@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.control;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class EmprestimosControl {
 	private Emprestimos emprestimos;
 	private int id;
 
-	private EmprestimosControl() {
+	public EmprestimosControl() {
 		this.id = -1;
 		this.emprestimos = Emprestimos.getInstance();
 	}
@@ -120,6 +121,15 @@ public class EmprestimosControl {
 		return achados;
 	}
 
+	public List<Emprestimo> emprestimosPorPeriodo(LocalDate inicio, LocalDate fim) {
+		List<Emprestimo> resultado = new ArrayList<>();
+		for (Emprestimo emp : this.emprestimos.getEmprestimos()) {
+			if (!emp.getData().isBefore(inicio) && !emp.getData().isAfter(fim)) {
+				resultado.add(emp);
+			}
+		}
+		return resultado;
+	}
 
 
 	public Map<Jogo, Long> analisarPicosValesPopularidadeJogos() {

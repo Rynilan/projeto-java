@@ -1,30 +1,12 @@
 package biblioteca_de_jogos;
 
-import biblioteca_de_jogos.control.EmprestimoExporter;
-import biblioteca_de_jogos.control.EmprestimosControl;
-import biblioteca_de_jogos.control.JogoExporter;
-import biblioteca_de_jogos.control.JogoPopularidadeExporter;
-import biblioteca_de_jogos.control.JogosControl;
-import biblioteca_de_jogos.control.PicosValesEmprestimoExporter;
-import biblioteca_de_jogos.control.UsuarioExporter;
-import biblioteca_de_jogos.control.UsuariosControl;
-import biblioteca_de_jogos.classes.Emprestimo;
-import biblioteca_de_jogos.classes.Jogo;
-import biblioteca_de_jogos.classes.Usuario;
+import biblioteca_de_jogos.Controladores.MainLayoutController;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import com.itextpdf.kernel.exceptions.PdfException;
-
-import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -39,11 +21,23 @@ public class Main extends Application {
     public static void print(String string) {
         System.out.println(string);
     }
-
-    public static void print_lista(List lista) {
+/*
+    public static String print_lista(List lista) {
         for (int indice = 0; indice < lista.size(); indice++) {
             System.out.println(lista.get(indice));
         }
+    }
+*/
+
+    public static String print_lista(List<?> lista) {
+        StringBuilder sb = new StringBuilder();
+        for (int indice = 0; indice < lista.size(); indice++) {
+            sb.append(lista.get(indice).toString()).append("\n");
+        }
+        if(!sb.isEmpty()){
+            return sb.toString();
+        }
+        return "Lista Vazia";
     }
 
     public static List<String> pegarObservacoes(String s, Scanner i) {
@@ -85,13 +79,27 @@ public class Main extends Application {
         }
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/MainLayout.fxml"));
+        Parent root = loader.load();
+
+        MainLayoutController controller = loader.getController();
+
+        ScreenManager.iniciarTelas();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Jogo & CIA - Sistema de Gestão");
+        stage.setResizable(false);
+        ScreenManager.mostrarTela("pagina_principal");
+        stage.show();
+    }
+
     public static void main(String args[]) {
 
-        launch();
-
-        UsuariosControl usuarios = UsuariosControl.getInstance();
-        JogosControl jogos = JogosControl.getInstance();
-        EmprestimosControl gerencia = EmprestimosControl.getInstance();
+        launch(args);
+/*
 
         Scanner stdin = new Scanner(System.in);
         String user = "0";
@@ -646,15 +654,8 @@ public class Main extends Application {
 
         stdin.close();
         print("Obrigado pela presença.");
+
+*/
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Pagina_principal.fxml"));
-        Scene scene = new Scene(root, 650, 450);
-        stage.setTitle("Biblioteca de jogos");
-        stage.setScene(scene);
-        stage.show();
-
-    }
 }
