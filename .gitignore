@@ -1,6 +1,8 @@
 *.sh
 *.bat
 *.txt
+*.pdf
+*.csv
 bin/*
 target/*
 .settings/*
