@@ -32,13 +32,13 @@ public class Emprestimos_usuariosController {
     @FXML
     private void Clicar_ok(ActionEvent event) {
         String id = IdUsuarioField.getText().trim();
-        int ID;
+        Long ID;
 
         if (id.isEmpty()) {
             log("Digite o ID do usuário.");
             return;
         } else{
-            ID = Integer.parseInt(id);
+            ID = Long.parseLong(id);
         }
 
         Usuario usuario = usuariosControl.buscarUsuario(ID);

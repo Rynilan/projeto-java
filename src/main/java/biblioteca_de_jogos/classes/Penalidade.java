@@ -3,16 +3,16 @@ package biblioteca_de_jogos.classes;
 import java.time.LocalDate;
 
 public class Penalidade {
-    private int id;
+    private Long id;
     private String descricao;
     private String tipo;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private int idUsuario;
+    private Long idUsuario;
 	private Emprestimo emprestimo;
 
 	/** Construtor base */
-    public Penalidade(int id, String descricao, String tipo, int idUsuario, Emprestimo emprestimo) {
+    public Penalidade(Long id, String descricao, String tipo, Long idUsuario, Emprestimo emprestimo) {
         this.id = id;
         this.descricao = descricao;
         this.tipo = tipo;
@@ -36,11 +36,11 @@ public class Penalidade {
 }
 
 	
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,11 +76,11 @@ public class Penalidade {
         this.dataFim = dataFim;
     }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

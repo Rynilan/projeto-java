@@ -1,22 +1,33 @@
 package biblioteca_de_jogos.classes;
 
-/** Classe que representa a categoria de um jogo. */
-public class Categoria{
+public enum Categoria{
 	
+	TATICO(1L, "Tático", "Jogos que exigem raciocínio estratégico e tomada de decisões precisas a cada turno"),
+	DEDUTIVO(2L, "Dedutivo", "Jogos que envolvem lógica, observação e dedução para descobrir informações ocultas"),
+	CARTAS(3L, "Cartas", "Jogos centrados no uso de baralhos, sejam eles personalizados ou tradicionais"),
+	CLASSICO(4L, "Clássico", "Jogos consagrados pelo tempo, com regras simples e amplamente conhecidos"),
+	COOPERATIVO(5L, "Cooperativo", "Jogos em que os participantes trabalham em equipe contra o próprio jogo"),
+	COMPETITIVO(6L, "Competitivo", "Jogos em que os jogadores competem entre si para alcançar objetivos individuais"),
+	TABULEIRO(7L, "Tabuleiro", "Jogos físicos com peças que se movimentam sobre um tabuleiro"),
+	NARRATIVO(8L, "Narrativo", "Jogos que contam histórias envolventes e tomam decisões que afetam a trama");
+
 	/** Identificador único de uma categoria. */
-	private int id;
+	private final Long id;
 	/** Nome dado à categoria. */
-	private String nome;
+	private final String nome;
+	/** Descrição breve da categoria. */
+	private final String descricao;
 
 	/** Construtor com nome e id (este dado pelo repositório. */
-	public Categoria(String nome, int id) {
+	private Categoria(Long id, String nome, String descricao) {
 		this.nome = nome;
 		this.id = id;
+		this.descricao = descricao;
 	}
 
 	@Override
-        public String toString() {
-		return "Categoria{id=" + id + ", nome='" + nome + "'}";
+	public String toString() {
+		return "Categoria{id=" + id + ", nome='" + nome + "', descrição='" + descricao + "'}";
 	}
 	
 	/** Retorna o nome da categoria */
@@ -25,8 +36,12 @@ public class Categoria{
 	}
 
 	/** Retorna o identificador da categoria. */
-	public int getId() {
+	public Long getId() {
 		return this.id;
+	}
+
+	public String getDescricao() {
+		return this.descricao;
 	}
 
 }

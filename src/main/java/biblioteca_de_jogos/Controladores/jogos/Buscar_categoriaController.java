@@ -36,7 +36,7 @@ public class Buscar_categoriaController {
 
     public void Clicar_ok(ActionEvent event) {
         try {
-            int categoria = Integer.parseInt(categoriaField.getText().trim());
+            Long categoria = Long.parseLong(categoriaField.getText().trim());
 
             List<Jogo> encontrados = jogosControl.buscarPorCategoria(categoria);
 

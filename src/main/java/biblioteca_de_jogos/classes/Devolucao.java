@@ -3,12 +3,12 @@ package biblioteca_de_jogos.classes;
 import java.time.LocalDate;
 
 public class Devolucao {
-    private int id;
+    private Long id;
     private LocalDate dataRealDevolucao;
     private boolean foiAtrasado;
-    private int idEmprestimo;
+    private Long idEmprestimo;
 
-    public Devolucao(int id, int idEmprestimo, boolean foiAtrasado) {
+    public Devolucao(Long id, Long idEmprestimo, boolean foiAtrasado) {
         this.id = id;
         this.dataRealDevolucao = LocalDate.now();;
         this.foiAtrasado = foiAtrasado;

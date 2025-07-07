@@ -54,7 +54,7 @@ public class Adicionar_jogoController {
         try {
             int tempoPartida = Integer.parseInt(tempoPartidaStr);
             int quantidadeCopias = Integer.parseInt(quantidadeCopiasStr);
-            int idCategoriaJogo = Integer.parseInt(idCategoriaJogoStr);
+            Long idCategoriaJogo = Long.parseLong(idCategoriaJogoStr);
 
             if (tempoPartida <= 0) {
                 log("Tempo de partida deve ser um número positivo.");

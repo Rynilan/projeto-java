@@ -33,7 +33,7 @@ public class Devolucao_emprestimosController {
 
     public void Clicar_ok(ActionEvent event){
         try{
-            int IDemprestimo = Integer.parseInt(IDemprestimoField.getText().trim());
+            Long IDemprestimo = Long.parseLong(IDemprestimoField.getText().trim());
             String descricao = observacaoField.getText().trim();
 
             Emprestimo emprestimo = EmprestimosControl.getInstance().buscarEmprestimo(IDemprestimo);

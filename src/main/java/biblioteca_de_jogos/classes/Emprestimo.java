@@ -5,16 +5,16 @@ import java.util.List;
 import java.time.LocalDate;
 
 public class Emprestimo {
-    private int id;
+    private Long id;
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoReal;
     private int renovacoes;
 	private Long intervalo;
-    private int idUsuario;
-    private int idJogo;
+    private Long idUsuario;
+    private Long idJogo;
 	private List<String> observacoes;
 
-    public Emprestimo(int id, int idUsuario, int idJogo) {
+    public Emprestimo(Long id, Long idUsuario, Long idJogo) {
         this.id = id;
         this.dataEmprestimo = LocalDate.now();
         this.idUsuario = idUsuario;
@@ -42,11 +42,11 @@ public class Emprestimo {
 	       '}';
 }
 	
-	public int getIdJogo() {
+	public Long getIdJogo() {
 		return this.idJogo;
 	}
 
-	public int getIdUsuario() {
+	public Long getIdUsuario() {
 		return this.idUsuario;
 	}
 
@@ -54,7 +54,7 @@ public class Emprestimo {
 		return this.dataDevolucaoReal;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 

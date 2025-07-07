@@ -17,10 +17,10 @@ import biblioteca_de_jogos.model.Emprestimos;
 public class EmprestimosControl {
 	private static EmprestimosControl self = null;
 	private Emprestimos emprestimos;
-	private int id;
+	private Long id;
 
 	public EmprestimosControl() {
-		this.id = -1;
+		this.id = -1L;
 		this.emprestimos = Emprestimos.getInstance();
 	}
 
@@ -31,7 +31,7 @@ public class EmprestimosControl {
 		return EmprestimosControl.self;
 	}
 
-	public Emprestimo buscarEmprestimo(int idEmprestimo) {
+	public Emprestimo buscarEmprestimo(Long idEmprestimo) {
 		Emprestimo achado = null;
 		for (Emprestimo emprestimo: this.emprestimos.getEmprestimos()) {
 			if (emprestimo.getId() == idEmprestimo) {
@@ -41,7 +41,7 @@ public class EmprestimosControl {
 		return achado;
 	}
 
-	public int getEmprestimosPorUsuario(int idUsuario) {
+	public int getEmprestimosPorUsuario(Long idUsuario) {
 		int achados = 0;
 		for (Emprestimo emprestimo: this.emprestimos.getEmprestimos()) {
 			if (emprestimo.getIdUsuario() == idUsuario) {
@@ -51,7 +51,7 @@ public class EmprestimosControl {
 		return achados;
 	}
 
-	public int getEmprestimosPorJogo(int idJogo) {
+	public int getEmprestimosPorJogo(Long idJogo) {
 		int achados = 0;
 		for (Emprestimo emprestimo: this.emprestimos.getEmprestimos()) {
 			if (emprestimo.getIdJogo() == idJogo) {
@@ -61,7 +61,7 @@ public class EmprestimosControl {
 		return achados;
 	}
 
-	public boolean usuarioTemEmprestimoDesseJogo(int idUsuario, int idJogo) {
+	public boolean usuarioTemEmprestimoDesseJogo(Long idUsuario, Long idJogo) {
 		boolean tem = false;
 		for (Emprestimo emprestimo: this.emprestimos.getEmprestimos()) {
 			if (emprestimo.getIdJogo() == idJogo && emprestimo.getIdUsuario() == idUsuario) {
@@ -90,7 +90,7 @@ public class EmprestimosControl {
 		return pode;
 	}
 
-	public void fazerDevolucao(int idEmprestimo, List<String> observacao) {
+	public void fazerDevolucao(Long idEmprestimo, List<String> observacao) {
 		Emprestimo emprestimo = this.buscarEmprestimo(idEmprestimo);
 		if (emprestimo.atrasado()) {
 			PenalidadesControl.getInstance().criarPenalidade(emprestimo);
@@ -98,7 +98,7 @@ public class EmprestimosControl {
 		emprestimo.devolver(observacao);
 	}
 	
-	public boolean reservarJogo(int idUsuario, Jogo jogo) {
+	public boolean reservarJogo(Long idUsuario, Jogo jogo) {
 		boolean pode = !(this.jogoDisponivelParaEmprestimo(jogo));
 		if (pode) {
 			ReservasControl.getInstance().fazerReserva(jogo.getId(), idUsuario);
@@ -106,7 +106,7 @@ public class EmprestimosControl {
 		return pode;
 	}
 
-	public Reserva verSeTemReserva(int idEmprestimo) {
+	public Reserva verSeTemReserva(Long idEmprestimo) {
 		Reserva reserva = ReservasControl.getInstance().buscarPrimeiraReservaDoJogo(this.buscarEmprestimo(idEmprestimo).getIdJogo());
 		return reserva;
 	}
@@ -135,7 +135,7 @@ public class EmprestimosControl {
 	public Map<Jogo, Long> analisarPicosValesPopularidadeJogos() {
 		JogosControl jogos = JogosControl.getInstance();
 		// Mapeia cada Jogo (resolvendo o ID para o objeto Jogo completo) para a contagem de empréstimos
-		Map<Integer, Long> contagemPorJogoId = this.emprestimos.getEmprestimos().stream()
+		Map<Long, Long> contagemPorJogoId = this.emprestimos.getEmprestimos().stream()
 				.collect(
 						Collectors.groupingBy(
 								Emprestimo::getIdJogo, // Agrupa pelo ID do jogo
@@ -146,7 +146,7 @@ public class EmprestimosControl {
 		// Converte o mapa de ID para Jogo, usando o jogosManager para buscar o objeto Jogo
 		Map<Jogo, Long> popularidadeJogos = new LinkedHashMap<>(); // LinkedHashMap para manter a ordem (opcional)
 		contagemPorJogoId.entrySet().stream()
-				.sorted(Map.Entry.<Integer, Long>comparingByValue().reversed()) // Ordena do mais popular para o menos
+				.sorted(Map.Entry.<Long, Long>comparingByValue().reversed()) // Ordena do mais popular para o menos
 				.forEach(entry -> {
 					Jogo jogo = jogos.buscarJogo(entry.getKey());
 					if (jogo != null) {
@@ -171,11 +171,11 @@ public class EmprestimosControl {
 		return contagemPorMes;
 	}
 
-	public List<Reserva> pegarReservasDeUsuario(int idUsuario) {
+	public List<Reserva> pegarReservasDeUsuario(Long idUsuario) {
 		return ReservasControl.getInstance().reservasDeUsuario(idUsuario);
 	}
 
-	public List<Emprestimo> getEmprestimosDoUsuario(int idUsuario) {
+	public List<Emprestimo> getEmprestimosDoUsuario(Long idUsuario) {
 		List<Emprestimo> encontrados = new ArrayList<Emprestimo>();
 		for (Emprestimo emprestimo: this.emprestimos.getEmprestimos()) {
 			if (emprestimo.getIdUsuario() == idUsuario) {

@@ -32,7 +32,7 @@ public class Remover_usuariosController {
         }
 
         try {
-            int id = Integer.parseInt(idText);
+            Long id = Long.parseLong(idText);
 
             // 2. Buscar o usuário pelo ID
             Usuario usuarioParaRemover = usuariosControl.buscarUsuario(id);

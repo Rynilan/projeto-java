@@ -34,8 +34,8 @@ public class Reservas_emprestimosController {
 
     public void Clicar_ok(ActionEvent event){
         try{
-            int IDusuario = Integer.parseInt(IDusuarioField.getText().trim());
-            int Idjogo = Integer.parseInt(IDjogoField.getText().trim());
+            Long IDusuario = Long.parseLong(IDusuarioField.getText().trim());
+            Long Idjogo = Long.parseLong(IDjogoField.getText().trim());
 
             Usuario usuario = UsuariosControl.getInstance().buscarUsuario(IDusuario);
             Jogo jogo = JogosControl.getInstance().buscarJogo(Idjogo);

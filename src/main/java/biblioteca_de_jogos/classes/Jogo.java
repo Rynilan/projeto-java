@@ -1,7 +1,7 @@
 package biblioteca_de_jogos.classes;
 
 public class Jogo {
-    private int id;
+    private Long id;
     private String nome;
     private String editor;
     private String descricao;
@@ -9,11 +9,11 @@ public class Jogo {
     private int minJogadores;
     private int maxJogadores;
     private int qtdCopias;
-	private int idCategoria;
+	private Long idCategoria;
 
 
-    public Jogo(int id, String nome, String editor, String descricao, int tempoPartida,
-                int minJogadores, int maxJogadores, int qtdCopias, int idCategoria) {
+    public Jogo(Long id, String nome, String editor, String descricao, int tempoPartida,
+                int minJogadores, int maxJogadores, int qtdCopias, Long idCategoria) {
         this.id = id;
         this.nome = nome;
         this.editor = editor;
@@ -42,7 +42,7 @@ public class Jogo {
 }
 
 	
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -82,7 +82,7 @@ public class Jogo {
         return qtdCopias > 0;
     }
 
-	public int getIdCategoria() {
+	public Long getIdCategoria() {
 		return this.idCategoria;
 	}
     

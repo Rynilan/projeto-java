@@ -36,7 +36,7 @@ public class Remover_jogoController {
         }
 
         try {
-            int idJogo = Integer.parseInt(idJogoStr);
+            Long idJogo = Long.parseLong(idJogoStr);
 
             Jogo jogoParaRemover = jogosControl.buscarJogo(idJogo);
 

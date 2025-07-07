@@ -2,13 +2,13 @@ package biblioteca_de_jogos.classes;
 
 public class Usuario {
 
-	private int id;
+	private Long id;
     public String nome;
     public String email;
     public String telefone;
     public String status;
 
-	public Usuario(int id, String nome, String email, String telefone, String status) {
+	public Usuario(Long id, String nome, String email, String telefone, String status) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -28,7 +28,7 @@ public class Usuario {
 	}
 
 	
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 

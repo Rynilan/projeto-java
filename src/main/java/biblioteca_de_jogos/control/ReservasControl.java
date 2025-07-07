@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public class ReservasControl {
 	
-	private int id;
+	private Long id;
 	private Queue<Reserva> reservas;
 	private Reservas historico;
 	private static ReservasControl self = null;
 
 	private ReservasControl() {
-		this.id = -1;
+		this.id = -1L;
 		this.reservas = new LinkedList<Reserva>();
 		this.historico = Reservas.getInstance();
 	}
@@ -29,14 +29,14 @@ public class ReservasControl {
 		return ReservasControl.self;
 	}
 
-	public void fazerReserva(int idJogo, int idUsuario) {
+	public void fazerReserva(Long idJogo, Long idUsuario) {
 		this.id++;
 		this.reservas.add(
 			new Reserva(this.id, idUsuario, idJogo)
 		);
 	}
 
-	public boolean temReservaJogo(int idJogo) {
+	public boolean temReservaJogo(Long idJogo) {
 		boolean tem = false;
 		for (Reserva reserva: this.reservas) {
 			if (reserva.getIdJogo() == idJogo) {
@@ -46,7 +46,7 @@ public class ReservasControl {
 		return tem;
 	}
 
-	public Reserva buscarPrimeiraReservaDoJogo(int idJogo) {
+	public Reserva buscarPrimeiraReservaDoJogo(Long idJogo) {
 		Reserva achado = null;
 		for (Reserva reserva: this.reservas) {
 			if (reserva.getIdJogo() == idJogo) {
@@ -57,7 +57,7 @@ public class ReservasControl {
 		return achado;
 	}
 
-	public List<Reserva> reservasDeUsuario(int idUsuario) {
+	public List<Reserva> reservasDeUsuario(Long idUsuario) {
 		List<Reserva> achadas = new ArrayList<Reserva>();
 		for (Reserva reserva: this.reservas) {
 			if (reserva.getIdUsuario() == idUsuario) {
