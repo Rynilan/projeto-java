@@ -41,8 +41,6 @@ public class Jogo {
            '}';
 }
 
-
-
 	
     public int getId() {
         return id;
