@@ -2,30 +2,31 @@ package biblioteca_de_jogos.control;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.model.Jogos;
 
 public class JogosControl {
-	private int id;
+	private Long id;
 	private Jogos jogos;
 	private static JogosControl self = null;
 	
 	private JogosControl() {
-		this.id = -1;
+		this.id = -1L;
 		this.jogos = Jogos.getInstance();
 		JogosControl.self = this;
 	}
 
 	/** Método para ter instância única da classe controle. */
 	public static JogosControl getInstance() {
-		if (JogosControl.self != null) {
+		if (JogosControl.self == null) {
 			JogosControl.self = new JogosControl();
 		}
 		return JogosControl.self;
 	}
 
-	public Jogo buscarJogo(int id) {
+	public Jogo buscarJogo(Long id) {
 		Jogo achado = null;
 		for (Jogo jogo: this.jogos.getJogos()) {
 			if (jogo.getId() == id) {
@@ -35,7 +36,7 @@ public class JogosControl {
 		return achado;
 	}
 
-	public Jogo criarJogo(String nome, String editor, String descricao, int tempoPartida, int minJogadores, int maxJogadores, int copias, int idCategoria) {
+	public Jogo criarJogo(String nome, String editor, String descricao, int tempoPartida, int minJogadores, int maxJogadores, int copias, Long idCategoria) {
 		Jogo jogo = null;
 		if (nome != null && editor != null && tempoPartida > 0 && minJogadores > 0 && minJogadores < maxJogadores && copias > 0) {
 			jogo = new Jogo(this.id, nome, editor, descricao, tempoPartida, minJogadores, maxJogadores, copias, idCategoria);
@@ -58,7 +59,7 @@ public class JogosControl {
 	public List<Jogo> buscarPorEditor(String editor) {
 		List<Jogo> achados = new ArrayList<Jogo>();
 		for (Jogo jogo: this.jogos.getJogos()) {
-			if (jogo.getEditor() == editor) {
+			if (Objects.equals(jogo.getEditor(), editor)) {
 				achados.add(jogo);
 			}
 		}
@@ -68,7 +69,7 @@ public class JogosControl {
 	public List<Jogo> buscarPorNome(String nome) {
 		List<Jogo> achados = new ArrayList<Jogo>();
 		for (Jogo jogo: this.jogos.getJogos()) {
-			if (jogo.getNome() == nome) {
+			if (Objects.equals(jogo.getNome(), nome)) {
 				achados.add(jogo);
 			}
 		}
@@ -85,11 +86,31 @@ public class JogosControl {
 		return achados;
 	}
 
+	public List<Jogo> buscarPorTempodeJogo(int TempodeJogo) {
+		List<Jogo> achados = new ArrayList<Jogo>();
+		for (Jogo jogo: this.jogos.getJogos()) {
+			if (jogo.getTempoPartida() == TempodeJogo) {
+				achados.add(jogo);
+			}
+		}
+		return achados;
+	}
+
+	public List<Jogo> jogosDisponiveis() {
+		List<Jogo> achados = new ArrayList<Jogo>();
+		for (Jogo jogo: this.jogos.getJogos()) {
+			if (jogo.estaDisponivel()) {
+				achados.add(jogo);
+			}
+		}
+		return achados;
+	}
+
 	public List<Jogo> getJogos() {
 		return this.jogos.getJogos();
 	}
 
-	public List<Jogo> buscarPorCategoria(int idCategoria) {
+	public List<Jogo> buscarPorCategoria(Long idCategoria) {
 		List<Jogo> achados = new ArrayList<Jogo>();
 		for (Jogo jogo: this.jogos.getJogos()) {
 			if (jogo.getIdCategoria() == idCategoria) {

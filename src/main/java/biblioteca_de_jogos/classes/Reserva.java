@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Reserva {
 
-	private int id;
+	private Long id;
 	private boolean notificado;
 	private LocalDate dataReserva;
-	private int idUsuario;
-	private int idJogo;
+	private Long idUsuario;
+	private Long idJogo;
 
-	public Reserva(int id, int idUsuario, int idJogo) {
+	public Reserva(Long id, Long idUsuario, Long idJogo) {
 		this.id = id;
 		this.notificado = false;
 		this.dataReserva = LocalDate.now();
@@ -29,11 +29,11 @@ public class Reserva {
 			"\n}";
 	}
 	
-	public int getIdJogo() {
+	public Long getIdJogo() {
 		return this.idJogo;
 	}
 
-	public int getIdUsuario() {
+	public Long getIdUsuario() {
 		return this.idUsuario;
 	}
 

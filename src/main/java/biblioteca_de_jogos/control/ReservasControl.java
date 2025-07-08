@@ -28,14 +28,11 @@ public class ReservasControl {
 		return ReservasControl.self;
 	}
 
-	public boolean fazerReserva(int idJogo, int idUsuario) {
-		if (this.usuarioTemReservaParaJogo(idUsuario, idJogo)) {
-			return false;
-		}
-
+	public void fazerReserva(int idJogo, int idUsuario) {
 		this.id++;
-		this.reservas.add(new Reserva(this.id, idUsuario, idJogo));
-		return true;
+		this.reservas.add(
+			new Reserva(this.id, idUsuario, idJogo)
+		);
 	}
 
 	public boolean temReservaJogo(int idJogo) {
@@ -49,12 +46,14 @@ public class ReservasControl {
 	}
 
 	public Reserva buscarPrimeiraReservaDoJogo(int idJogo) {
-		for (Reserva reserva : this.reservas) {
+		Reserva achado = null;
+		for (Reserva reserva: this.reservas) {
 			if (reserva.getIdJogo() == idJogo) {
-				return reserva;
+				achado = reserva;
+				break;
 			}
 		}
-		return null;
+		return achado;
 	}
 
 	public List<Reserva> reservasDeUsuario(int idUsuario) {
@@ -66,23 +65,4 @@ public class ReservasControl {
 		}
 		return achadas;
 	}
-
-	public void removerReserva(int idReserva) {
-		reservas.removeIf(reserva -> reserva.getId() == idReserva);
-	}
-
-	public boolean usuarioTemReservaParaJogo(int idUsuario, int idJogo) {
-		for (Reserva reserva : this.reservas) {
-			if (reserva.getIdUsuario() == idUsuario && reserva.getIdJogo() == idJogo) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public List<Reserva> getTodasReservas() {
-		return new ArrayList<>(this.reservas);
-	}
 }
-
-

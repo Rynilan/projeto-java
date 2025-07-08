@@ -1,0 +1,56 @@
+package biblioteca_de_jogos.Controladores;
+
+import biblioteca_de_jogos.ScreenManager;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+
+import javafx.event.ActionEvent;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+public class Pagina_principalController {
+
+    @FXML
+    public TextArea ConsoleTextarea;
+
+    @FXML
+    public BorderPane MainLayout;
+
+    @FXML
+    public AnchorPane mainContent;
+
+
+    public void log(String msg) {
+        ConsoleTextarea.appendText(msg + "\n");
+    }
+
+    public void Clicar_sair(ActionEvent event){
+        Platform.exit();
+    }
+
+    public void Clicar_teste(ActionEvent event){
+        System.out.println("Teste");
+    }
+
+    public void Clicar_Gerir_usuario(ActionEvent event) {
+        ScreenManager.mostrarTela("pagina_usuarios");
+    }
+
+    public void Clicar_Gerir_jogos(ActionEvent event){
+        ScreenManager.mostrarTela("pagina_jogos");
+    }
+
+    public void Clicar_Emprestimos(ActionEvent event){
+        ScreenManager.mostrarTela("pagina_emprestimos");
+    }
+
+    public void Clicar_Relatorios(ActionEvent event){
+        ScreenManager.mostrarTela("pagina_relatorios");
+    }
+}

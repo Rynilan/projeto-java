@@ -12,11 +12,11 @@ public class PenalidadesControl {
 
 	private static PenalidadesControl self = null;
 	private Penalidades penalidades;
-	private int id;
+	private Long id;
 
 	private PenalidadesControl() {
 		this.penalidades = Penalidades.getInstance();
-		this.id = -1;
+		this.id = -1L;
 	}
 
 	public static PenalidadesControl getInstance() {
@@ -33,7 +33,7 @@ public class PenalidadesControl {
 		);
 	}
 
-	public List<Penalidade> penalidadesDeUsuario(int idUsuario) {
+	public List<Penalidade> penalidadesDeUsuario(Long idUsuario) {
 		List<Penalidade> achadas = new ArrayList<Penalidade>();
 		for (Penalidade penalidade: this.penalidades.getPenalidades()) {
 			if (penalidade.getIdUsuario() == idUsuario) {

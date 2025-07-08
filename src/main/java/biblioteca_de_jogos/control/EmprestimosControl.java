@@ -95,29 +95,14 @@ public class EmprestimosControl {
 			PenalidadesControl.getInstance().criarPenalidade(emprestimo);
 		}
 		emprestimo.devolver(observacao);
-
-		Reserva proximaReserva = ReservasControl.getInstance().buscarPrimeiraReservaDoJogo(emprestimo.getIdJogo());
-		if (proximaReserva != null) {
-			Jogo jogo = JogosControl.getInstance().buscarJogo(emprestimo.getIdJogo());
-			Usuario usuario = UsuariosControl.getInstance().buscarUsuario(proximaReserva.getIdUsuario());
-			if (this.fazerEmprestimo(usuario, jogo)) {
-				ReservasControl.getInstance().removerReserva(proximaReserva.getId());
-			}
-		}
 	}
-
-	public boolean reservarJogo(int usuarioId, Jogo jogo) {
-		if (jogo == null || !jogoDisponivelParaReserva(jogo)) {
-			return false;
+	
+	public boolean reservarJogo(int idUsuario, Jogo jogo) {
+		boolean pode = !(this.jogoDisponivelParaEmprestimo(jogo));
+		if (pode) {
+			ReservasControl.getInstance().fazerReserva(jogo.getId(), idUsuario);
 		}
-		int novoId = reservas.isEmpty() ? 1 : reservas.get(reservas.size() - 1).getId() + 1;
-		reservas.add(new Reserva(novoId, usuarioId, jogo.getId()));
-		return true;
-	}
-
-	private boolean jogoDisponivelParaReserva(Jogo jogo) {
-		return getEmprestimosAtivos().stream()
-				.noneMatch(emp -> emp.getJogo().equals(jogo));
+		return pode;
 	}
 
 	public Reserva verSeTemReserva(int idEmprestimo) {
@@ -189,26 +174,6 @@ public class EmprestimosControl {
 		}
 		return encontrados;
 	}
-
-	public boolean jogoTemReservas(int idJogo) {
-		return ReservasControl.getInstance().buscarPrimeiraReservaDoJogo(idJogo) != null;
-	}
-
-	public boolean temReservasParaJogo(Jogo jogo) {
-		if (jogo == null) return false;
-		return reservas.stream().anyMatch(reserva -> reserva.getIdJogo() == jogo.getId());
-	}
-
-	public int proximaReservaParaJogo(Jogo jogo) {
-		if (jogo == null) return -1;
-		return reservas.stream()
-				.filter(reserva -> reserva.getIdJogo() == jogo.getId())
-				.findFirst()
-				.map(Reserva::getIdUsuario)
-				.orElse(-1);
-	}
-
-	private List<Reserva> reservas = new ArrayList<>();
 
 	public List<Emprestimo> getEmprestimos() {
 		return this.emprestimos.getEmprestimos();

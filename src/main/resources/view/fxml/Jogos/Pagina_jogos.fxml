@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.Pagina_jogosController">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <TextArea fx:id="ConsoleTextarea" editable="false" layoutX="96.0" layoutY="44.0" prefHeight="228.0" prefWidth="408.0" promptText="Console" />
+            <Button layoutX="515.0" layoutY="55.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="25.0" prefWidth="67.0" text="Voltar" />
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_Adicionar_jogo" prefHeight="45.0" prefWidth="87.0" text="Adicionar Jogo" />
+            <Button layoutX="204.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_Remover_jogo" prefHeight="45.0" prefWidth="87.0" text="Remover Jogo" />
+            <Button layoutX="331.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_Ver_jogos" prefHeight="45.0" prefWidth="87.0" text="Ver jogos" />
+            <Button layoutX="448.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_Disponiveis_emprestimo" prefHeight="45.0" prefWidth="87.0" text="Disponíveis para Empréstimos" />
+            <Button layoutX="82.0" layoutY="67.0" mnemonicParsing="false" onAction="#Clicar_Buscar_editor" prefHeight="45.0" prefWidth="87.0" text="Buscar por Editor" />
+            <Button layoutX="204.0" layoutY="67.0" mnemonicParsing="false" onAction="#Clicar_Buscar_numero_jogadores" prefHeight="45.0" prefWidth="87.0" text="Buscar por Numero de jogadores" />
+            <Button layoutX="331.0" layoutY="67.0" mnemonicParsing="false" onAction="#Clicar_Bucar_categoria" prefHeight="45.0" prefWidth="87.0" text="Buscar por categoria" />
+            <Button layoutX="448.0" layoutY="67.0" mnemonicParsing="false" onAction="#Clicar_Buscar_tempo_partida" prefHeight="45.0" prefWidth="87.0" text="Buscar por tempo de Partida" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

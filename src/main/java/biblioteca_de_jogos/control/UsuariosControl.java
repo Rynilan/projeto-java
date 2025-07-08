@@ -6,12 +6,12 @@ import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.model.Usuarios;
 
 public class UsuariosControl {
-	private int id;
+	private Long id;
 	private Usuarios usuarios;
 	private static UsuariosControl self = null;
 	
-	private UsuariosControl() {
-		this.id = -1;
+	public UsuariosControl() {
+		this.id = -1L;
 		this.usuarios = Usuarios.getInstance();
 	}
 
@@ -22,10 +22,20 @@ public class UsuariosControl {
 		return UsuariosControl.self;
 	}
 
-	public Usuario buscarUsuario(int id) {
+	public Usuario buscarUsuario(Long id) {
 		Usuario achado = null;
 		for (Usuario usuario: this.usuarios.getUsuarios()) {
 			if (usuario.getId() == id) {
+				achado = usuario;
+			}
+		}
+		return achado;
+	}
+
+	public Usuario buscarUsuario(String nome) {
+		Usuario achado = null;
+		for (Usuario usuario: this.usuarios.getUsuarios()) {
+			if (usuario.getNome().equalsIgnoreCase(nome)) {
 				achado = usuario;
 			}
 		}
