@@ -270,16 +270,34 @@ public class Main extends Application {
 
                     case "2":
                         print("Defina o id do empréstimo a ser devolvido e se há alguma observação (s ou n).");
-                        gerencia.fazerDevolucao(stdin.nextInt(), pegarObservacoes(stdin.nextLine(), stdin));
+                        int emprestimoId = stdin.nextInt();
+                        List<String> observacoes = pegarObservacoes(stdin.nextLine(), stdin);
+                        gerencia.fazerDevolucao(emprestimoId, observacoes);
+
+                        Emprestimo emprestimoDevolvido = gerencia.buscarEmprestimo(emprestimoId);
+                        if (emprestimoDevolvido != null) {
+                            Jogo jogoDevolvido = emprestimoDevolvido.getJogo();
+                            if (gerencia.temReservasParaJogo(jogoDevolvido)) {
+                                int proximoUsuarioId = gerencia.proximaReservaParaJogo(jogoDevolvido);
+                                if (gerencia.fazerEmprestimo(usuarios.buscarUsuario(proximoUsuarioId), jogoDevolvido)) {
+                                    print("Reserva convertida em empréstimo para o usuário ID: " + proximoUsuarioId);
+                                } else {
+                                    print("Falha ao converter reserva em empréstimo.");
+                                }
+                            }
+                        }
                         break;
 
                     case "3":
                         print("Defina o id de quem e de que jogo será reservado: ");
-                        if (gerencia.reservarJogo(
-                                stdin.nextInt(),
-                                jogos.buscarJogo(stdin.nextInt())
-                        )) { print("Reserva feita com sucesso.");} else {
-                            print("Reserva falhou.");}
+                        int usuarioId = stdin.nextInt();
+                        int jogoId = stdin.nextInt();
+                        Jogo jogoReservado = jogos.buscarJogo(jogoId);
+                        if (jogoReservado != null && gerencia.reservarJogo(usuarioId, jogoReservado)) {
+                            print("Reserva feita com sucesso.");
+                        } else {
+                            print("Reserva falhou.");
+                        }
                         break;
 
                     case "4":

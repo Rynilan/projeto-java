@@ -36,4 +36,8 @@ public class Reserva {
 	public int getIdUsuario() {
 		return this.idUsuario;
 	}
+
+	public int getId() {
+		return this.id;
+	}
 }

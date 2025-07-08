@@ -33,24 +33,57 @@ public class UsuariosControl {
 	}
 
 	public Usuario criarUsuario(String nome, String email, String telefone, String status) {
-		Usuario usuario = null;
-		if (nome != null && email != null && telefone != null && status.equalsIgnoreCase("ativo") || status.equalsIgnoreCase("inativo")) {
-			this.id++;
-			usuario = new Usuario(this.id, nome, email, telefone, status);
+		if (nome == null || nome.trim().isEmpty() ||
+				email == null || email.trim().isEmpty() ||
+				telefone == null || telefone.trim().isEmpty() ||
+				(!status.equalsIgnoreCase("ativo") && !status.equalsIgnoreCase("inativo"))) {
+			return null;
 		}
-		return usuario;
+
+		if (this.emailExiste(email)) {
+			return null;
+		}
+
+		this.id++;
+		return new Usuario(this.id, nome, email, telefone, status);
 	}
 
 	public boolean adicionarUsuario(Usuario usuario) {
-		boolean pode = (usuario != null && this.buscarUsuario(usuario.getId()) == null);
-		if (pode) { this.usuarios.getUsuarios().add(usuario); } 
-		return pode;
+		if (usuario == null || this.buscarUsuario(usuario.getId()) != null ||
+				this.emailExiste(usuario.getEmail())) {
+			return false;
+		}
+		this.usuarios.getUsuarios().add(usuario);
+		return true;
 	}
 
 	public boolean removerUsuario(Usuario usuario) {
 		boolean pode = (usuario != null && this.buscarUsuario(usuario.getId()) != null);
 		if (pode) { this.usuarios.getUsuarios().remove(usuario); }
 		return pode;
+	}
+
+	public boolean emailExiste(String email) {
+		for (Usuario usuario : this.usuarios.getUsuarios()) {
+			if (usuario.getEmail().equalsIgnoreCase(email)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Usuario buscarUsuarioPorEmail(String email) {
+		for (Usuario usuario : this.usuarios.getUsuarios()) {
+			if (usuario.getEmail().equalsIgnoreCase(email)) {
+				return usuario;
+			}
+		}
+		return null;
+	}
+
+	public boolean usuarioEstaAtivo(int idUsuario) {
+		Usuario usuario = this.buscarUsuario(idUsuario);
+		return usuario != null && usuario.getStatus().equalsIgnoreCase("ativo");
 	}
 
 	public List<Usuario> getUsuarios() {
