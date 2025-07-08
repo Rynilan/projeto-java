@@ -7,9 +7,10 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ReservasControl {
-	
+
 	private int id;
 	private Queue<Reserva> reservas;
 	private Reservas historico;
@@ -31,7 +32,7 @@ public class ReservasControl {
 	public void fazerReserva(int idJogo, int idUsuario) {
 		this.id++;
 		this.reservas.add(
-			new Reserva(this.id, idUsuario, idJogo)
+				new Reserva(this.id, idUsuario, idJogo)
 		);
 	}
 
@@ -41,7 +42,7 @@ public class ReservasControl {
 			if (reserva.getIdJogo() == idJogo) {
 				tem = true;
 			}
-		}		
+		}
 		return tem;
 	}
 
@@ -64,5 +65,34 @@ public class ReservasControl {
 			}
 		}
 		return achadas;
+	}
+
+	public boolean deletarReserva(int idReserva) {
+		Iterator<Reserva> iterator = reservas.iterator();
+		while (iterator.hasNext()) {
+			Reserva reserva = iterator.next();
+			if (reserva.getId() == idReserva) {
+				iterator.remove();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean deletarReservasDeUsuario(int idUsuario) {
+		boolean removed = false;
+		Iterator<Reserva> iterator = reservas.iterator();
+		while (iterator.hasNext()) {
+			Reserva reserva = iterator.next();
+			if (reserva.getIdUsuario() == idUsuario) {
+				iterator.remove();
+				removed = true;
+			}
+		}
+		return removed;
+	}
+
+	public List<Reserva> getTodasReservas() {
+		return new ArrayList<>(this.reservas);
 	}
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.format.DateTimeParseException;
 
+import biblioteca_de_jogos.classes.Reserva;
+import biblioteca_de_jogos.control.ReservasControl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -96,10 +98,11 @@ public class Main extends Application {
         stage.show();
     }
 
+
+
     public static void main(String args[]) {
 
         launch(args);
-/*
 
         Scanner stdin = new Scanner(System.in);
         String user = "0";
@@ -262,7 +265,8 @@ public class Main extends Application {
                 print("1. Empréstimo.");
                 print("2. Devolução.");
                 print("3. Reserva.");
-                print("4. Ver todos os empréstimos.");
+                print("4. Deletar reserva.");
+                print("5. Ver todos os empréstimos.");
 
                 user = stdin.nextLine();
 
@@ -309,6 +313,33 @@ public class Main extends Application {
                         break;
 
                     case "4":
+                        ReservasControl control = ReservasControl.getInstance();
+                        Scanner scanner = new Scanner(System.in);
+
+                        System.out.println("\n=== DELETAR RESERVA ===");
+
+                        System.out.println("\nReservas existentes:");
+                        for (Reserva reserva : control.getTodasReservas()) {
+                            System.out.println("ID: " + reserva.getId() +
+                                            " | Jogo: " + reserva.getIdJogo() +
+                                            " | Usuário: " + reserva.getIdUsuario());
+                        }
+
+                        System.out.print("\nDigite o ID da reserva que deseja deletar: ");
+                        int idReserva = scanner.nextInt();
+
+                        boolean removido = control.deletarReserva(idReserva);
+                        if (removido) {
+                            System.out.println("\nReserva removida com sucesso!");
+                        } else {
+                            System.out.println("\nReserva não encontrada. Verifique o ID e tente novamente.");
+                        }
+
+                        scanner.close();
+                        }
+                        break;
+
+                    case "5":
                         print("");
                         print_lista(gerencia.getEmprestimos());
                         print("");
@@ -673,7 +704,6 @@ public class Main extends Application {
         stdin.close();
         print("Obrigado pela presença.");
 
-*/
     }
 
 }
