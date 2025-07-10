@@ -1,27 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="MainLayout" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.Pagina_principalController">
-   <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+<BorderPane fx:id="MainLayout" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.Pagina_principalController">
+   <top>
+      <AnchorPane styleClass="principal" stylesheets="@css/principal.css" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="ConsoleTextarea" editable="false" layoutX="96.0" layoutY="44.0" prefHeight="228.0" prefWidth="408.0" promptText="Console" />
-            <Button layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_sair" prefHeight="25.0" prefWidth="47.0" text="Sair" />
+            <Button layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_sair" prefHeight="25.0" prefWidth="47.0" styleClass="modern-button-sair" stylesheets="@css/principal.css" text="X" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="8.0" />
+               </font></Button>
+            <AnchorPane layoutY="299.0" prefHeight="105.0" prefWidth="600.0" styleClass="principal_menu" stylesheets="@css/principal.css">
+               <children>
+                  <Button layoutX="61.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Gerir_usuario" prefHeight="45.0" prefWidth="104.0" styleClass="modern-button-Gerir" stylesheets="@css/principal.css" text="Gerir Usuários">
+                     <font>
+                        <Font name="Arial Black" size="11.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="199.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Gerir_jogos" prefHeight="45.0" prefWidth="87.0" styleClass="modern-button-Gerir" stylesheets="@css/principal.css" text="Gerir Jogos">
+                     <font>
+                        <Font name="Arial Black" size="11.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="318.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Emprestimos" prefHeight="45.0" prefWidth="87.0" styleClass="modern-button-Gerir" stylesheets="@css/principal.css" text="Empréstimos">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="433.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Relatorios" prefHeight="45.0" prefWidth="87.0" styleClass="modern-button-Gerir" stylesheets="@css/principal.css" text="Relatórios">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="88.0" layoutY="88.0" prefHeight="113.0" prefWidth="402.0" styleClass="ConsoleTextarea" stylesheets="@css/principal.css" text="Bem vindo a Jogos &amp; Cia" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" underline="true">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-   </center>
-   <bottom>
-      <AnchorPane prefHeight="85.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="78.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Gerir_usuario" prefHeight="45.0" prefWidth="87.0" text="Gerir Usuários" />
-            <Button layoutX="199.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Gerir_jogos" prefHeight="45.0" prefWidth="87.0" text="Gerir Jogos" />
-            <Button layoutX="318.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Emprestimos" prefHeight="45.0" prefWidth="87.0" text="Empréstimos" />
-            <Button layoutX="433.0" layoutY="20.0" mnemonicParsing="false" onAction="#Clicar_Relatorios" prefHeight="45.0" prefWidth="87.0" text="Relatórios" />
-         </children>
-      </AnchorPane>
-   </bottom>
+   </top>
 </BorderPane>

@@ -4,6 +4,7 @@ import biblioteca_de_jogos.ScreenManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 public class Pagina_principalController {
 
     @FXML
-    public TextArea ConsoleTextarea;
+    public Label ConsoleTextarea;
 
     @FXML
     public BorderPane MainLayout;
@@ -27,7 +28,7 @@ public class Pagina_principalController {
 
 
     public void log(String msg) {
-        ConsoleTextarea.appendText(msg + "\n");
+        ConsoleTextarea.setText(msg + "\n");
     }
 
     public void Clicar_sair(ActionEvent event){
