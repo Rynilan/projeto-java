@@ -48,7 +48,7 @@ public class Emprestimos_emprestimosController {
             return;
         }
 
-        EmprestimosControl emprestimosControl = new EmprestimosControl();
+        EmprestimosControl emprestimosControl = EmprestimosControl.getInstance();
 
         emprestimosControl.fazerEmprestimo(usuario, jogo);
         log("Empréstimo feito com sucesso!");

@@ -37,7 +37,7 @@ public class Reserva {
 		return this.idUsuario;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 }

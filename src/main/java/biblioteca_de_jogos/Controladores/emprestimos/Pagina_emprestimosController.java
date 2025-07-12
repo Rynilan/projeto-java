@@ -39,7 +39,7 @@ public class Pagina_emprestimosController {
 
     public void Clicar_Ver_emprestimos_reservas(ActionEvent event){
         log(print_lista(EmprestimosControl.getInstance().getEmprestimos()));
-        List<Reserva> lista = ReservasControl.getInstance().gerReservas();
+        List<Reserva> lista = ReservasControl.getInstance().getTodasReservas();
         for (Reserva r : lista){
             log(r.toString());
         }

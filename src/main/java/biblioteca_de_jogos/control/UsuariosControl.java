@@ -91,7 +91,7 @@ public class UsuariosControl {
 		return null;
 	}
 
-	public boolean usuarioEstaAtivo(int idUsuario) {
+	public boolean usuarioEstaAtivo(Long idUsuario) {
 		Usuario usuario = this.buscarUsuario(idUsuario);
 		return usuario != null && usuario.getStatus().equalsIgnoreCase("ativo");
 	}

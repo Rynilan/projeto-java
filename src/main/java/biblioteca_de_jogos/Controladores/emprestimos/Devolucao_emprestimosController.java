@@ -21,7 +21,7 @@ public class Devolucao_emprestimosController {
     @FXML
     public TextField observacaoField;
 
-    EmprestimosControl emprestimosControl = new EmprestimosControl();
+    EmprestimosControl emprestimosControl = EmprestimosControl.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");
