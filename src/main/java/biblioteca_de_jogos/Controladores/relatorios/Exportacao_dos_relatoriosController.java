@@ -15,15 +15,12 @@ import biblioteca_de_jogos.control.UsuariosControl;
 import com.itextpdf.kernel.exceptions.PdfException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 

@@ -4,14 +4,10 @@ import biblioteca_de_jogos.control.JogosControl;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.ScreenManager;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static biblioteca_de_jogos.Main.print_lista;
 

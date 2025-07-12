@@ -90,7 +90,6 @@ public class ScreenManager {
         Parent tela = telas.get(nome);
         if (tela != null) {
             if (rootLayout != null) {
-                String telaAtual = null;
                 if(!nome.equals("pagina_Exportacao_relatoriosUsuarios")
                 && !nome.equals("pagina_Exportacao_relatoriosJogos") && !nome.equals("pagina_Exportacao_relatoriosPicos_vales_emprestimos")
                 && !nome.equals("pagina_Exportacao_relatoriosPicos_vales_popularidade") &&!nome.equals("pagina_Exportacao_relatoriosPicos_vales_emprestimos_periodos") &&!nome.equals("pagina_Emprestimos_periodo_relatorios"))

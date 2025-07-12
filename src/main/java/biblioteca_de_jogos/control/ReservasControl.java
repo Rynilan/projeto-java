@@ -3,8 +3,6 @@ package biblioteca_de_jogos.control;
 import biblioteca_de_jogos.classes.Reserva;
 import biblioteca_de_jogos.model.Reservas;
 
-import java.util.Queue;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,14 +10,12 @@ import java.util.Iterator;
 public class ReservasControl {
 
 	private Long id;
-	private Queue<Reserva> reservas;
-	private Reservas historico;
+	private Reservas reservas;
 	private static ReservasControl self = null;
 
 	private ReservasControl() {
 		this.id = -1L;
-		this.reservas = new LinkedList<Reserva>();
-		this.historico = Reservas.getInstance();
+		this.reservas = Reservas.getInstance();
 	}
 
 	public static ReservasControl getInstance() {
@@ -31,14 +27,14 @@ public class ReservasControl {
 
 	public void fazerReserva(Long idJogo, Long idUsuario) {
 		this.id++;
-		this.reservas.add(
+		this.reservas.getReservas().add(
 				new Reserva(this.id, idUsuario, idJogo)
 		);
 	}
 
 	public boolean temReservaJogo(Long idJogo) {
 		boolean tem = false;
-		for (Reserva reserva: this.reservas) {
+		for (Reserva reserva: this.reservas.getReservas()) {
 			if (reserva.getIdJogo() == idJogo) {
 				tem = true;
 			}
@@ -48,7 +44,7 @@ public class ReservasControl {
 
 	public Reserva buscarPrimeiraReservaDoJogo(Long idJogo) {
 		Reserva achado = null;
-		for (Reserva reserva: this.reservas) {
+		for (Reserva reserva: this.reservas.getReservas()) {
 			if (reserva.getIdJogo() == idJogo) {
 				achado = reserva;
 				break;
@@ -59,7 +55,7 @@ public class ReservasControl {
 
 	public List<Reserva> reservasDeUsuario(Long idUsuario) {
 		List<Reserva> achadas = new ArrayList<Reserva>();
-		for (Reserva reserva: this.reservas) {
+		for (Reserva reserva: this.reservas.getReservas()) {
 			if (reserva.getIdUsuario() == idUsuario) {
 				achadas.add(reserva);
 			}
@@ -68,7 +64,7 @@ public class ReservasControl {
 	}
 
 	public boolean deletarReserva(Long idReserva) {
-		Iterator<Reserva> iterator = reservas.iterator();
+		Iterator<Reserva> iterator = reservas.getReservas().iterator();
 		while (iterator.hasNext()) {
 			Reserva reserva = iterator.next();
 			if (reserva.getId() == idReserva) {
@@ -81,7 +77,7 @@ public class ReservasControl {
 
 	public boolean deletarReservasDeUsuario(Long idUsuario) {
 		boolean removed = false;
-		Iterator<Reserva> iterator = reservas.iterator();
+		Iterator<Reserva> iterator = reservas.getReservas().iterator();
 		while (iterator.hasNext()) {
 			Reserva reserva = iterator.next();
 			if (reserva.getIdUsuario() == idUsuario) {
@@ -93,6 +89,6 @@ public class ReservasControl {
 	}
 
 	public List<Reserva> getTodasReservas() {
-		return new ArrayList<>(this.reservas);
+		return new ArrayList<Reserva>(this.reservas.getReservas());
 	}
 }

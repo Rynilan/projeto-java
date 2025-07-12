@@ -1,7 +1,6 @@
 package biblioteca_de_jogos.Controladores.relatorios;
 
 import biblioteca_de_jogos.ScreenManager;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

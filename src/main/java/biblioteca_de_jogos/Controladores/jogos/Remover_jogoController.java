@@ -3,15 +3,10 @@ package biblioteca_de_jogos.Controladores.jogos;
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.control.JogosControl;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class Remover_jogoController {
 

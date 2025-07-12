@@ -6,7 +6,6 @@ import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.control.EmprestimosControl;
 import biblioteca_de_jogos.control.UsuariosControl;
 import javafx.event.ActionEvent;
-import biblioteca_de_jogos.control.UsuariosControl;
 import biblioteca_de_jogos.control.JogosControl;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

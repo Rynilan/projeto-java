@@ -3,16 +3,11 @@ package biblioteca_de_jogos.Controladores;
 import biblioteca_de_jogos.ScreenManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import javafx.event.ActionEvent;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class Pagina_principalController {

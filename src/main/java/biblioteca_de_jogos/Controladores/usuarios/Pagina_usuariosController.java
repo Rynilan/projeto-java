@@ -3,14 +3,8 @@ package biblioteca_de_jogos.Controladores.usuarios;
 import biblioteca_de_jogos.control.UsuariosControl;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.ScreenManager;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import static biblioteca_de_jogos.Main.print_lista;
 

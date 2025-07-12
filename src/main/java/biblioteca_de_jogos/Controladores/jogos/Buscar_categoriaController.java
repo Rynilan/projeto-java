@@ -8,14 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import biblioteca_de_jogos.ScreenManager;
-import biblioteca_de_jogos.classes.Jogo;
-import biblioteca_de_jogos.control.JogosControl;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-
 import java.util.List;
 
 public class Buscar_categoriaController {
