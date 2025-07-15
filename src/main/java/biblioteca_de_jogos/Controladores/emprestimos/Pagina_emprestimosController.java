@@ -1,8 +1,8 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
 import biblioteca_de_jogos.classes.Reserva;
-import biblioteca_de_jogos.control.EmprestimosControl;
-import biblioteca_de_jogos.control.ReservasControl;
+import biblioteca_de_jogos.control.ControladorDeEmprestimos;
+import biblioteca_de_jogos.control.ControladorDeReservas;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.ScreenManager;
 import javafx.fxml.FXML;
@@ -34,8 +34,8 @@ public class Pagina_emprestimosController {
     }
 
     public void Clicar_Ver_emprestimos_reservas(ActionEvent event){
-        log(print_lista(EmprestimosControl.getInstance().getEmprestimos()));
-        List<Reserva> lista = ReservasControl.getInstance().getTodasReservas();
+        log(print_lista(ControladorDeEmprestimos.getInstance().getEmprestimos()));
+        List<Reserva> lista = ControladorDeReservas.getInstance().getTodasReservas();
         for (Reserva r : lista){
             log(r.toString());
         }

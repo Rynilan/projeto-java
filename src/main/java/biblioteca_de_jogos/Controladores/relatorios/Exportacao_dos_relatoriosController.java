@@ -4,14 +4,14 @@ import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;
-import biblioteca_de_jogos.control.EmprestimoExporter;
-import biblioteca_de_jogos.control.EmprestimosControl;
-import biblioteca_de_jogos.control.JogoExporter;
-import biblioteca_de_jogos.control.JogoPopularidadeExporter;
-import biblioteca_de_jogos.control.JogosControl;
-import biblioteca_de_jogos.control.PicosValesEmprestimoExporter;
-import biblioteca_de_jogos.control.UsuarioExporter;
-import biblioteca_de_jogos.control.UsuariosControl;
+import biblioteca_de_jogos.control.ExportadorDeEmprestimos;
+import biblioteca_de_jogos.control.ControladorDeEmprestimos;
+import biblioteca_de_jogos.control.ExportadorDeJogos;
+import biblioteca_de_jogos.control.ExportadorDePopularidadeDeJogos;
+import biblioteca_de_jogos.control.ControladorDeJogos;
+import biblioteca_de_jogos.control.ExportadorDeExtremosDeEmprestimos;
+import biblioteca_de_jogos.control.ExportadorDeUsuarios;
+import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import com.itextpdf.kernel.exceptions.PdfException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,9 +28,9 @@ public class Exportacao_dos_relatoriosController {
     @FXML
     public TextArea ConsoleTextarea;
 
-    private UsuariosControl usuariosControl = UsuariosControl.getInstance();
-    private JogosControl jogosControl = JogosControl.getInstance();
-    private EmprestimosControl emprestimosControl = EmprestimosControl.getInstance();
+    private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
+    private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
+    private ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
 
 
     public void Clicar_cancelar(ActionEvent event) {
@@ -45,7 +45,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarUsuariosCSV(ActionEvent event) {
         try {
             List<Usuario> usuarios = usuariosControl.getUsuarios();
-            UsuarioExporter.exportarCSV(usuarios);
+            ExportadorDeUsuarios.exportarCSV(usuarios);
             log("Usuários exportados com sucesso para CSV em 'usuarios.csv'");
         } catch (IOException e) {
             log("Erro ao exportar usuários para CSV: " + e.getMessage());
@@ -56,7 +56,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarUsuariosPDF(ActionEvent event) {
         try {
             List<Usuario> usuarios = usuariosControl.getUsuarios();
-            UsuarioExporter.exportarPDF(usuarios);
+            ExportadorDeUsuarios.exportarPDF(usuarios);
             log("Usuários exportados com sucesso para PDF em 'usuarios.pdf'");
         } catch (PdfException | IOException e) {
             log("Erro ao exportar usuários para PDF: " + e.getMessage());
@@ -73,7 +73,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarJogosCSV(ActionEvent event) {
         try {
             List<Jogo> jogos = jogosControl.getJogos();
-            JogoExporter.exportarCSV(jogos);
+            ExportadorDeJogos.exportarCSV(jogos);
             log("Jogos exportados com sucesso para CSV em 'jogos.csv'");
         } catch (IOException e) {
             log("Erro ao exportar jogos para CSV: " + e.getMessage());
@@ -84,7 +84,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarJogosPDF(ActionEvent event) {
         try {
             List<Jogo> jogos = jogosControl.getJogos();
-            JogoExporter.exportarPDF(jogos);
+            ExportadorDeJogos.exportarPDF(jogos);
             log("Jogos exportados com sucesso para PDF em 'jogos.pdf'");
         } catch (PdfException | IOException e) {
             log("Erro ao exportar jogos para PDF: " + e.getMessage());
@@ -101,7 +101,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarEmprestimosCSV(ActionEvent event) {
         try {
             List<Emprestimo> emprestimos = emprestimosControl.getEmprestimos();
-            EmprestimoExporter.exportarCSV(emprestimos);
+            ExportadorDeEmprestimos.exportarCSV(emprestimos);
             log("Empréstimos exportados com sucesso para CSV em 'emprestimos.csv'");
         } catch (IOException e) {
             log("Erro ao exportar empréstimos para CSV: " + e.getMessage());
@@ -112,7 +112,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarEmprestimosPDF(ActionEvent event) {
         try {
             List<Emprestimo> emprestimos = emprestimosControl.getEmprestimos();
-            EmprestimoExporter.exportarPDF(emprestimos);
+            ExportadorDeEmprestimos.exportarPDF(emprestimos);
             log("Empréstimos exportados com sucesso para PDF em 'emprestimos.pdf'");
         } catch (PdfException | IOException e) {
             log("Erro ao exportar empréstimos para PDF: " + e.getMessage());
@@ -129,7 +129,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarPicosValesEmprestimosCSV(ActionEvent event) {
         try {
             Map<YearMonth, Long> picosVales = emprestimosControl.analisarPicosValesEmprestimos();
-            PicosValesEmprestimoExporter.exportarCSV(picosVales);
+            ExportadorDeExtremosDeEmprestimos.exportarCSV(picosVales);
             log("Picos e Vales de Empréstimos exportados com sucesso para CSV em 'picos_vales_emprestimos.csv'");
         } catch (IOException e) {
             log("Erro ao exportar picos e vales de empréstimos para CSV: " + e.getMessage());
@@ -140,7 +140,7 @@ public class Exportacao_dos_relatoriosController {
     public void exportarPicosValesEmprestimosPDF(ActionEvent event) {
         try {
             Map<YearMonth, Long> picosVales = emprestimosControl.analisarPicosValesEmprestimos();
-            PicosValesEmprestimoExporter.exportarPDF(picosVales);
+            ExportadorDeExtremosDeEmprestimos.exportarPDF(picosVales);
             log("Picos e Vales de Empréstimos exportados com sucesso para PDF em 'picos_vales_emprestimos.pdf'");
         } catch (PdfException | IOException e) {
             log("Erro ao exportar picos e vales de empréstimos para PDF: " + e.getMessage());
@@ -166,7 +166,7 @@ public class Exportacao_dos_relatoriosController {
                             (e1, e2) -> e1, // Merge function for duplicates (should not happen with distinct keys)
                             java.util.LinkedHashMap::new // Maintain insertion order
                     ));
-            JogoPopularidadeExporter.exportarCSV(popularidadeJogos);
+            ExportadorDePopularidadeDeJogos.exportarCSV(popularidadeJogos);
             log("Popularidade de Jogos exportada com sucesso para CSV em 'popularidade_jogos.csv'");
         } catch (IOException e) {
             log("Erro ao exportar popularidade de jogos para CSV: " + e.getMessage());
@@ -186,7 +186,7 @@ public class Exportacao_dos_relatoriosController {
                             (e1, e2) -> e1, // Merge function for duplicates (should not happen with distinct keys)
                             java.util.LinkedHashMap::new // Maintain insertion order
                     ));
-            JogoPopularidadeExporter.exportarPDF(popularidadeJogos);
+            ExportadorDePopularidadeDeJogos.exportarPDF(popularidadeJogos);
             log("Popularidade de Jogos exportada com sucesso para PDF em 'popularidade_jogos.pdf'");
         } catch (PdfException | IOException e) {
             log("Erro ao exportar popularidade de jogos para PDF: " + e.getMessage());

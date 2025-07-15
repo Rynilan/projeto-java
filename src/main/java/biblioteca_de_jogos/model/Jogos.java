@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import biblioteca_de_jogos.classes.Jogo;
 
 public class Jogos {
-	private static Jogos self = null;
+	private static Jogos instancia = null;
 	private List<Jogo> jogos;
 
 	private Jogos() {
 		this.jogos = new ArrayList<Jogo>();
-		Jogos.self = this;
+		Jogos.instancia = this;
 	}
 
 	public static Jogos getInstance() {
-		if (Jogos.self == null) {
-			Jogos.self = new Jogos();
+		if (Jogos.instancia == null) {
+			Jogos.instancia = new Jogos();
 		}
-		return Jogos.self;
+		return Jogos.instancia;
 	}
 
 	public List<Jogo> getJogos() {

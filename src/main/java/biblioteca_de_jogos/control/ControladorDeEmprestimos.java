@@ -13,21 +13,21 @@ import biblioteca_de_jogos.classes.Reserva;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.model.Emprestimos;
 
-public class EmprestimosControl {
-	private static EmprestimosControl self = null;
+public class ControladorDeEmprestimos {
+	private static ControladorDeEmprestimos instancia = null;
 	private Emprestimos emprestimos;
 	private Long id;
 
-	private EmprestimosControl() {
+	private ControladorDeEmprestimos() {
 		this.id = -1L;
 		this.emprestimos = Emprestimos.getInstance();
 	}
 
-	public static EmprestimosControl getInstance() {
-		if (EmprestimosControl.self == null) {
-			EmprestimosControl.self = new EmprestimosControl();
+	public static ControladorDeEmprestimos getInstance() {
+		if (ControladorDeEmprestimos.instancia == null) {
+			ControladorDeEmprestimos.instancia = new ControladorDeEmprestimos();
 		}
-		return EmprestimosControl.self;
+		return ControladorDeEmprestimos.instancia;
 	}
 
 	public Emprestimo buscarEmprestimo(Long idEmprestimo) {
@@ -92,7 +92,7 @@ public class EmprestimosControl {
 	public void fazerDevolucao(Long idEmprestimo, List<String> observacao) {
 		Emprestimo emprestimo = this.buscarEmprestimo(idEmprestimo);
 		if (emprestimo.atrasado()) {
-			PenalidadesControl.getInstance().criarPenalidade(emprestimo);
+			ControladorDePenalidades.getInstance().criarPenalidade(emprestimo);
 		}
 		emprestimo.devolver(observacao);
 	}
@@ -100,13 +100,13 @@ public class EmprestimosControl {
 	public boolean reservarJogo(Long idUsuario, Jogo jogo) {
 		boolean pode = !(this.jogoDisponivelParaEmprestimo(jogo));
 		if (pode) {
-			ReservasControl.getInstance().fazerReserva(jogo.getId(), idUsuario);
+			ControladorDeReservas.getInstance().fazerReserva(jogo.getId(), idUsuario);
 		}
 		return pode;
 	}
 
 	public Reserva verSeTemReserva(Long idEmprestimo) {
-		Reserva reserva = ReservasControl.getInstance().buscarPrimeiraReservaDoJogo(this.buscarEmprestimo(idEmprestimo).getIdJogo());
+		Reserva reserva = ControladorDeReservas.getInstance().buscarPrimeiraReservaDoJogo(this.buscarEmprestimo(idEmprestimo).getIdJogo());
 		return reserva;
 	}
 
@@ -123,7 +123,7 @@ public class EmprestimosControl {
 
 
 	public Map<Jogo, Long> analisarPicosValesPopularidadeJogos() {
-		JogosControl jogos = JogosControl.getInstance();
+		ControladorDeJogos jogos = ControladorDeJogos.getInstance();
 		// Mapeia cada Jogo (resolvendo o ID para o objeto Jogo completo) para a contagem de empréstimos
 		Map<Long, Long> contagemPorJogoId = this.emprestimos.getEmprestimos().stream()
 				.collect(
@@ -162,7 +162,7 @@ public class EmprestimosControl {
 	}
 
 	public List<Reserva> pegarReservasDeUsuario(Long idUsuario) {
-		return ReservasControl.getInstance().reservasDeUsuario(idUsuario);
+		return ControladorDeReservas.getInstance().reservasDeUsuario(idUsuario);
 	}
 
 	public List<Emprestimo> getEmprestimosDoUsuario(Long idUsuario) {

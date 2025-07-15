@@ -1,6 +1,6 @@
 package biblioteca_de_jogos.Controladores.jogos;
 
-import biblioteca_de_jogos.control.JogosControl;
+import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.ScreenManager;
@@ -16,7 +16,7 @@ public class Pagina_jogosController {
     @FXML
     public TextArea ConsoleTextarea;
 
-    private final JogosControl jogosControl = JogosControl.getInstance();
+    private final ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");

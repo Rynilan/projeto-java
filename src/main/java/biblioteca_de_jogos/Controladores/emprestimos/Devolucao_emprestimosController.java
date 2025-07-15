@@ -2,7 +2,7 @@ package biblioteca_de_jogos.Controladores.emprestimos;
 
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
-import biblioteca_de_jogos.control.EmprestimosControl;
+import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -21,7 +21,7 @@ public class Devolucao_emprestimosController {
     @FXML
     public TextField observacaoField;
 
-    EmprestimosControl emprestimosControl = EmprestimosControl.getInstance();
+    ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");
@@ -36,7 +36,7 @@ public class Devolucao_emprestimosController {
             Long IDemprestimo = Long.parseLong(IDemprestimoField.getText().trim());
             String descricao = observacaoField.getText().trim();
 
-            Emprestimo emprestimo = EmprestimosControl.getInstance().buscarEmprestimo(IDemprestimo);
+            Emprestimo emprestimo = ControladorDeEmprestimos.getInstance().buscarEmprestimo(IDemprestimo);
             if (emprestimo == null){
                 log("Empréstimo não encontrado com o ID: " + IDemprestimo);
             }

@@ -8,22 +8,22 @@ import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.model.Penalidades;
 
 
-public class PenalidadesControl {
+public class ControladorDePenalidades {
 
-	private static PenalidadesControl self = null;
+	private static ControladorDePenalidades instancia = null;
 	private Penalidades penalidades;
 	private Long id;
 
-	private PenalidadesControl() {
+	private ControladorDePenalidades() {
 		this.penalidades = Penalidades.getInstance();
 		this.id = -1L;
 	}
 
-	public static PenalidadesControl getInstance() {
-		if (PenalidadesControl.self == null) {
-			PenalidadesControl.self = new PenalidadesControl();
+	public static ControladorDePenalidades getInstance() {
+		if (ControladorDePenalidades.instancia == null) {
+			ControladorDePenalidades.instancia = new ControladorDePenalidades();
 		}
-		return PenalidadesControl.self;
+		return ControladorDePenalidades.instancia;
 	}
 
 	public void criarPenalidade(Emprestimo emprestimo) {

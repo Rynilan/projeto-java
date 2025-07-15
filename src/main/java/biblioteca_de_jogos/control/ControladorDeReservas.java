@@ -7,22 +7,22 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ReservasControl {
+public class ControladorDeReservas {
 
 	private Long id;
 	private Reservas reservas;
-	private static ReservasControl self = null;
+	private static ControladorDeReservas instancia = null;
 
-	private ReservasControl() {
+	private ControladorDeReservas() {
 		this.id = -1L;
 		this.reservas = Reservas.getInstance();
 	}
 
-	public static ReservasControl getInstance() {
-		if (ReservasControl.self == null) {
-			ReservasControl.self = new ReservasControl();
+	public static ControladorDeReservas getInstance() {
+		if (ControladorDeReservas.instancia == null) {
+			ControladorDeReservas.instancia = new ControladorDeReservas();
 		}
-		return ReservasControl.self;
+		return ControladorDeReservas.instancia;
 	}
 
 	public void fazerReserva(Long idJogo, Long idUsuario) {

@@ -7,17 +7,17 @@ import biblioteca_de_jogos.classes.Usuario;
 
 public class Usuarios {
 	private List<Usuario> usuarios;
-	private static Usuarios self = null;
+	private static Usuarios instancia = null;
 
 	private Usuarios() {
 		usuarios = new ArrayList<Usuario>();
 	}
 
 	public static Usuarios getInstance() {
-		if (Usuarios.self == null) {
-			Usuarios.self = new Usuarios();
+		if (Usuarios.instancia == null) {
+			Usuarios.instancia = new Usuarios();
 		}
-		return Usuarios.self;
+		return Usuarios.instancia;
 	}
 
 	public List<Usuario> getUsuarios() {

@@ -5,21 +5,21 @@ import java.util.List;
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.model.Usuarios;
 
-public class UsuariosControl {
+public class ControladorDeUsuarios {
 	private Long id;
 	private Usuarios usuarios;
-	private static UsuariosControl self = null;
+	private static ControladorDeUsuarios instancia = null;
 	
-	public UsuariosControl() {
+	public ControladorDeUsuarios() {
 		this.id = -1L;
 		this.usuarios = Usuarios.getInstance();
 	}
 
-	public static UsuariosControl getInstance() {
-		if (UsuariosControl.self == null) {
-			UsuariosControl.self = new UsuariosControl();
+	public static ControladorDeUsuarios getInstance() {
+		if (ControladorDeUsuarios.instancia == null) {
+			ControladorDeUsuarios.instancia = new ControladorDeUsuarios();
 		}
-		return UsuariosControl.self;
+		return ControladorDeUsuarios.instancia;
 	}
 
 	public Usuario buscarUsuario(Long id) {

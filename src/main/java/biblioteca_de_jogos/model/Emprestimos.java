@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import biblioteca_de_jogos.classes.Emprestimo;
 
 public class Emprestimos {
-	private static Emprestimos self = null;
+	private static Emprestimos instancia = null;
 	private List<Emprestimo> emprestimos;
 
 	private Emprestimos() {
@@ -14,10 +14,10 @@ public class Emprestimos {
 	}
 
 	public static Emprestimos getInstance() {
-		if (Emprestimos.self == null) {
-			Emprestimos.self = new Emprestimos();
+		if (Emprestimos.instancia == null) {
+			Emprestimos.instancia = new Emprestimos();
 		}
-		return Emprestimos.self;
+		return Emprestimos.instancia;
 	}
 
 	public List<Emprestimo> getEmprestimos() {

@@ -2,7 +2,7 @@ package biblioteca_de_jogos.Controladores.relatorios;
 
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
-import biblioteca_de_jogos.control.EmprestimosControl;
+import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -37,7 +37,7 @@ public class Emprestimo_periodoController {
             LocalDate inicio = LocalDate.parse(dataInicialField.getText(), formatter);
             LocalDate fim = LocalDate.parse(dataFinalField.getText(), formatter);
 
-            List<Emprestimo> emprestimosFiltrados = EmprestimosControl.getInstance()
+            List<Emprestimo> emprestimosFiltrados = ControladorDeEmprestimos.getInstance()
                     .getEmprestimos()
                     .stream()
                     .filter(e -> !e.getData().isBefore(inicio) && !e.getData().isAfter(fim))

@@ -3,8 +3,8 @@ package biblioteca_de_jogos.Controladores.usuarios;
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Usuario;
-import biblioteca_de_jogos.control.UsuariosControl;
-import biblioteca_de_jogos.control.EmprestimosControl;
+import biblioteca_de_jogos.control.ControladorDeUsuarios;
+import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -19,7 +19,7 @@ public class Emprestimos_usuariosController {
     @FXML
     private TextArea ConsoleTextarea;
 
-    private UsuariosControl usuariosControl = UsuariosControl.getInstance();
+    private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");
@@ -42,7 +42,7 @@ public class Emprestimos_usuariosController {
         }
 
         Usuario usuario = usuariosControl.buscarUsuario(ID);
-        EmprestimosControl emprestimo = EmprestimosControl.getInstance();
+        ControladorDeEmprestimos emprestimo = ControladorDeEmprestimos.getInstance();
 
         if (usuario == null) {
             log("Usuário não encontrado.");

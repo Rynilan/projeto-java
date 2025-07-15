@@ -27,7 +27,7 @@ public enum Categoria{
 
 	@Override
 	public String toString() {
-		return "Categoria{id=" + id + ", nome='" + nome + "', descrição='" + descricao + "'}";
+		return "Categoria{id=" + this.id + ", nome='" + this.nome + "', descrição='" + this.descricao + "'}";
 	}
 	
 	/** Retorna o nome da categoria */

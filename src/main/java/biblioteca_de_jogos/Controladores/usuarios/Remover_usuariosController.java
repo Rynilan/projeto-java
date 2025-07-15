@@ -2,7 +2,7 @@ package biblioteca_de_jogos.Controladores.usuarios;
 
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Usuario;
-import biblioteca_de_jogos.control.UsuariosControl;
+import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -16,7 +16,7 @@ public class Remover_usuariosController {
     @FXML
     public TextArea ConsoleTextarea;
 
-    private UsuariosControl usuariosControl = UsuariosControl.getInstance();
+    private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");

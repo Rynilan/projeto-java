@@ -1,6 +1,6 @@
 package biblioteca_de_jogos.Controladores.usuarios;
 
-import biblioteca_de_jogos.control.UsuariosControl;
+import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.ScreenManager;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ public class Pagina_usuariosController {
     @FXML
     public TextArea ConsoleTextarea;
 
-    private final UsuariosControl usuarios = UsuariosControl.getInstance();
+    private final ControladorDeUsuarios usuarios = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");

@@ -2,7 +2,7 @@ package biblioteca_de_jogos.Controladores.jogos;
 
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
-import biblioteca_de_jogos.control.JogosControl;
+import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -28,7 +28,7 @@ public class Adicionar_jogoController {
     private TextArea ConsoleTextarea;
 
 
-    private JogosControl jogosControl = JogosControl.getInstance();
+    private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");

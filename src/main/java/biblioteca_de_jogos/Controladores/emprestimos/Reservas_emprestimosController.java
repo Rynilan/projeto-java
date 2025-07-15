@@ -3,9 +3,9 @@ package biblioteca_de_jogos.Controladores.emprestimos;
 import biblioteca_de_jogos.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;
-import biblioteca_de_jogos.control.JogosControl;
-import biblioteca_de_jogos.control.ReservasControl;
-import biblioteca_de_jogos.control.UsuariosControl;
+import biblioteca_de_jogos.control.ControladorDeJogos;
+import biblioteca_de_jogos.control.ControladorDeReservas;
+import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -22,7 +22,7 @@ public class Reservas_emprestimosController {
     @FXML
     public TextField IDjogoField;
 
-    private final ReservasControl reservasControl = ReservasControl.getInstance();
+    private final ControladorDeReservas reservasControl = ControladorDeReservas.getInstance();
 
     public void log(String msg) {
         ConsoleTextarea.appendText(msg + "\n");
@@ -37,8 +37,8 @@ public class Reservas_emprestimosController {
             Long IDusuario = Long.parseLong(IDusuarioField.getText().trim());
             Long Idjogo = Long.parseLong(IDjogoField.getText().trim());
 
-            Usuario usuario = UsuariosControl.getInstance().buscarUsuario(IDusuario);
-            Jogo jogo = JogosControl.getInstance().buscarJogo(Idjogo);
+            Usuario usuario = ControladorDeUsuarios.getInstance().buscarUsuario(IDusuario);
+            Jogo jogo = ControladorDeJogos.getInstance().buscarJogo(Idjogo);
 
             if (usuario == null){
                 log("Usuário não encontrado com o ID " + IDusuario);
