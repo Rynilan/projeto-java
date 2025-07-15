@@ -7,23 +7,23 @@ import java.util.Objects;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.model.Jogos;
 
-public class JogosControl {
+public class ControladorDeJogos {
 	private Long id;
 	private Jogos jogos;
-	private static JogosControl self = null;
+	private static ControladorDeJogos instancia = null;
 	
-	private JogosControl() {
+	private ControladorDeJogos() {
 		this.id = -1L;
 		this.jogos = Jogos.getInstance();
-		JogosControl.self = this;
+		ControladorDeJogos.instancia = this;
 	}
 
 	/** Método para ter instância única da classe controle. */
-	public static JogosControl getInstance() {
-		if (JogosControl.self == null) {
-			JogosControl.self = new JogosControl();
+	public static ControladorDeJogos getInstance() {
+		if (ControladorDeJogos.instancia == null) {
+			ControladorDeJogos.instancia = new ControladorDeJogos();
 		}
-		return JogosControl.self;
+		return ControladorDeJogos.instancia;
 	}
 
 	public Jogo buscarJogo(Long id) {

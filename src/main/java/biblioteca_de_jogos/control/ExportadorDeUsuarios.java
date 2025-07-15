@@ -12,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class UsuarioExporter {
+public class ExportadorDeUsuarios {
 
     /**
      * Exporta uma lista de usuários para um arquivo CSV.
@@ -22,15 +22,15 @@ public class UsuarioExporter {
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
     public static void exportarCSV(List<Usuario> usuarios) throws IOException {
-        String fileName = "usuarios.csv";
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.append("ID,Nome,Email,Telefone,Status\n"); // Cabeçalho do CSV
+        String nome = "usuarios.csv";
+        try (FileWriter escritor = new FileWriter(nome)) {
+            escritor.append("ID,Nome,Email,Telefone,Status\n"); // Cabeçalho do CSV
             for (Usuario usuario : usuarios) {
-                writer.append(String.valueOf(usuario.getId())).append(",");
-                writer.append(escapeCsv(usuario.getNome())).append(",");
-                writer.append(escapeCsv(usuario.getEmail())).append(",");
-                writer.append(escapeCsv(usuario.getTelefone())).append(",");
-                writer.append(escapeCsv(usuario.getStatus())).append("\n");
+                escritor.append(String.valueOf(usuario.getId())).append(",");
+                escritor.append(escapeCsv(usuario.getNome())).append(",");
+                escritor.append(escapeCsv(usuario.getEmail())).append(",");
+                escritor.append(escapeCsv(usuario.getTelefone())).append(",");
+                escritor.append(escapeCsv(usuario.getStatus())).append("\n");
             }
         }
     }
@@ -44,25 +44,25 @@ public class UsuarioExporter {
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
 	public static void exportarPDF(List<Usuario> usuarios) throws IOException {
-		String fileName = "usuarios.pdf";
+		String nome = "usuarios.pdf";
 
-		try (PdfWriter writer = new PdfWriter(fileName);
-			 PdfDocument pdf = new PdfDocument(writer);
-			 Document document = new Document(pdf)) {
+		try (PdfWriter escritor = new PdfWriter(nome);
+			 PdfDocument pdf = new PdfDocument(escritor);
+			 Document documento = new Document(pdf)) {
 
-			document.add(new Paragraph("Relatório de Usuários"));
-			document.add(new Paragraph("\n"));
+			documento.add(new Paragraph("Relatório de Usuários"));
+			documento.add(new Paragraph("\n"));
 
 			if (usuarios.isEmpty()) {
-				document.add(new Paragraph("Nenhum usuário encontrado para o relatório."));
+				documento.add(new Paragraph("Nenhum usuário encontrado para o relatório."));
 			} else {
 				for (Usuario usuario : usuarios) {
-					document.add(new Paragraph("ID: " + usuario.getId()));
-					document.add(new Paragraph("Nome: " + usuario.getNome()));
-					document.add(new Paragraph("Email: " + usuario.getEmail()));
-					document.add(new Paragraph("Telefone: " + usuario.getTelefone()));
-					document.add(new Paragraph("Status: " + usuario.getStatus()));
-					document.add(new Paragraph("--------------------------------------------------"));
+					documento.add(new Paragraph("ID: " + usuario.getId()));
+					documento.add(new Paragraph("Nome: " + usuario.getNome()));
+					documento.add(new Paragraph("Email: " + usuario.getEmail()));
+					documento.add(new Paragraph("Telefone: " + usuario.getTelefone()));
+					documento.add(new Paragraph("Status: " + usuario.getStatus()));
+					documento.add(new Paragraph("--------------------------------------------------"));
 				}
 			}
 		} catch (IOException e) {

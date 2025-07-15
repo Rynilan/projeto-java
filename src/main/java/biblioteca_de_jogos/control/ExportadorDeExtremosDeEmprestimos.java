@@ -12,9 +12,9 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class PicosValesEmprestimoExporter {
+public class ExportadorDeExtremosDeEmprestimos {
 
-    private static final DateTimeFormatter MONTH_YEAR_FORMATTER = DateTimeFormatter.ofPattern("MM/yyyy");
+    private static final DateTimeFormatter FORMATADOR_DE_MES_E_ANO = DateTimeFormatter.ofPattern("MM/yyyy");
 
     /**
      * Exporta um mapa de contagem de empréstimos por mês/ano para um arquivo CSV.
@@ -24,17 +24,17 @@ public class PicosValesEmprestimoExporter {
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
     public static void exportarCSV(Map<YearMonth, Long> contagemPorMes) throws IOException {
-        String fileName = "picos_vales_emprestimo.csv";
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.append("Mes/Ano,Total de Emprestimos\n"); // Cabeçalho do CSV
+        String nome = "picos_vales_emprestimo.csv";
+        try (FileWriter escritor = new FileWriter(nome)) {
+            escritor.append("Mes/Ano,Total de Emprestimos\n"); // Cabeçalho do CSV
 
             // Ordena as entradas por mês/ano antes de escrever no CSV
             contagemPorMes.entrySet().stream()
                     .sorted(Map.Entry.comparingByKey())
                     .forEach(entry -> {
                         try {
-                            writer.append(entry.getKey().format(MONTH_YEAR_FORMATTER)).append(",");
-                            writer.append(String.valueOf(entry.getValue())).append("\n");
+                            escritor.append(entry.getKey().format(FORMATADOR_DE_MES_E_ANO)).append(",");
+                            escritor.append(String.valueOf(entry.getValue())).append("\n");
                         } catch (IOException e) {
                             // Trata a exceção dentro do lambda se necessário, ou propaga
                             throw new RuntimeException("Erro ao escrever CSV: " + e.getMessage(), e);
@@ -52,17 +52,17 @@ public class PicosValesEmprestimoExporter {
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
 	public static void exportarPDF(Map<YearMonth, Long> contagemPorMes) throws IOException {
-		String fileName = "picos_vales_emprestimo.pdf";
+		String nome = "picos_vales_emprestimo.pdf";
 
-		try (PdfWriter writer = new PdfWriter(fileName);
-		PdfDocument pdf = new PdfDocument(writer);
-		Document document = new Document(pdf)) {
+		try (PdfWriter escritor = new PdfWriter(nome);
+		PdfDocument pdf = new PdfDocument(escritor);
+		Document documento = new Document(pdf)) {
 
-			document.add(new Paragraph("Relatório de Picos e Vales de Empréstimos"));
-			document.add(new Paragraph("\n"));
+			documento.add(new Paragraph("Relatório de Picos e Vales de Empréstimos"));
+			documento.add(new Paragraph("\n"));
 
 			if (contagemPorMes.isEmpty()) {
-				document.add(new Paragraph("Não há dados de empréstimos para analisar picos e vales."));
+				documento.add(new Paragraph("Não há dados de empréstimos para analisar picos e vales."));
 			} else {
 				// Encontrar o pico e o vale
 				Map.Entry<YearMonth, Long> pico = contagemPorMes.entrySet().stream()
@@ -73,22 +73,22 @@ public class PicosValesEmprestimoExporter {
 				.min(Map.Entry.comparingByValue())
 				.orElse(null);
 
-				document.add(new Paragraph("Contagem de empréstimos por mês/ano:"));
+				documento.add(new Paragraph("Contagem de empréstimos por mês/ano:"));
 
 				// Imprime os dados ordenados no PDF
 				contagemPorMes.entrySet().stream()
 					.sorted(Map.Entry.comparingByKey())
 					.forEach(entry -> 
-						document.add(new Paragraph("  " + entry.getKey().format(MONTH_YEAR_FORMATTER) + ": " + entry.getValue() + " empréstimos"))
+						documento.add(new Paragraph("  " + entry.getKey().format(FORMATADOR_DE_MES_E_ANO) + ": " + entry.getValue() + " empréstimos"))
 					);
 
-				document.add(new Paragraph("\n")); // Espaçamento
+				documento.add(new Paragraph("\n")); // Espaçamento
 
 				if (pico != null) {
-					document.add(new Paragraph("Pico de Empréstimos: " + pico.getKey().format(MONTH_YEAR_FORMATTER) + " com " + pico.getValue() + " empréstimos."));
+					documento.add(new Paragraph("Pico de Empréstimos: " + pico.getKey().format(FORMATADOR_DE_MES_E_ANO) + " com " + pico.getValue() + " empréstimos."));
 				}
 				if (vale != null) {
-					document.add(new Paragraph("Vale de Empréstimos: " + vale.getKey().format(MONTH_YEAR_FORMATTER) + " com " + vale.getValue() + " empréstimos."));
+					documento.add(new Paragraph("Vale de Empréstimos: " + vale.getKey().format(FORMATADOR_DE_MES_E_ANO) + " com " + vale.getValue() + " empréstimos."));
 				}
 			}
 		} catch (IOException e) {

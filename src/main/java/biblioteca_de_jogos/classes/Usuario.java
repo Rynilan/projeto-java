@@ -19,11 +19,11 @@ public class Usuario {
     @Override
     public String toString() {
 		return "Usuario {" +
-			"\n  id=" + id +
-			",\n  nome='" + nome + '\'' +
-			",\n  email='" + email + '\'' +
-			",\n  telefone='" + telefone + '\'' +
-			",\n  status='" + status + '\'' +
+			"\n  id=" + this.id +
+			",\n  nome='" + this.nome + '\'' +
+			",\n  email='" + this.email + '\'' +
+			",\n  telefone='" + this.telefone + '\'' +
+			",\n  status='" + this.status + '\'' +
 			"\n}";
 	}
 
@@ -41,18 +41,18 @@ public class Usuario {
     }
 
     public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public String getTelefone() {
-		return telefone;
+		return this.telefone;
 	}
 
 	public String getStatus() {
-		return status;
+		return this.status;
 	}
 }

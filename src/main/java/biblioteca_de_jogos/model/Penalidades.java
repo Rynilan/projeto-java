@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import biblioteca_de_jogos.classes.Penalidade;
 
 public class Penalidades {
-	private static Penalidades self = null;
+	private static Penalidades instancia = null;
  	private List<Penalidade> penalidades;
 
 	private Penalidades() {
@@ -14,10 +14,10 @@ public class Penalidades {
 	}
 
 	public static Penalidades getInstance() {
-		if (Penalidades.self == null) {
-			Penalidades.self = new Penalidades();
+		if (Penalidades.instancia == null) {
+			Penalidades.instancia = new Penalidades();
 		}
-		return Penalidades.self;
+		return Penalidades.instancia;
 	}
 
 	public List<Penalidade> getPenalidades() {

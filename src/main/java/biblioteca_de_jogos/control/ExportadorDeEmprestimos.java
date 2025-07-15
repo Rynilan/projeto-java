@@ -14,9 +14,9 @@ import java.util.List;
 
 import biblioteca_de_jogos.classes.Emprestimo;
 
-public class EmprestimoExporter {
+public class ExportadorDeEmprestimos {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter FORMATADOR_DE_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
      * Exporta uma lista de empréstimos para um arquivo CSV.
@@ -26,22 +26,22 @@ public class EmprestimoExporter {
      * @throws IOException Se ocorrer um erro durante a escrita do arquivo.
      */
     public static void exportarCSV(List<Emprestimo> emprestimos) throws IOException {
-        String fileName = "emprestimos.csv";
-        try (FileWriter writer = new FileWriter(fileName)) {
+        String nome = "emprestimos.csv";
+        try (FileWriter escritor = new FileWriter(nome)) {
             // Cabeçalho do CSV
-            writer.append("ID,Data Emprestimo,Data Devolucao Real,Renovacoes,Intervalo,ID Usuario,ID Jogo,Observacoes\n");
+            escritor.append("ID,Data Emprestimo,Data Devolucao Real,Renovacoes,Intervalo,ID Usuario,ID Jogo,Observacoes\n");
 
             // Dados dos empréstimos
             for (Emprestimo emprestimo : emprestimos) {
-                writer.append(String.valueOf(emprestimo.getId())).append(",");
-                writer.append(emprestimo.getData().format(DATE_FORMATTER)).append(",");
-                writer.append(emprestimo.getDevolucao() != null ? emprestimo.getDevolucao().format(DATE_FORMATTER) : "N/A").append(",");
+                escritor.append(String.valueOf(emprestimo.getId())).append(",");
+                escritor.append(emprestimo.getData().format(FORMATADOR_DE_DATA)).append(",");
+                escritor.append(emprestimo.getDevolucao() != null ? emprestimo.getDevolucao().format(FORMATADOR_DE_DATA) : "N/A").append(",");
 
-                writer.append(String.valueOf(emprestimo.getRenovacoes())).append(",");
-                writer.append(String.valueOf(emprestimo.getIntervalo())).append(",");
-                writer.append(String.valueOf(emprestimo.getIdUsuario())).append(",");
-                writer.append(String.valueOf(emprestimo.getIdJogo())).append(",");
-                writer.append(emprestimo.getObservacoes() != null ? String.join(";", emprestimo.getObservacoes()) : "").append("\n");
+                escritor.append(String.valueOf(emprestimo.getRenovacoes())).append(",");
+                escritor.append(String.valueOf(emprestimo.getIntervalo())).append(",");
+                escritor.append(String.valueOf(emprestimo.getIdUsuario())).append(",");
+                escritor.append(String.valueOf(emprestimo.getIdJogo())).append(",");
+                escritor.append(emprestimo.getObservacoes() != null ? String.join(";", emprestimo.getObservacoes()) : "").append("\n");
             }
         }
     }
@@ -70,10 +70,10 @@ public class EmprestimoExporter {
             
             // Certifique-se de que `getDataEmprestimo()` existe e funciona corretamente
             documento.add(new Paragraph("Data do Empréstimo: " + (emprestimo.getData() != null 
-                ? emprestimo.getData().format(DATE_FORMATTER) : "Não especificada")));
+                ? emprestimo.getData().format(FORMATADOR_DE_DATA) : "Não especificada")));
 
             documento.add(new Paragraph("Data de Devolução Real: " + (emprestimo.getDevolucao() != null 
-                ? emprestimo.getDevolucao().format(DATE_FORMATTER) : "Pendente")));
+                ? emprestimo.getDevolucao().format(FORMATADOR_DE_DATA) : "Pendente")));
             
             documento.add(new Paragraph("Renovações: " + emprestimo.getRenovacoes()));
             documento.add(new Paragraph("Intervalo: " + emprestimo.getIntervalo()));

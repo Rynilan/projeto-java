@@ -18,10 +18,10 @@ public class Devolucao {
     @Override
     public String toString() {
         return "Devolucao{" +
-               "id=" + id +
-               ", dataRealDevolucao=" + dataRealDevolucao +
-               ", foiAtrasado=" + foiAtrasado +
-               ", idEmprestimo=" + idEmprestimo +
+               "id=" + this.id +
+               ", dataRealDevolucao=" + this.dataRealDevolucao +
+               ", foiAtrasado=" + this.foiAtrasado +
+               ", idEmprestimo=" + this.idEmprestimo +
                '}';
     }
     

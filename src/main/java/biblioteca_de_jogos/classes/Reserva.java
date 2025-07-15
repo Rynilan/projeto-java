@@ -21,11 +21,11 @@ public class Reserva {
 	@Override
         public String toString() {
 		return "Reserva {" +
-			"\n  id=" + id +
-			",\n  notificado=" + notificado +
-			",\n  dataReserva=" + dataReserva +
-			",\n  idUsuario=" + idUsuario +
-			",\n  idJogo=" + idJogo +
+			"\n  id=" + this.id +
+			",\n  notificado=" + this.notificado +
+			",\n  dataReserva=" + this.dataReserva +
+			",\n  idUsuario=" + this.idUsuario +
+			",\n  idJogo=" + this.idJogo +
 			"\n}";
 	}
 	

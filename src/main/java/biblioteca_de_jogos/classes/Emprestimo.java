@@ -26,18 +26,18 @@ public class Emprestimo {
 
     @Override	
     public String toString() {
-	String obsFormatadas = (observacoes != null && !observacoes.isEmpty())
-		? String.join("; ", observacoes)
+	String obsFormatadas = (this.observacoes != null && !this.observacoes.isEmpty())
+		? String.join("; ", this.observacoes)
 		: "Nenhuma";
 
 	return "Emprestimo{" +
-	       "id=" + id +
-	       ", dataEmprestimo=" + dataEmprestimo +
-	       ", dataDevolucaoReal=" + (dataDevolucaoReal != null ? dataDevolucaoReal : "Ainda não devolvido") +
-	       ", renovacoes=" + renovacoes +
-	       ", intervalo=" + intervalo + " dias" +
-	       ", idUsuario=" + idUsuario +
-	       ", idJogo=" + idJogo +
+	       "id=" + this.id +
+	       ", dataEmprestimo=" + this.dataEmprestimo +
+	       ", dataDevolucaoReal=" + (this.dataDevolucaoReal != null ? this.dataDevolucaoReal : "Ainda não devolvido") +
+	       ", renovacoes=" + this.renovacoes +
+	       ", intervalo=" + this.intervalo + " dias" +
+	       ", idUsuario=" + this.idUsuario +
+	       ", idJogo=" + this.idJogo +
 	       ", observacoes=" + obsFormatadas +
 	       '}';
 }

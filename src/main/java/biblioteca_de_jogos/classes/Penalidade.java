@@ -25,19 +25,19 @@ public class Penalidade {
     @Override
     public String toString() {
     return "Penalidade{" +
-           "id=" + id +
-           ", descricao='" + descricao + '\'' +
-           ", tipo='" + tipo + '\'' +
-           ", dataInicio=" + dataInicio +
-           ", dataFim=" + (dataFim != null ? dataFim : "Em aberto") +
-           ", idUsuario=" + idUsuario +
-           ", idEmprestimo=" + (emprestimo != null ? emprestimo.getId() : "Nenhum") +
+           "id=" + this.id +
+           ", descricao='" + this.descricao + '\'' +
+           ", tipo='" + this.tipo + '\'' +
+           ", dataInicio=" + this.dataInicio +
+           ", dataFim=" + (this.dataFim != null ? this.dataFim : "Em aberto") +
+           ", idUsuario=" + this.idUsuario +
+           ", idEmprestimo=" + (this.emprestimo != null ? this.emprestimo.getId() : "Nenhum") +
            '}';
 }
 
 	
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -45,7 +45,7 @@ public class Penalidade {
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -53,7 +53,7 @@ public class Penalidade {
     }
 
     public String getTipo() {
-        return tipo;
+        return this.tipo;
     }
 
     public void setTipo(String tipo) {
@@ -61,7 +61,7 @@ public class Penalidade {
     }
 
     public LocalDate getDataInicio() {
-        return dataInicio;
+        return this.dataInicio;
     }
 
     public void setDataInicio(LocalDate dataInicio) {
@@ -69,7 +69,7 @@ public class Penalidade {
     }
 
     public LocalDate getDataFim() {
-        return dataFim;
+        return this.dataFim;
     }
 
     public void setDataFim(LocalDate dataFim) {
@@ -77,7 +77,7 @@ public class Penalidade {
     }
 
     public Long getIdUsuario() {
-        return idUsuario;
+        return this.idUsuario;
     }
 
     public void setIdUsuario(Long idUsuario) {
@@ -85,7 +85,7 @@ public class Penalidade {
     }
 
 	public boolean terminou() {
-		boolean acabou = emprestimo.atrasado();
+		boolean acabou = this.emprestimo.atrasado();
 		if (acabou) this.dataFim = LocalDate.now();
 		return acabou;
 	}

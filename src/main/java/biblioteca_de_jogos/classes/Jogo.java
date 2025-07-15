@@ -28,50 +28,50 @@ public class Jogo {
     @Override
     public String toString() {
      return "Jogo{" +
-           "id=" + id +
-           ", nome='" + nome + '\'' +
-           ", editor='" + editor + '\'' +
-           ", descricao='" + descricao + '\'' +
-           ", tempoPartida=" + tempoPartida + " min" +
-           ", minJogadores=" + minJogadores +
-           ", maxJogadores=" + maxJogadores +
-           ", qtdCopias=" + qtdCopias +
-           ", idCategoria=" + idCategoria +
-           ", disponivel=" + (estaDisponivel() ? "Sim" : "Não") +
+           "id=" + this.id +
+           ", nome='" + this.nome + '\'' +
+           ", editor='" + this.editor + '\'' +
+           ", descricao='" + this.descricao + '\'' +
+           ", tempoPartida=" + this.tempoPartida + " min" +
+           ", minJogadores=" + this.minJogadores +
+           ", maxJogadores=" + this.maxJogadores +
+           ", qtdCopias=" + this.qtdCopias +
+           ", idCategoria=" + this.idCategoria +
+           ", disponivel=" + (this.estaDisponivel() ? "Sim" : "Não") +
            '}';
 }
 
 	
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getEditor() {
-        return editor;
+        return this.editor;
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public int getTempoPartida() {
-        return tempoPartida;
+        return this.tempoPartida;
     }
 
     public int getMinJogadores() {
-        return minJogadores;
+        return this.minJogadores;
     }
 
     public int getMaxJogadores() {
-        return maxJogadores;
+        return this.maxJogadores;
     }
 
     public int getQtdCopias() {
-        return qtdCopias;
+        return this.qtdCopias;
     }
 
     public void setQtdCopias(int qtdCopias) {
@@ -79,7 +79,7 @@ public class Jogo {
     }
 
     public boolean estaDisponivel() {
-        return qtdCopias > 0;
+        return this.qtdCopias > 0;
     }
 
 	public Long getIdCategoria() {
