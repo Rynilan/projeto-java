@@ -26,17 +26,17 @@ public class ScreenManager {
 
     public static void iniciarTelas(){
         // Páginas principais
-        ScreenManager.carregarTela("pagina_principal", "/view/fxml/Pagina_principal.fxml");
-        ScreenManager.carregarTela("pagina_relatorios", "/view/fxml/Relatorios/Pagina_relatorios.fxml");
-        ScreenManager.carregarTela("pagina_usuarios", "/view/fxml/Usuarios/Pagina_usuarios.fxml");
-        ScreenManager.carregarTela("pagina_jogos", "/view/fxml/Jogos/Pagina_jogos.fxml");
+        ScreenManager.carregarTela("pagina_principal", "/view/fxml/PaginaPrincipal.fxml");
+        ScreenManager.carregarTela("pagina_relatorios", "/view/fxml/Relatorios/PaginaRelatorios.fxml");
+        ScreenManager.carregarTela("pagina_usuarios", "/view/fxml/Usuarios/PaginaUsuarios.fxml");
+        ScreenManager.carregarTela("pagina_jogos", "/view/fxml/Jogos/PaginaJogos.fxml");
         ScreenManager.carregarTela("pagina_emprestimos", "/view/fxml/Emprestimos/Pagina_emprestimos.fxml");
 
         // Páginas de gerenciar usuários
-        ScreenManager.carregarTela("pagina_adicionar_usuario", "/view/fxml/Usuarios/Adicionar_usuario.fxml");
-        ScreenManager.carregarTela("pagina_remover_usuario", "/view/fxml/Usuarios/Remover_usuario.fxml");
-        ScreenManager.carregarTela("pagina_emprestimos_usuario", "/view/fxml/Usuarios/Emprestimos_usuarios.fxml");
-        //ScreenManager.carregarTela("pagina_ver_usuarios", "/view/fxml/Usuarios/Ver_usuarios.fxml");
+        ScreenManager.carregarTela("pagina_adicionar_usuario", "/view/fxml/Usuarios/AdicionarUsuario.fxml");
+        ScreenManager.carregarTela("pagina_remover_usuario", "/view/fxml/Usuarios/RemoverUsuario.fxml");
+        ScreenManager.carregarTela("pagina_emprestimos_usuario", "/view/fxml/Usuarios/EmprestimosUsuarios.fxml");
+        //ScreenManager.carregarTela("pagina_ver_usuarios", "/view/fxml/Usuarios/VerUsuarios.fxml");
 
         // Páginas de gerenciar empréstimos
         ScreenManager.carregarTela("pagina_Emprestimo_emprestimos", "/view/fxml/Emprestimos/Emprestimo_emprestimos.fxml");
@@ -45,23 +45,23 @@ public class ScreenManager {
         //ScreenManager.carregarTela("pagina_ver_emprestimos_emprestimos", "/view/fxml/Emprestimos/Ver_emprestimos_emprestimos.fxml");
 
         // Páginas de gerenciar relatórios
-        ScreenManager.carregarTela("pagina_Emprestimos_periodo_relatorios", "/view/fxml/Relatorios/Emprestimos_periodo_relatorios.fxml");
-        ScreenManager.carregarTela("pagina_Exportacao_relatoriosUsuarios", "/view/fxml/Relatorios/Exportacao_relatoriosUsuarios.fxml");
-        ScreenManager.carregarTela("pagina_Exportacao_relatoriosJogos", "/view/fxml/Relatorios/Exportacao_relatoriosJogos.fxml");
-        ScreenManager.carregarTela("pagina_Exportacao_relatoriosPicos_vales_emprestimos", "/view/fxml/Relatorios/Exportacao_Picos_vales_emprestimos.fxml");
-        ScreenManager.carregarTela("pagina_Exportacao_relatoriosPicos_vales_popularidade", "/view/fxml/Relatorios/Exportacao_Picos_vales_popularidade.fxml");
-        ScreenManager.carregarTela("pagina_Exportacao_relatoriosPicos_vales_emprestimos_periodos", "/view/fxml/Relatorios/Exportacao_Emprestimos_periodo.fxml");
+        ScreenManager.carregarTela("pagina_Emprestimos_periodo_relatorios", "/view/fxml/Relatorios/EmprestimosPeriodoRelatorios.fxml");
+        ScreenManager.carregarTela("pagina_Exportacao_relatoriosUsuarios", "/view/fxml/Relatorios/ExportacaoRelatoriosUsuarios.fxml");
+        ScreenManager.carregarTela("pagina_Exportacao_relatoriosJogos", "/view/fxml/Relatorios/ExportacaoRelatoriosJogos.fxml");
+        ScreenManager.carregarTela("pagina_Exportacao_relatoriosPicos_vales_emprestimos", "/view/fxml/Relatorios/ExportacaoPicosValesEmprestimos.fxml");
+        ScreenManager.carregarTela("pagina_Exportacao_relatoriosPicos_vales_popularidade", "/view/fxml/Relatorios/ExportacaoPicosValesPopularidade.fxml");
+        ScreenManager.carregarTela("pagina_Exportacao_relatoriosPicos_vales_emprestimos_periodos", "/view/fxml/Relatorios/ExportacaoEmprestimosPeriodo.fxml");
 
 
         // Páginas de gerenciar jogos
-        ScreenManager.carregarTela("pagina_Adicionar_jogo", "/view/fxml/Jogos/Adicionar_jogo.fxml");
-        ScreenManager.carregarTela("pagina_Buscar_categoria_jogo", "/view/fxml/Jogos/Buscar_categoria_jogo.fxml");
-        ScreenManager.carregarTela("pagina_Buscar_editor_jogo", "/view/fxml/Jogos/Buscar_editor_jogo.fxml");
-        ScreenManager.carregarTela("pagina_Buscar_numero_jogadores", "/view/fxml/Jogos/Buscar_numero_jogadores.fxml");
-        ScreenManager.carregarTela("pagina_Buscar_tempo_partida", "/view/fxml/Jogos/Buscar_tempo_partida.fxml");
-        ScreenManager.carregarTela("pagina_Disponivel_emprestimo_jogo", "/view/fxml/Jogos/Disponivel_emprestimo_jogo.fxml");
-        ScreenManager.carregarTela("pagina_Remover_jogo", "/view/fxml/Jogos/Remover_jogo.fxml");
-        ScreenManager.carregarTela("pagina_ver_jogos", "/view/fxml/Jogos/Ver_jogos.fxml");
+        ScreenManager.carregarTela("pagina_Adicionar_jogo", "/view/fxml/Jogos/AdicionarJogo.fxml");
+        ScreenManager.carregarTela("pagina_Buscar_categoria_jogo", "/view/fxml/Jogos/BuscarCategoriaJogo.fxml");
+        ScreenManager.carregarTela("pagina_Buscar_editor_jogo", "/view/fxml/Jogos/BuscarEditorJogo.fxml");
+        ScreenManager.carregarTela("pagina_Buscar_numero_jogadores", "/view/fxml/Jogos/BuscarNumeroJogadores.fxml");
+        ScreenManager.carregarTela("pagina_Buscar_tempo_partida", "/view/fxml/Jogos/BuscarTempoPartida.fxml");
+        ScreenManager.carregarTela("pagina_Disponivel_emprestimo_jogo", "/view/fxml/Jogos/DisponivelEmprestimoJogo.fxml");
+        ScreenManager.carregarTela("pagina_Remover_jogo", "/view/fxml/Jogos/RemoverJogo.fxml");
+        ScreenManager.carregarTela("pagina_ver_jogos", "/view/fxml/Jogos/VerJogos.fxml");
         print_lista(historicoTelas);
     }
 
