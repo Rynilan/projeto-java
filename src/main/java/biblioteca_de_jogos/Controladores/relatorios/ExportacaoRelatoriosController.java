@@ -27,19 +27,19 @@ import java.util.stream.Collectors;
 
 public class ExportacaoRelatoriosController {
     @FXML
-    public Label ConsoleTextarea;
+    public Label consoleTextarea;
 
     private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
     private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
     private ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
 
 
-    public void Clicar_cancelar(ActionEvent event) {
+    public void clicarCancelar(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_relatorios");
     }
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     @FXML

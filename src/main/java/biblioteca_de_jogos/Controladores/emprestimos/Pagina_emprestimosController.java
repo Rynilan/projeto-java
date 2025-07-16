@@ -15,25 +15,25 @@ import static biblioteca_de_jogos.Main.print_lista;
 public class Pagina_emprestimosController {
 
     @FXML
-    public TextArea ConsoleTextarea;
+    public TextArea consoleTextarea;
 
     public void log(String msg) {
-        ConsoleTextarea.appendText(msg + "\n");
+        consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event){
+    public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_Emprestimos(ActionEvent event) {
+    public void clicarEmprestimos(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_Emprestimo_emprestimos");
     }
 
-    public void Clicar_Devolucao(ActionEvent event){
+    public void clicarDevolucao(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Devolucao_emprestimos");
     }
 
-    public void Clicar_Ver_emprestimos_reservas(ActionEvent event){
+    public void clicarVerEmprestimosReservas(ActionEvent event){
         log(print_lista(ControladorDeEmprestimos.getInstance().getEmprestimos()));
         List<Reserva> lista = ControladorDeReservas.getInstance().getTodasReservas();
         for (Reserva r : lista){
@@ -41,7 +41,7 @@ public class Pagina_emprestimosController {
         }
     }
 
-    public void Clicar_Reserva(ActionEvent event){
+    public void clicarReserva(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Reserva_emprestimos");
     }
 

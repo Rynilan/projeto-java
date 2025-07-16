@@ -9,33 +9,33 @@ import javafx.scene.control.TextArea;
 public class PaginaRelatoriosController {
 
     @FXML
-    public Label ConsoleTextarea;
+    public Label consoleTextarea;
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event){
+    public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_Emprestimos_periodo_relatorios(ActionEvent event) {
+    public void clicarEmprestimosPeriodoRelatorios(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_Emprestimos_periodo_relatorios");
     }
 
-    public void Clicar_Picos_vales_emprestimos(ActionEvent event){
+    public void clicarPicosValesEmprestimos(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Exportacao_relatoriosPicos_vales_emprestimos");
     }
 
-    public void Clicar_Picos_vales_popularidade(ActionEvent event){
+    public void clicarPicosValesPopularidade(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Exportacao_relatoriosPicos_vales_popularidade");
     }
 
-    public void Clicar_Relatorio_usuarios(ActionEvent event){
+    public void clicarRelatorioUsuarios(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Exportacao_relatoriosUsuarios");
     }
 
-    public void Clicar_Relatorio_jogos(ActionEvent event){
+    public void clicarRelatorioJogos(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Exportacao_relatoriosJogos");
     }
 

@@ -14,25 +14,25 @@ import javafx.scene.control.TextField;
 public class Emprestimos_emprestimosController {
 
     @FXML
-    public TextArea ConsoleTextarea;
+    public TextArea consoleTextarea;
 
     @FXML
-    public TextField IDusuarioField;
+    public TextField idUsuarioField;
 
     @FXML
-    public TextField IDjogoField;
+    public TextField idJogoField;
 
     public void log(String msg) {
-        ConsoleTextarea.appendText(msg + "\n");
+        consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event){
+    public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_ok(ActionEvent event){
-        Long IDusuario = Long.parseLong(IDusuarioField.getText().trim());
-        Long Idjogo = Long.parseLong(IDjogoField.getText().trim());
+    public void clicarOk(ActionEvent event){
+        Long IDusuario = Long.parseLong(idUsuarioField.getText().trim());
+        Long Idjogo = Long.parseLong(idJogoField.getText().trim());
 
         Usuario usuario = ControladorDeUsuarios.getInstance().buscarUsuario(IDusuario);
         Jogo jogo = ControladorDeJogos.getInstance().buscarJogo(Idjogo);

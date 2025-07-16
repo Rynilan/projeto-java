@@ -11,12 +11,12 @@ import static biblioteca_de_jogos.Main.print_lista;
 public class PaginaUsuariosController {
 
     @FXML
-    public Label ConsoleTextarea;
+    public Label consoleTextarea;
 
     private final ControladorDeUsuarios usuarios = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     public void clicarVoltar(ActionEvent event){

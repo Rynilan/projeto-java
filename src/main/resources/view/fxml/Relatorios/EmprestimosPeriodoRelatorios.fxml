@@ -13,7 +13,7 @@
          <right>
             <AnchorPane prefHeight="400.0" prefWidth="617.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="41.0" prefWidth="74.0" styleClass="modern-button-sair" stylesheets="@../css/root.css" text="Voltar">
+                  <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="41.0" prefWidth="74.0" styleClass="modern-button-sair" stylesheets="@../css/root.css" text="Voltar">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font></Button>
@@ -21,14 +21,14 @@
                      <children>
                         <TextField fx:id="dataInicialField" layoutX="22.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Data de ínicio" />
                         <TextField fx:id="dataFinalField" layoutX="22.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Data de final" />
-                        <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#Clicar_ok" prefHeight="51.0" prefWidth="66.0" styleClass="modern-button-Gerir" stylesheets="@../css/root.css" text="Ok">
+                        <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="51.0" prefWidth="66.0" styleClass="modern-button-Gerir" stylesheets="@../css/root.css" text="Ok">
                            <font>
                               <Font name="Arial Black" size="12.0" />
                            </font>
                         </Button>
                      </children>
                   </AnchorPane>
-                  <Label fx:id="ConsoleTextarea" layoutX="22.0" layoutY="38.0" prefHeight="209.0" prefWidth="460.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Relatorio de Emprestimo por Periodo" textFill="WHITE" underline="true">
+                  <Label fx:id="consoleTextarea" layoutX="22.0" layoutY="38.0" prefHeight="209.0" prefWidth="460.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Relatorio de Emprestimo por Periodo" textFill="WHITE" underline="true">
                      <font>
                         <Font name="Arial Black" size="15.0" />
                      </font>

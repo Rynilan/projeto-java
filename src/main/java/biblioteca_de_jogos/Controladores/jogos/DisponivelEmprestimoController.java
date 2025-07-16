@@ -20,11 +20,11 @@ public class DisponivelEmprestimoController {
         consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_ok(ActionEvent event) {
+    public void clicarOk(ActionEvent event) {
         List<Jogo> disponiveis = jogosControl.jogosDisponiveis();
 
         if (disponiveis.isEmpty()) {

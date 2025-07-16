@@ -14,31 +14,31 @@ import static biblioteca_de_jogos.Main.print_lista;
 public class PaginaJogosController {
 
     @FXML
-    public TextArea ConsoleTextarea;
+    public TextArea consoleTextarea;
 
     private final ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.appendText(msg + "\n");
+        consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event){
+    public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_Adicionar_jogo(ActionEvent event) {
+    public void clicarAdicionarJogo(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_Adicionar_jogo");
     }
 
-    public void Clicar_Remover_jogo(ActionEvent event){
+    public void clicarRemoverJogo(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Remover_jogo");
     }
 
-    public void Clicar_Ver_jogos(ActionEvent event){
+    public void clicarVerJogos(ActionEvent event){
         log(print_lista(jogosControl.getJogos()));
     }
 
-    public void Clicar_Disponiveis_emprestimo(ActionEvent event){
+    public void clicarDisponiveisEmprestimo(ActionEvent event){
         List<Jogo> disponiveis = jogosControl.jogosDisponiveis();
         if (disponiveis.isEmpty()) {
             log("Nenhum jogo disponível para empréstimo.");
@@ -50,19 +50,19 @@ public class PaginaJogosController {
         }
     }
 
-    public void Clicar_Buscar_editor(ActionEvent event) {
+    public void clicarBuscarEditor(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_Buscar_editor_jogo");
     }
 
-    public void Clicar_Buscar_numero_jogadores(ActionEvent event){
+    public void clicarBuscarNumeroJogadores(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Buscar_numero_jogadores");
     }
 
-    public void Clicar_Bucar_categoria(ActionEvent event){
+    public void clicarBucarCategoria(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Buscar_categoria_jogo");
     }
 
-    public void Clicar_Buscar_tempo_partida(ActionEvent event){
+    public void clicarBuscarTempoPartida(ActionEvent event){
         ScreenManager.mostrarTela("pagina_Buscar_tempo_partida");
     }
 }

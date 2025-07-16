@@ -22,11 +22,11 @@ public class BuscarNumeroJogadoresController {
         consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_ok(ActionEvent event) {
+    public void clicarOk(ActionEvent event) {
         try {
             int numeroJogadores = Integer.parseInt(numJogadoresField.getText().trim());
             List<Jogo> encontrados = jogosControl.buscarPorQuantiaDeJogadores(numeroJogadores);

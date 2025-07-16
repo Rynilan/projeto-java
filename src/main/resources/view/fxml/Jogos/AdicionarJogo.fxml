@@ -10,8 +10,8 @@
    <center>
       <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="ConsoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="150.0" prefWidth="458.0" promptText="Console" />
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="41.0" prefWidth="74.0" text="Voltar" />
+            <TextArea fx:id="consoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="150.0" prefWidth="458.0" promptText="Console" />
+            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="41.0" prefWidth="74.0" text="Voltar" />
          </children>
       </AnchorPane>
    </center>
@@ -21,7 +21,7 @@
             <TextField fx:id="nomeField" layoutX="22.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Nome" />
             <TextField fx:id="editorField" layoutX="22.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Editor" />
             <TextField fx:id="tempoPartidaField" layoutX="22.0" layoutY="104.0" prefHeight="25.0" prefWidth="200.0" promptText="Tempo de partida" />
-            <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#Clicar_ok" prefHeight="51.0" prefWidth="66.0" text="Ok" />
+            <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="51.0" prefWidth="66.0" text="Ok" />
             <TextField fx:id="minMaxJogadoresField" layoutX="22.0" layoutY="147.0" prefHeight="25.0" prefWidth="200.0" promptText="min max jogadores" />
             <TextField fx:id="quantidadeCopiasField" layoutX="237.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Quantidade de cópias" />
             <TextField fx:id="idCategoriaJogoField" layoutX="237.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Id categoria jogo" />

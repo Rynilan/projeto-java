@@ -54,7 +54,7 @@ public class RemoverJogoController {
     }
 
     @FXML
-    public void Clicar_voltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 }

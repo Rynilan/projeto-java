@@ -11,13 +11,13 @@
    <center>
       <AnchorPane prefHeight="272.0" prefWidth="600.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="498.0" layoutY="28.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="25.0" prefWidth="64.0" styleClass="modern-button-sair" stylesheets="@../css/root.css" text="Voltar" textAlignment="CENTER" textFill="WHITE">
+            <Button layoutX="498.0" layoutY="28.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="64.0" styleClass="modern-button-sair" stylesheets="@../css/root.css" text="Voltar" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="11.0" />
                </font></Button>
             <AnchorPane layoutY="229.0" prefHeight="150.0" prefWidth="600.0" styleClass="principal_menu" stylesheets="@../css/root.css">
                <children>
-                  <TextField fx:id="idusuarioField" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" promptText="ID do usuário" />
+                  <TextField fx:id="idUsuarioField" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" promptText="ID do usuário" />
                   <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleRemover" prefHeight="43.0" prefWidth="51.0" styleClass="modern-button-Gerir" stylesheets="@../css/root.css" text="Ok" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="12.0" />
@@ -25,7 +25,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Label fx:id="ConsoleTextarea" layoutX="20.0" layoutY="41.0" prefHeight="178.0" prefWidth="441.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Digite o id do usuario" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="consoleTextarea" layoutX="20.0" layoutY="41.0" prefHeight="178.0" prefWidth="441.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Digite o id do usuario" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="15.0" />
                </font>

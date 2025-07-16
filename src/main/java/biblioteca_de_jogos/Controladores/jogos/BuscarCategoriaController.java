@@ -22,11 +22,11 @@ public class BuscarCategoriaController {
         consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_ok(ActionEvent event) {
+    public void clicarOk(ActionEvent event) {
         try {
             Long categoria = Long.parseLong(categoriaField.getText().trim());
 

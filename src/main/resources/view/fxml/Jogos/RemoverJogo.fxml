@@ -11,7 +11,7 @@
       <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="consoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="172.0" prefWidth="458.0" promptText="Console" />
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="26.0" prefWidth="56.0" text="Voltar" />
+            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="26.0" prefWidth="56.0" text="Voltar" />
          </children>
       </AnchorPane>
    </center>

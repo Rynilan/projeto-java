@@ -25,17 +25,17 @@
                      <font>
                         <Font name="Arial Black" size="11.0" />
                      </font></TextField>
-                  <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#Clicar_ok" prefHeight="43.0" prefWidth="51.0" styleClass="modern-button-Gerir" stylesheets="@../css/root.css" text="Ok">
+                  <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" styleClass="modern-button-Gerir" stylesheets="@../css/root.css" text="Ok">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font></Button>
                </children>
             </AnchorPane>
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#ClicarVoltar" prefHeight="26.0" prefWidth="59.0" styleClass="modern-button-sair" stylesheets="@../css/root.css" text="Voltar">
+            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="26.0" prefWidth="59.0" styleClass="modern-button-sair" stylesheets="@../css/root.css" text="Voltar">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font></Button>
-            <Label fx:id="ConsoleTextarea" layoutX="17.0" layoutY="58.0" prefHeight="156.0" prefWidth="465.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Adicionar usuario:" textAlignment="CENTER" textFill="WHITE" underline="true" wrapText="true">
+            <Label fx:id="consoleTextarea" layoutX="17.0" layoutY="58.0" prefHeight="156.0" prefWidth="465.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Adicionar usuario:" textAlignment="CENTER" textFill="WHITE" underline="true" wrapText="true">
                <font>
                   <Font name="Arial Black" size="27.0" />
                </font>

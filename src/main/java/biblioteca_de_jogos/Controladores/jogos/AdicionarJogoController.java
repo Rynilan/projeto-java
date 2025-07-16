@@ -25,17 +25,17 @@ public class AdicionarJogoController {
     @FXML
     private TextArea descricaoJogoArea;
     @FXML
-    private TextArea ConsoleTextarea;
+    private TextArea consoleTextarea;
 
 
     private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.appendText(msg + "\n");
+        consoleTextarea.appendText(msg + "\n");
     }
 
     @FXML
-    private void Clicar_ok(ActionEvent event) {
+    private void clicarOk(ActionEvent event) {
         String nome = nomeField.getText();
         String editor = editorField.getText();
         String tempoPartidaStr = tempoPartidaField.getText();
@@ -112,7 +112,7 @@ public class AdicionarJogoController {
     }
 
     @FXML
-    public void Clicar_voltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 }

@@ -13,10 +13,10 @@ import java.util.Collections;
 public class Devolucao_emprestimosController {
 
     @FXML
-    public TextArea ConsoleTextarea;
+    public TextArea consoleTextarea;
 
     @FXML
-    public TextField IDemprestimoField;
+    public TextField idEmprestimoField;
 
     @FXML
     public TextField observacaoField;
@@ -24,16 +24,16 @@ public class Devolucao_emprestimosController {
     ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.appendText(msg + "\n");
+        consoleTextarea.appendText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event){
+    public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
     }
 
-    public void Clicar_ok(ActionEvent event){
+    public void clicarOk(ActionEvent event){
         try{
-            Long IDemprestimo = Long.parseLong(IDemprestimoField.getText().trim());
+            Long IDemprestimo = Long.parseLong(idEmprestimoField.getText().trim());
             String descricao = observacaoField.getText().trim();
 
             Emprestimo emprestimo = ControladorDeEmprestimos.getInstance().buscarEmprestimo(IDemprestimo);

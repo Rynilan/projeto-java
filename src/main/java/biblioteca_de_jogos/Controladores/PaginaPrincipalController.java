@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
 
 
-public class paginaPrincipalController {
+public class PaginaPrincipalController {
 
     @FXML
     public Label ConsoleTextarea;

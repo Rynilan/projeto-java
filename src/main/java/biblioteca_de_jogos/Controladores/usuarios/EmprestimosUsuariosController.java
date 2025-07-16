@@ -15,23 +15,23 @@ import java.util.List;
 public class EmprestimosUsuariosController {
 
     @FXML
-    private TextField IdUsuarioField;
+    private TextField idUsuarioField;
     @FXML
-    private Label ConsoleTextarea;
+    private Label consoleTextarea;
 
     private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
-    public void ClicarVoltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 
     @FXML
-    private void Clicar_ok(ActionEvent event) {
-        String id = IdUsuarioField.getText().trim();
+    private void clicarOk(ActionEvent event) {
+        String id = idUsuarioField.getText().trim();
         Long ID;
 
         if (id.isEmpty()) {

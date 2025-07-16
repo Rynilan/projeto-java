@@ -5,12 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
+
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="163.0" prefWidth="495.0" promptText="Console" />
-            <Button layoutX="528.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="25.0" prefWidth="47.0" text="Voltar" />
+            <Button layoutX="528.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="47.0" text="Voltar" />
          </children>
       </AnchorPane>
    </center>

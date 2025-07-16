@@ -11,20 +11,20 @@ import javafx.scene.control.TextField;
 public class RemoverUsuariosController {
 
     @FXML
-    private TextField idusuarioField;
+    private TextField idUsuarioField;
 
     @FXML
-    public Label ConsoleTextarea;
+    public Label consoleTextarea;
 
     private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     @FXML
     private void handleRemover(ActionEvent event) {
-        String idText = idusuarioField.getText();
+        String idText = idUsuarioField.getText();
 
         if (idText.isEmpty()) {
             log("Por favor, digite o ID do usuário a ser removido.");
@@ -56,11 +56,11 @@ public class RemoverUsuariosController {
     }
 
     private void limparCampo() {
-        idusuarioField.clear();
+        idUsuarioField.clear();
     }
 
     @FXML
-    private void Clicar_voltar(ActionEvent event) {
+    private void clicarVoltar(ActionEvent event) {
         ScreenManager.voltarParaTelaAnterior();
     }
 }

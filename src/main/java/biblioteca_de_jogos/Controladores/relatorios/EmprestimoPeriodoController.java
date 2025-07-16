@@ -21,19 +21,19 @@ public class EmprestimoPeriodoController {
     @FXML
     private TextField dataFinalField;
     @FXML
-    private Label ConsoleTextarea;
+    private Label consoleTextarea;
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
-    public void Clicar_voltar(ActionEvent event) {
+    public void clicarVoltar(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_relatorios");
     }
 
-    public void Clicar_ok(ActionEvent event) {
+    public void clicarOk(ActionEvent event) {
         try {
             LocalDate inicio = LocalDate.parse(dataInicialField.getText(), formatter);
             LocalDate fim = LocalDate.parse(dataFinalField.getText(), formatter);

@@ -11,7 +11,7 @@
       <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="consoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="190.0" prefWidth="458.0" promptText="Console" />
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#Clicar_voltar" prefHeight="25.0" prefWidth="59.0" text="Voltar" />
+            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="59.0" text="Voltar" />
          </children>
       </AnchorPane>
    </center>
@@ -19,7 +19,7 @@
       <AnchorPane prefHeight="185.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="numJogadoresField" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" promptText="Número de jogadores" />
-            <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#Clicar_ok" prefHeight="43.0" prefWidth="51.0" text="Ok" />
+            <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" text="Ok" />
          </children>
       </AnchorPane>
    </bottom>

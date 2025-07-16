@@ -16,21 +16,21 @@ public class AdicionarUsuariosController {
     @FXML
     private TextField telefoneField;
     @FXML
-    private Label ConsoleTextarea;
+    private Label consoleTextarea;
 
     private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
 
     public void log(String msg) {
-        ConsoleTextarea.setText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
-    public void ClicarVoltar(ActionEvent event){
+    public void clicarVoltar(ActionEvent event){
         limparCampos();
         ScreenManager.voltarParaTelaAnterior();
     }
 
     @FXML
-    private void Clicar_ok(ActionEvent event) {
+    private void clicarOk(ActionEvent event) {
         String nome = nomeField.getText();
         String email = emailField.getText();
         String telefone = telefoneField.getText();
