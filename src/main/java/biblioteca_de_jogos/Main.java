@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.format.DateTimeParseException;
 
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -81,11 +82,9 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("Jogo & CIA - Sistema de Gestão");
         stage.setResizable(false);
-        ScreenManager.mostrarTela("pagina_principal");
+        ScreenManager.mostrarTela("pagina_inicial");
         stage.show();
     }
-
-
 
     public static void main(String args[]) {
 

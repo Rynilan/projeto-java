@@ -1,10 +1,11 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
+import biblioteca_de_jogos.Controladores.jogos.DisponivelEmprestimoController;
 import biblioteca_de_jogos.classes.Reserva;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import biblioteca_de_jogos.control.ControladorDeReservas;
 import javafx.event.ActionEvent;
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -12,10 +13,11 @@ import java.util.List;
 
 import static biblioteca_de_jogos.Main.print_lista;
 
-public class Pagina_emprestimosController {
+public class PaginaEmprestimosController {
 
     @FXML
     public TextArea consoleTextarea;
+    private final VerEmprestimosEReservasController verEmprestimosEReservasController = VerEmprestimosEReservasController.getInstance();
 
     public void log(String msg) {
         consoleTextarea.appendText(msg + "\n");
@@ -34,11 +36,9 @@ public class Pagina_emprestimosController {
     }
 
     public void clicarVerEmprestimosReservas(ActionEvent event){
-        log(print_lista(ControladorDeEmprestimos.getInstance().getEmprestimos()));
-        List<Reserva> lista = ControladorDeReservas.getInstance().getTodasReservas();
-        for (Reserva r : lista){
-            log(r.toString());
-        }
+        verEmprestimosEReservasController.atualizarTabelas();
+        ScreenManager.carregarTela("pagina_ver_emprestimos_emprestimos", "/view/fxml/Emprestimos/VerEmprestimosEReservas.fxml");
+        ScreenManager.mostrarTela("pagina_ver_emprestimos_emprestimos");
     }
 
     public void clicarReserva(ActionEvent event){

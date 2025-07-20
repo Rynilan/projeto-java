@@ -1,7 +1,8 @@
 package biblioteca_de_jogos.control;
 
 import java.util.List;
- 
+
+import biblioteca_de_jogos.Controladores.usuarios.VerUsuariosController;
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.model.Usuarios;
 
@@ -11,7 +12,7 @@ public class ControladorDeUsuarios {
 	private static ControladorDeUsuarios instancia = null;
 	
 	public ControladorDeUsuarios() {
-		this.id = -1L;
+		this.id = 0L;
 		this.usuarios = Usuarios.getInstance();
 	}
 
@@ -54,7 +55,6 @@ public class ControladorDeUsuarios {
 			return null;
 		}
 
-		this.id++;
 		return new Usuario(this.id, nome, email, telefone, status);
 	}
 
@@ -64,6 +64,7 @@ public class ControladorDeUsuarios {
 			return false;
 		}
 		this.usuarios.getUsuarios().add(usuario);
+		this.id++;
 		return true;
 	}
 

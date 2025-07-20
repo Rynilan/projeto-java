@@ -1,12 +1,11 @@
 package biblioteca_de_jogos.Controladores.relatorios;
 
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.time.LocalDate;

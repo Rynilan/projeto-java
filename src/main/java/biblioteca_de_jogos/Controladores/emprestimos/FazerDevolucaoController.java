@@ -1,6 +1,6 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.util.Collections;
 
-public class Devolucao_emprestimosController {
+public class FazerDevolucaoController {
 
     @FXML
     public TextArea consoleTextarea;

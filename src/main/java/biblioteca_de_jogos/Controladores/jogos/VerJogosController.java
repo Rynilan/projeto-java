@@ -13,13 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-public class DisponivelEmprestimoController {
+public class VerJogosController {
 
     private final ControladorDeJogos jogos = ControladorDeJogos.getInstance();
     public final ObservableList<Jogo> listaJogos = FXCollections.observableArrayList(jogos.getJogos());
-    private static DisponivelEmprestimoController instancia = null;
+    private static VerJogosController instancia = null;
 
-    @FXML private TableView<Jogo> tabelaJogosDisponivelEmprestimo;
+    @FXML private TableView<Jogo> tabelaJogos;
     @FXML private TableColumn<Jogo, Long> colId;
     @FXML private TableColumn<Jogo, String> colNome;
     @FXML private TableColumn<Jogo, String> colEditor;
@@ -31,11 +31,11 @@ public class DisponivelEmprestimoController {
     @FXML private TableColumn<Jogo, Long> colIdCategoria;
     @FXML private TableColumn<Jogo, String> colDisponivel;
 
-    public static DisponivelEmprestimoController getInstance() {
-        if (DisponivelEmprestimoController.instancia == null) {
-            DisponivelEmprestimoController.instancia = new DisponivelEmprestimoController();
+    public static VerJogosController getInstance() {
+        if (VerJogosController.instancia == null) {
+            VerJogosController.instancia = new VerJogosController();
         }
-        return DisponivelEmprestimoController.instancia;
+        return VerJogosController.instancia;
     }
 
     public void clicarVoltar(ActionEvent event){
@@ -45,9 +45,9 @@ public class DisponivelEmprestimoController {
     public void atualizarTabela() {
         Platform.runLater(() -> {
             listaJogos.clear();
-            listaJogos.addAll(ControladorDeJogos.getInstance().jogosDisponiveis());
-            if (tabelaJogosDisponivelEmprestimo != null){
-                tabelaJogosDisponivelEmprestimo.refresh();
+            listaJogos.addAll(jogos.getJogos());
+            if (tabelaJogos != null){
+                tabelaJogos.refresh();
             }
         });
     }
@@ -65,7 +65,6 @@ public class DisponivelEmprestimoController {
         colIdCategoria.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
         colDisponivel.setCellValueFactory(new PropertyValueFactory<>("disponivel"));
 
-        tabelaJogosDisponivelEmprestimo.setItems(listaJogos);
+        tabelaJogos.setItems(listaJogos);
     }
 }
-

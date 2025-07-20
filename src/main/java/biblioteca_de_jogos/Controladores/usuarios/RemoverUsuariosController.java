@@ -1,6 +1,6 @@
 package biblioteca_de_jogos.Controladores.usuarios;
 
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import javafx.event.ActionEvent;

@@ -1,28 +1,47 @@
 package biblioteca_de_jogos.Controladores.usuarios;
 
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
 public class EmprestimosUsuariosController {
 
-    @FXML
-    private TextField idUsuarioField;
-    @FXML
-    private Label consoleTextarea;
 
-    private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
+    @FXML private TextField idUsuarioField;
+    @FXML private TableView<Emprestimo> tabelaUsuarioEmprestimos;
+    @FXML private TableColumn<Emprestimo, Integer> colId;
+    @FXML private TableColumn<Emprestimo, String> colDataEmprestimo;
+    @FXML private TableColumn<Emprestimo, String> colDataDevolucao;
+    @FXML private TableColumn<Emprestimo, Integer> colRenovacoes;
+    @FXML private TableColumn<Emprestimo, String> colIntervalo;
+    @FXML private TableColumn<Emprestimo, Long> colIdUsuario;
+    @FXML private TableColumn<Emprestimo, Long> colIdJogo;
+    @FXML private TableColumn<Emprestimo, String> colObs;
 
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
+    private final ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
+
+    @FXML
+    public void initialize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colDataEmprestimo.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colDataDevolucao.setCellValueFactory(new PropertyValueFactory<>("devolucao"));
+        colRenovacoes.setCellValueFactory(new PropertyValueFactory<>("renovacoes"));
+        colIntervalo.setCellValueFactory(new PropertyValueFactory<>("intervalo"));
+        colIdUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+        colIdJogo.setCellValueFactory(new PropertyValueFactory<>("idJogo"));
+        colObs.setCellValueFactory(new PropertyValueFactory<>("observacoes"));
+
     }
 
     public void clicarVoltar(ActionEvent event) {
@@ -35,33 +54,29 @@ public class EmprestimosUsuariosController {
         Long ID;
 
         if (id.isEmpty()) {
-            log("Digite o ID do usuário.");
+            MensagensAvisosErros.mostrarAviso("Entrada inválida", "Digite o ID do usuário.");
             return;
-        } else{
+        }
+        try {
             ID = Long.parseLong(id);
-        }
-
-        Usuario usuario = usuariosControl.buscarUsuario(ID);
-        ControladorDeEmprestimos emprestimo = ControladorDeEmprestimos.getInstance();
-
-        if (usuario == null) {
-            log("Usuário não encontrado.");
+        } catch (NumberFormatException e) {
+            MensagensAvisosErros.mostrarErro("ID inválido", "Digite um número inteiro válido.");
             return;
         }
-
-        List<Emprestimo> emprestimos = emprestimo.getEmprestimosDoUsuario(usuario.getId());
+        Usuario usuario = usuariosControl.buscarUsuario(ID);
+        if (usuario == null) {
+            MensagensAvisosErros.mostrarErro("Usuário não encontrado", "Nenhum usuário com esse ID.");
+            return;
+        }
+        List<Emprestimo> emprestimos = ControladorDeEmprestimos.getInstance().getEmprestimosDoUsuario(usuario.getId());
 
         if (emprestimos == null || emprestimos.isEmpty()) {
-            log("O usuário não possui empréstimos.");
+            MensagensAvisosErros.mostrarInfo("Sem empréstimos", "O usuário não possui empréstimos.");
+            tabelaUsuarioEmprestimos.getItems().clear();
             return;
         }
-
-        log("Empréstimos de " + usuario.getNome() + ":");
-        for (Emprestimo e : emprestimos) {
-            log(e.toString());
-        }
+        tabelaUsuarioEmprestimos.getItems().setAll(emprestimos);
     }
-
 }
 
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.usuarios.EmprestimosUsuariosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.usuarios.EmprestimosUsuariosController">
    <center>
       <AnchorPane prefHeight="406.0" prefWidth="598.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
@@ -15,9 +16,9 @@
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font></Button>
-            <AnchorPane layoutX="18.0" layoutY="222.0" prefHeight="184.0" prefWidth="583.0" styleClass="principal_menu" stylesheets="@../css/root.css">
+            <AnchorPane layoutX="18.0" layoutY="257.0" prefHeight="149.0" prefWidth="583.0" styleClass="principal_menu" stylesheets="@../css/root.css">
                <children>
-                  <TextField fx:id="idUsuarioField" alignment="CENTER" layoutX="14.0" layoutY="32.0" prefHeight="25.0" prefWidth="200.0" promptText="ID do usuário" stylesheets="@../css/root.css">
+                  <TextField fx:id="idUsuarioField" alignment="CENTER" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="200.0" promptText="ID do usuário" stylesheets="@../css/root.css">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
@@ -29,11 +30,18 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Label fx:id="consoleTextarea" layoutX="20.0" layoutY="63.0" prefHeight="158.0" prefWidth="474.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Digite o id do usuario" textAlignment="CENTER" textFill="WHITE" underline="true">
-               <font>
-                  <Font name="Arial Black" size="30.0" />
-               </font>
-            </Label>
+            <TableView fx:id="tabelaUsuarioEmprestimos" layoutX="14.0" layoutY="41.0" prefHeight="229.0" prefWidth="508.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="48.0" text="ID" />
+                <TableColumn fx:id="colDataEmprestimo" minWidth="115.0" prefWidth="115.0" text="Data Empréstimo" />
+                  <TableColumn fx:id="colDataDevolucao" minWidth="100.0" prefWidth="100.0" text="Data Devolução" />
+                  <TableColumn fx:id="colRenovacoes" minWidth="109.0" prefWidth="109.0" text="Renovações" />
+                  <TableColumn fx:id="colIntervalo" maxWidth="34.0" minWidth="-1.0" prefWidth="34.0" text="Intervalo" />
+                  <TableColumn fx:id="colIdUsuario" minWidth="-1.0" prefWidth="33.0" text="ID Usuário" />
+                  <TableColumn fx:id="colIdJogo" minWidth="0.0" prefWidth="40.0" text="ID Jogo" />
+                  <TableColumn fx:id="colObs" prefWidth="28.0" text="Observações" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </center>

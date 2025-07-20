@@ -54,6 +54,11 @@ public class Emprestimo {
 		return this.dataDevolucaoReal;
 	}
 
+	public String getDevolucaoString() {
+		return (this.dataDevolucaoReal != null ? this.dataDevolucaoReal.toString() : "Ainda não devolvido");
+	}
+
+
 	public Long getId() {
 		return this.id;
 	}
@@ -72,6 +77,12 @@ public class Emprestimo {
 
 	public List<String> getObservacoes() {
 		return this.observacoes;
+	}
+
+	public String getObsString(){
+		return (this.observacoes != null && !this.observacoes.isEmpty())
+				? String.join("; ", this.observacoes)
+				: "Nenhuma";
 	}
 
 	public void devolver(List<String> observacoes) {

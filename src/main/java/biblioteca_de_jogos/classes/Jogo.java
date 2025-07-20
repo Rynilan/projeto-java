@@ -82,6 +82,10 @@ public class Jogo {
         return this.qtdCopias > 0;
     }
 
+    public String getDisponivel() {
+        return this.estaDisponivel() ? "Sim" : "Não";
+    }
+
 	public Long getIdCategoria() {
 		return this.idCategoria;
 	}

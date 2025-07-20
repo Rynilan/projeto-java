@@ -40,4 +40,16 @@ public class Reserva {
 	public Long getId() {
 		return this.id;
 	}
+
+	public LocalDate getDataReserva() {
+		return dataReserva;
+	}
+
+	public String getNotificado() {
+		if (!this.notificado){
+			return "Não";
+		} else {
+			return "Sim";
+		}
+	}
 }

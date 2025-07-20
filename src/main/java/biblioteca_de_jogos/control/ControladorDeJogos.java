@@ -13,7 +13,7 @@ public class ControladorDeJogos {
 	private static ControladorDeJogos instancia = null;
 	
 	private ControladorDeJogos() {
-		this.id = -1L;
+		this.id = 0L;
 		this.jogos = Jogos.getInstance();
 		ControladorDeJogos.instancia = this;
 	}
@@ -113,7 +113,7 @@ public class ControladorDeJogos {
 	public List<Jogo> buscarPorCategoria(Long idCategoria) {
 		List<Jogo> achados = new ArrayList<Jogo>();
 		for (Jogo jogo: this.jogos.getJogos()) {
-			if (jogo.getIdCategoria() == idCategoria) {
+			if (Objects.equals(jogo.getIdCategoria(), idCategoria)) {
 				achados.add(jogo);
 			}
 		}

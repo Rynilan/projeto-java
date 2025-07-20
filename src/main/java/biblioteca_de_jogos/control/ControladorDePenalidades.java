@@ -29,7 +29,7 @@ public class ControladorDePenalidades {
 	public void criarPenalidade(Emprestimo emprestimo) {
 		this.id++;
 		this.penalidades.getPenalidades().add(
-			new Penalidade(this.id, String.format("Usuário nº%i atraso da entrega de um jogo.", emprestimo.getIdUsuario()), "bloqueio", emprestimo.getIdUsuario(), emprestimo)
+			new Penalidade(this.id, String.format("Usuário nº%d atraso da entrega de um jogo.", emprestimo.getIdUsuario()), "bloqueio", emprestimo.getIdUsuario(), emprestimo)
 		);
 	}
 

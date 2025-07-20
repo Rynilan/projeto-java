@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.DisponivelEmprestimoController">
    <center>
-      <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="consoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="211.0" prefWidth="458.0" promptText="Console" />
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="59.0" text="Voltar" />
+            <Button layoutX="510.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="69.0" text="Voltar" />
+            <TableView fx:id="tabelaJogosDisponivelEmprestimo" fixedCellSize="0.0" layoutX="46.0" layoutY="71.0" prefHeight="258.0" prefWidth="509.0">
+               <columns>
+                  <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="colNome" prefWidth="75.0" text="Nome" />
+                  <TableColumn fx:id="colEditor" prefWidth="75.0" text="Editor" />
+                  <TableColumn fx:id="colTempoPartida" prefWidth="75.0" text="tempo de partida" />
+                  <TableColumn fx:id="colMinJogadores" prefWidth="75.0" text="Min Jogadores" />
+                  <TableColumn fx:id="colMaxJogadores" prefWidth="75.0" text="Max Jogadores" />
+                  <TableColumn fx:id="colQtdCopias" prefWidth="75.0" text="Quantidade de copias" />
+                  <TableColumn fx:id="colIdCategoria" prefWidth="75.0" text="Categoria" />
+                  <TableColumn fx:id="colDisponivel" prefWidth="75.0" text="Disponível " />
+                  <TableColumn fx:id="colDescricao" prefWidth="75.0" text="Descrição" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="185.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" text="Ok" />
-            <TextField layoutX="14.0" layoutY="38.0" prefHeight="25.0" prefWidth="212.0" promptText="Nome do jogo" />
-         </children>
-      </AnchorPane>
-   </bottom>
 </BorderPane>

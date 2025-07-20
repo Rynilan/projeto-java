@@ -1,6 +1,6 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class Emprestimos_emprestimosController {
+public class FazerEmprestimoController {
 
     @FXML
     public TextArea consoleTextarea;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -10,16 +11,29 @@
    <center>
       <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="consoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="190.0" prefWidth="458.0" promptText="Console" />
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="59.0" text="Voltar" />
+            <Button layoutX="530.0" layoutY="30.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="56.0" text="Voltar" />
+            <TableView fx:id="tabelaJogosNumJogadores" layoutX="14.0" layoutY="30.0" prefHeight="200.0" prefWidth="496.0">
+               <columns>
+                  <TableColumn fx:id="colId" text="ID" />
+                  <TableColumn fx:id="colNome" text="Nome" />
+                  <TableColumn fx:id="colEditor" text="Editor" />
+                  <TableColumn fx:id="colDescricao" text="Descrição" />
+                  <TableColumn fx:id="colTempo" text="Tempo de Partida" />
+                  <TableColumn fx:id="colMinJogadores" text="Min. Jogadores" />
+                  <TableColumn fx:id="colMaxJogadores" text="Max. Jogadores" />
+                  <TableColumn fx:id="colCopias" text="Qtd Cópias" />
+                  <TableColumn fx:id="colIdCategoria" text="ID Categoria" />
+                  <TableColumn fx:id="colDisponivel" text="Disponível" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="185.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="140.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="numJogadoresField" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" promptText="Número de jogadores" />
-            <Button layoutX="518.0" layoutY="116.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" text="Ok" />
+            <TextField fx:id="numJogadoresField" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="200.0" promptText="Número de jogadores" />
+            <Button layoutX="517.0" layoutY="68.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" text="Ok" />
          </children>
       </AnchorPane>
    </bottom>

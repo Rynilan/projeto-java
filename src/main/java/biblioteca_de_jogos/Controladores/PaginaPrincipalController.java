@@ -1,6 +1,5 @@
 package biblioteca_de_jogos.Controladores;
 
-import biblioteca_de_jogos.ScreenManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,19 +20,12 @@ public class PaginaPrincipalController {
     @FXML
     public AnchorPane mainContent;
 
-
-
-
     public void log(String msg) {
         ConsoleTextarea.setText(msg + "\n");
     }
 
     public void ClicarSair(ActionEvent event){
         Platform.exit();
-    }
-
-    public void ClicarTeste(ActionEvent event){
-        System.out.println("Teste");
     }
 
     public void ClicarGerirUsuario(ActionEvent event) {

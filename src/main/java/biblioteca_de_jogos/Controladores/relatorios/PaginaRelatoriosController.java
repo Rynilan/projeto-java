@@ -1,10 +1,9 @@
 package biblioteca_de_jogos.Controladores.relatorios;
 
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 
 public class PaginaRelatoriosController {
 

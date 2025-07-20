@@ -2,11 +2,9 @@ package biblioteca_de_jogos.Controladores.usuarios;
 
 import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import javafx.event.ActionEvent;
-import biblioteca_de_jogos.ScreenManager;
+import biblioteca_de_jogos.Controladores.ScreenManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import static biblioteca_de_jogos.Main.print_lista;
 
 public class PaginaUsuariosController {
 
@@ -14,6 +12,8 @@ public class PaginaUsuariosController {
     public Label consoleTextarea;
 
     private final ControladorDeUsuarios usuarios = ControladorDeUsuarios.getInstance();
+
+    private final VerUsuariosController verUsuariosController = VerUsuariosController.getInstance();
 
     public void log(String msg) {
         consoleTextarea.setText(msg + "\n");
@@ -36,6 +36,8 @@ public class PaginaUsuariosController {
     }
 
     public void clicarVerUsuarios(ActionEvent event){
-        log(print_lista(usuarios.getUsuarios()));
+        ScreenManager.carregarTela("pagina_ver_usuarios", "/view/fxml/Usuarios/VerUsuarios.fxml");
+        verUsuariosController.atualizarTabela();
+        ScreenManager.mostrarTela("pagina_ver_usuarios");
     }
 }

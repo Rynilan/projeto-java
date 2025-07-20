@@ -1,4 +1,4 @@
-package biblioteca_de_jogos;
+package biblioteca_de_jogos.Controladores;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,23 +26,24 @@ public class ScreenManager {
 
     public static void iniciarTelas(){
         // Páginas principais
+        ScreenManager.carregarTela("pagina_inicial", "/view/fxml/PaginaInicial.fxml");
         ScreenManager.carregarTela("pagina_principal", "/view/fxml/PaginaPrincipal.fxml");
         ScreenManager.carregarTela("pagina_relatorios", "/view/fxml/Relatorios/PaginaRelatorios.fxml");
         ScreenManager.carregarTela("pagina_usuarios", "/view/fxml/Usuarios/PaginaUsuarios.fxml");
         ScreenManager.carregarTela("pagina_jogos", "/view/fxml/Jogos/PaginaJogos.fxml");
-        ScreenManager.carregarTela("pagina_emprestimos", "/view/fxml/Emprestimos/Pagina_emprestimos.fxml");
+        ScreenManager.carregarTela("pagina_emprestimos", "/view/fxml/Emprestimos/PaginaEmprestimos.fxml");
 
         // Páginas de gerenciar usuários
         ScreenManager.carregarTela("pagina_adicionar_usuario", "/view/fxml/Usuarios/AdicionarUsuario.fxml");
         ScreenManager.carregarTela("pagina_remover_usuario", "/view/fxml/Usuarios/RemoverUsuario.fxml");
         ScreenManager.carregarTela("pagina_emprestimos_usuario", "/view/fxml/Usuarios/EmprestimosUsuarios.fxml");
-        //ScreenManager.carregarTela("pagina_ver_usuarios", "/view/fxml/Usuarios/VerUsuarios.fxml");
+        ScreenManager.carregarTela("pagina_ver_usuarios", "/view/fxml/Usuarios/VerUsuarios.fxml");
 
         // Páginas de gerenciar empréstimos
-        ScreenManager.carregarTela("pagina_Emprestimo_emprestimos", "/view/fxml/Emprestimos/Emprestimo_emprestimos.fxml");
-        ScreenManager.carregarTela("pagina_Devolucao_emprestimos", "/view/fxml/Emprestimos/Devolucao_emprestimos.fxml");
-        ScreenManager.carregarTela("pagina_Reserva_emprestimos", "/view/fxml/Emprestimos/Reservas_emprestimos.fxml");
-        //ScreenManager.carregarTela("pagina_ver_emprestimos_emprestimos", "/view/fxml/Emprestimos/Ver_emprestimos_emprestimos.fxml");
+        ScreenManager.carregarTela("pagina_Emprestimo_emprestimos", "/view/fxml/Emprestimos/FazerEmprestimo.fxml");
+        ScreenManager.carregarTela("pagina_Devolucao_emprestimos", "/view/fxml/Emprestimos/FazerDevolucao.fxml");
+        ScreenManager.carregarTela("pagina_Reserva_emprestimos", "/view/fxml/Emprestimos/FazerReserva.fxml");
+        ScreenManager.carregarTela("pagina_ver_emprestimos_emprestimos", "/view/fxml/Emprestimos/VerEmprestimosEReservas.fxml");
 
         // Páginas de gerenciar relatórios
         ScreenManager.carregarTela("pagina_Emprestimos_periodo_relatorios", "/view/fxml/Relatorios/EmprestimosPeriodoRelatorios.fxml");
