@@ -6,35 +6,46 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.BuscarEditorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.BuscarEditorController">
    <center>
-      <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="272.0" prefWidth="600.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="530.0" layoutY="30.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="56.0" text="Voltar" />
-            <TableView fx:id="tabelaJogosEditor" layoutX="14.0" layoutY="30.0" prefHeight="200.0" prefWidth="496.0">
+            <TableView fx:id="tabelaJogosEditor" layoutX="14.0" layoutY="30.0" prefHeight="223.0" prefWidth="583.0">
                <columns>
-                  <TableColumn fx:id="colId" text="ID" />
-                  <TableColumn fx:id="colNome" text="Nome" />
-                  <TableColumn fx:id="colEditor" text="Editor" />
-                  <TableColumn fx:id="colDescricao" text="Descrição" />
-                  <TableColumn fx:id="colTempo" text="Tempo de Partida" />
-                  <TableColumn fx:id="colMinJogadores" text="Min. Jogadores" />
-                  <TableColumn fx:id="colMaxJogadores" text="Max. Jogadores" />
-                  <TableColumn fx:id="colCopias" text="Qtd Cópias" />
-                  <TableColumn fx:id="colIdCategoria" text="ID Categoria" />
+                  <TableColumn fx:id="colId" prefWidth="45.0" text="ID" />
+                  <TableColumn fx:id="colNome" prefWidth="61.0" text="Nome" />
+                  <TableColumn fx:id="colEditor" prefWidth="87.0" text="Editor" />
+                  <TableColumn fx:id="colDescricao" prefWidth="88.0" text="Descrição" />
+                  <TableColumn fx:id="colTempo" prefWidth="101.0" text="Tempo de Partida" />
+                  <TableColumn fx:id="colMinJogadores" prefWidth="61.0" text="Min. Jogadores" />
+                  <TableColumn fx:id="colMaxJogadores" prefWidth="65.0" text="Max. Jogadores" />
+                  <TableColumn fx:id="colCopias" prefWidth="77.0" text="Copias" />
+                  <TableColumn fx:id="colIdCategoria" prefWidth="135.0" text="ID Categoria" />
                   <TableColumn fx:id="colDisponivel" text="Disponível" />
                </columns>
             </TableView>
+            <AnchorPane layoutX="3.0" layoutY="253.0" prefHeight="140.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="editorField" alignment="CENTER" layoutX="14.0" layoutY="17.0" prefHeight="25.0" prefWidth="200.0" promptText="Nome do editor" stylesheets="@../css/root.css">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="225.0" layoutY="17.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="26.0" prefWidth="51.0" styleClass="modern-button-Gerir" stylesheets="@../css/root.css" text="Ok">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="522.0" layoutY="17.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="56.0" styleClass="modern-button-sair" text="Voltar">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="140.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="editorField" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="200.0" promptText="Nome do editor" />
-            <Button layoutX="517.0" layoutY="68.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" text="Ok" />
-         </children>
-      </AnchorPane>
-   </bottom>
 </BorderPane>

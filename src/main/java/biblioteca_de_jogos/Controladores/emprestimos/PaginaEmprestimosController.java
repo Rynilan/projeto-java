@@ -7,6 +7,7 @@ import biblioteca_de_jogos.control.ControladorDeReservas;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.util.List;
@@ -16,11 +17,11 @@ import static biblioteca_de_jogos.Main.print_lista;
 public class PaginaEmprestimosController {
 
     @FXML
-    public TextArea consoleTextarea;
+    public Label consoleTextarea;
     private final VerEmprestimosEReservasController verEmprestimosEReservasController = VerEmprestimosEReservasController.getInstance();
 
     public void log(String msg) {
-        consoleTextarea.appendText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     public void clicarVoltar(ActionEvent event){

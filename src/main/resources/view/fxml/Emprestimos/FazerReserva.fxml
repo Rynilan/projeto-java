@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.emprestimos.VerReservasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.emprestimos.VerReservasController">
    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="consoleTextarea" editable="false" layoutX="34.0" layoutY="39.0" prefHeight="140.0" prefWidth="408.0" promptText="Console" />
-            <Button layoutX="501.0" layoutY="39.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="68.0" text="Voltar" />
+            <Button layoutX="501.0" layoutY="39.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="68.0" styleClass="modern-button-sair" text="Voltar">
+               <font>
+                  <Font name="Arial Black" size="11.0" />
+               </font></Button>
+            <AnchorPane layoutY="218.0" prefHeight="175.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="idUsuarioField" alignment="CENTER" layoutX="33.0" layoutY="28.0" prefHeight="25.0" prefWidth="203.0" promptText="ID do usuário">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="idJogoField" alignment="CENTER" layoutX="32.0" layoutY="75.0" prefHeight="28.0" prefWidth="206.0" promptText="ID do jogo">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="474.0" layoutY="58.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="60.0" prefWidth="68.0" styleClass="modern-button-Gerir" text="Ok">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Label fx:id="consoleTextarea" layoutX="28.0" layoutY="39.0" prefHeight="186.0" prefWidth="464.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Fazer Reserva" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="175.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="idUsuarioField" layoutX="33.0" layoutY="28.0" prefHeight="25.0" prefWidth="203.0" promptText="ID do usuário" />
-            <TextField fx:id="idJogoField" layoutX="32.0" layoutY="75.0" prefHeight="28.0" prefWidth="206.0" promptText="ID do jogo" />
-            <Button layoutX="474.0" layoutY="58.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="60.0" prefWidth="68.0" text="Ok" />
-         </children>
-      </AnchorPane>
-   </bottom>
 </BorderPane>

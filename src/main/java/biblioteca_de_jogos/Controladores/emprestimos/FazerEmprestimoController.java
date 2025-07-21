@@ -8,13 +8,14 @@ import biblioteca_de_jogos.control.ControladorDeUsuarios;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FazerEmprestimoController {
 
     @FXML
-    public TextArea consoleTextarea;
+    public Label consoleTextarea;
 
     @FXML
     public TextField idUsuarioField;
@@ -23,7 +24,7 @@ public class FazerEmprestimoController {
     public TextField idJogoField;
 
     public void log(String msg) {
-        consoleTextarea.appendText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     public void clicarVoltar(ActionEvent event){
@@ -43,7 +44,7 @@ public class FazerEmprestimoController {
         }
 
         if (jogo == null){
-            log("Jogo não encontrado com o ID " + Idjogo);
+            log("Jogo não encontrado com o ID\n " + Idjogo);
             return;
         }
 

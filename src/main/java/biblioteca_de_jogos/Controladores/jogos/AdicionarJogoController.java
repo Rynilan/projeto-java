@@ -5,6 +5,7 @@ import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -25,13 +26,13 @@ public class AdicionarJogoController {
     @FXML
     private TextArea descricaoJogoArea;
     @FXML
-    private TextArea consoleTextarea;
+    private Label consoleTextarea;
 
 
     private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
     public void log(String msg) {
-        consoleTextarea.appendText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     @FXML
@@ -67,7 +68,7 @@ public class AdicionarJogoController {
 
             String[] jogadores = minMaxJogadoresStr.split("-");
             if (jogadores.length != 2) {
-                log("Formato inválido para 'Min Max Jogadores'. Use 'min-max' (ex: 1-4).");
+                log("Formato inválido para 'Min Max Jogadores'. \n Use 'min-max' (ex: 1-4).");
                 return;
             }
             int minJogadores = Integer.parseInt(jogadores[0]);
@@ -94,7 +95,7 @@ public class AdicionarJogoController {
                 log("Não foi possível criar o objeto Jogo. Verifique os valores fornecidos.");
             }
         } catch (NumberFormatException e) {
-            log("Erro: Tempo de partida, quantidade de cópias, ID da categoria ou jogadores devem ser números válidos.");
+            log("Erro: Tempo de partida, quantidade de cópias,\n ID da categoria ou jogadores devem ser números \nválidos.");
         } catch (Exception e) {
             log("Ocorreu um erro inesperado: " + e.getMessage());
             e.printStackTrace();

@@ -6,35 +6,42 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.BuscarNumeroJogadoresController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.BuscarNumeroJogadoresController">
    <center>
-      <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="272.0" prefWidth="600.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="530.0" layoutY="30.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="56.0" text="Voltar" />
-            <TableView fx:id="tabelaJogosNumJogadores" layoutX="14.0" layoutY="30.0" prefHeight="200.0" prefWidth="496.0">
+            <TableView fx:id="tabelaJogosNumJogadores" layoutX="8.0" layoutY="35.0" prefHeight="200.0" prefWidth="585.0">
                <columns>
                   <TableColumn fx:id="colId" text="ID" />
                   <TableColumn fx:id="colNome" text="Nome" />
                   <TableColumn fx:id="colEditor" text="Editor" />
                   <TableColumn fx:id="colDescricao" text="Descrição" />
                   <TableColumn fx:id="colTempo" text="Tempo de Partida" />
-                  <TableColumn fx:id="colMinJogadores" text="Min. Jogadores" />
-                  <TableColumn fx:id="colMaxJogadores" text="Max. Jogadores" />
-                  <TableColumn fx:id="colCopias" text="Qtd Cópias" />
-                  <TableColumn fx:id="colIdCategoria" text="ID Categoria" />
+                  <TableColumn fx:id="colMinJogadores" prefWidth="55.0" text="Min. Jogadores" />
+                  <TableColumn fx:id="colMaxJogadores" prefWidth="47.0" text="Max. Jogadores" />
+                  <TableColumn fx:id="colCopias" prefWidth="85.0" text="Copias" />
+                  <TableColumn fx:id="colIdCategoria" prefWidth="133.0" text="ID Categoria" />
                   <TableColumn fx:id="colDisponivel" text="Disponível" />
                </columns>
             </TableView>
+            <AnchorPane layoutY="260.0" prefHeight="140.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="numJogadoresField" layoutX="14.0" layoutY="18.0" prefHeight="25.0" prefWidth="200.0" promptText="Número de jogadores" />
+                  <Button layoutX="243.0" layoutY="17.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="27.0" prefWidth="56.0" styleClass="modern-button-Gerir" text="Ok">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="530.0" layoutY="18.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="56.0" styleClass="modern-button-sair" text="Voltar">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="140.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="numJogadoresField" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="200.0" promptText="Número de jogadores" />
-            <Button layoutX="517.0" layoutY="68.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="43.0" prefWidth="51.0" text="Ok" />
-         </children>
-      </AnchorPane>
-   </bottom>
 </BorderPane>

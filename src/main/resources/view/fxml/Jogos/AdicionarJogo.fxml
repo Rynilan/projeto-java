@@ -1,32 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.AdicionarJogoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.AdicionarJogoController">
    <center>
-      <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="272.0" prefWidth="600.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="consoleTextarea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="150.0" prefWidth="458.0" promptText="Console" />
-            <Button layoutX="497.0" layoutY="27.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="41.0" prefWidth="74.0" text="Voltar" />
+            <Button layoutX="506.0" layoutY="29.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="28.0" prefWidth="74.0" styleClass="modern-button-sair" text="Voltar">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <AnchorPane layoutY="175.0" prefHeight="225.0" prefWidth="600.0" stylesheets="@../css/root.css">
+               <children>
+                  <TextField fx:id="nomeField" alignment="CENTER" layoutX="22.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Nome">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="editorField" alignment="CENTER" layoutX="22.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Editor">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tempoPartidaField" alignment="CENTER" layoutX="22.0" layoutY="104.0" prefHeight="25.0" prefWidth="200.0" promptText="Tempo de partida">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="51.0" prefWidth="66.0" styleClass="modern-button-Gerir" text="Ok">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="minMaxJogadoresField" alignment="CENTER" layoutX="22.0" layoutY="147.0" prefHeight="25.0" prefWidth="200.0" promptText="min max jogadores">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="quantidadeCopiasField" alignment="CENTER" layoutX="237.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Quantidade de cópias">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="idCategoriaJogoField" alignment="CENTER" layoutX="237.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Id categoria jogo">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextArea fx:id="descricaoJogoArea" layoutX="237.0" layoutY="96.0" prefHeight="78.0" prefWidth="200.0" promptText="Descrição do Jogo">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </AnchorPane>
+            <Label fx:id="consoleTextarea" layoutX="14.0" layoutY="29.0" prefHeight="160.0" prefWidth="480.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Adicionar Jogo" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="225.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="nomeField" layoutX="22.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Nome" />
-            <TextField fx:id="editorField" layoutX="22.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Editor" />
-            <TextField fx:id="tempoPartidaField" layoutX="22.0" layoutY="104.0" prefHeight="25.0" prefWidth="200.0" promptText="Tempo de partida" />
-            <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="51.0" prefWidth="66.0" text="Ok" />
-            <TextField fx:id="minMaxJogadoresField" layoutX="22.0" layoutY="147.0" prefHeight="25.0" prefWidth="200.0" promptText="min max jogadores" />
-            <TextField fx:id="quantidadeCopiasField" layoutX="237.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Quantidade de cópias" />
-            <TextField fx:id="idCategoriaJogoField" layoutX="237.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" promptText="Id categoria jogo" />
-            <TextArea fx:id="descricaoJogoArea" layoutX="237.0" layoutY="96.0" prefHeight="78.0" prefWidth="200.0" promptText="Descrição do Jogo" />
-         </children>
-      </AnchorPane>
-   </bottom>
 </BorderPane>

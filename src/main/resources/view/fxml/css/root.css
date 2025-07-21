@@ -88,3 +88,82 @@
 
 }
 
+
+/* tabela.css */
+
+/* Estilo geral da tabela */
+.table-view {
+    -fx-base: #2a2a2a; /* Cor de fundo base */
+    -fx-control-inner-background: #3c3c3c; /* Cor de fundo interna */
+    -fx-background-color: #3c3c3c;
+    -fx-table-cell-border-color: #4a4a4a; /* Cor da borda das células */
+    -fx-table-header-border-color: #4a4a4a; /* Cor da borda do cabeçalho */
+    -fx-padding: 0;
+}
+
+/* Estilo para o cabeçalho da tabela */
+.table-view .column-header-background {
+    -fx-background-color: #555555;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35px; /* Altura do cabeçalho */
+    -fx-border-width: 0 0 1 0; /* Borda inferior */
+    -fx-border-color: #4a4a4a;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white; /* Cor do texto do cabeçalho */
+    -fx-font-weight: bold;
+}
+
+/* Estilo para as linhas da tabela */
+.table-view .table-row-cell {
+    -fx-background-color: -fx-control-inner-background;
+    -fx-text-fill: white;
+    -fx-cell-size: 30px; /* Altura das células */
+}
+
+/* Estilo para linhas pares e ímpares (zebra-striping) */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #424242; /* Cor para linhas ímpares */
+}
+
+/* Estilo para a linha selecionada */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #007acc; /* Cor da linha selecionada */
+    -fx-text-fill: white;
+}
+
+/* Estilo para as células da tabela */
+.table-view .table-cell {
+    -fx-border-color: transparent transparent #4a4a4a transparent; /* Borda inferior */
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT; /* Alinhamento do texto na célula */
+}
+
+/* Estilo para o canto superior direito (onde as barras de rolagem se encontram) */
+.table-view .corner {
+    -fx-background-color: #555555;
+}
+
+/* Estilo para a barra de rolagem */
+.table-view .scroll-bar:vertical .increment-button,
+.table-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.table-view .scroll-bar .thumb {
+    -fx-background-color: #888888;
+}
+
+.table-view .scroll-bar .track {
+    -fx-background-color: #3c3c3c;
+}
+
+
+
+
+

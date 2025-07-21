@@ -5,6 +5,7 @@ import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -13,12 +14,12 @@ public class RemoverJogoController {
     @FXML
     private TextField idJogoField;
     @FXML
-    private TextArea consoleTextarea;
+    private Label consoleTextarea;
 
     private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
     public void log(String msg) {
-        consoleTextarea.appendText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     @FXML

@@ -1,31 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.PaginaJogosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.PaginaJogosController">
    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="consoleTextarea" editable="false" layoutX="96.0" layoutY="44.0" prefHeight="228.0" prefWidth="408.0" promptText="Console" />
-            <Button layoutX="515.0" layoutY="55.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="67.0" text="Voltar" />
+            <Button layoutX="515.0" layoutY="55.0" mnemonicParsing="false" onAction="#clicarVoltar" prefHeight="25.0" prefWidth="67.0" styleClass="modern-button-sair" text="Voltar">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <AnchorPane layoutY="209.0" prefHeight="183.0" prefWidth="600.0" styleClass="principal_menu">
+               <children>
+                  <Button layoutX="21.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicarAdicionarJogo" prefHeight="32.0" prefWidth="136.0" styleClass="modern-button-Gerir" text="Adicionar Jogo">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="22.0" layoutY="92.0" mnemonicParsing="false" onAction="#clicarRemoverJogo" prefHeight="32.0" prefWidth="135.0" styleClass="modern-button-Gerir" text="Remover Jogo">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="189.0" layoutY="60.0" mnemonicParsing="false" onAction="#clicarVerJogos" prefHeight="32.0" prefWidth="73.0" styleClass="modern-button-Gerir" text="Ver jogos">
+                     <font>
+                        <Font name="Arial Black" size="11.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="401.0" layoutY="60.0" mnemonicParsing="false" onAction="#clicarDisponiveisEmprestimo" prefHeight="32.0" prefWidth="182.0" styleClass="modern-button-Gerir" text="Disponíveis para Empréstimos">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="189.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicarBuscarNumeroJogadores" prefHeight="32.0" prefWidth="200.0" styleClass="modern-button-Gerir" text="Buscar por Numero de jogadores">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="266.0" layoutY="60.0" mnemonicParsing="false" onAction="#clicarBucarCategoria" prefHeight="32.0" prefWidth="130.0" styleClass="modern-button-Gerir" text="Buscar por categoria">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="397.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicarBuscarTempoPartida" prefHeight="32.0" prefWidth="191.0" styleClass="modern-button-Gerir" text="Buscar por tempo de Partida">
+                     <font>
+                        <Font name="Arial Black" size="11.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#clicarBuscarEditor" prefHeight="32.0" prefWidth="134.0" styleClass="modern-button-Gerir" text="Buscar por Editor">
+                     <font>
+                        <Font name="Arial Black" size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Label fx:id="tabelaEmprestimos" layoutX="32.0" layoutY="72.0" prefHeight="169.0" prefWidth="461.0" styleClass="ConsoleTextarea" text="Jogos" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarAdicionarJogo" prefHeight="45.0" prefWidth="87.0" text="Adicionar Jogo" />
-            <Button layoutX="204.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarRemoverJogo" prefHeight="45.0" prefWidth="87.0" text="Remover Jogo" />
-            <Button layoutX="331.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarVerJogos" prefHeight="45.0" prefWidth="87.0" text="Ver jogos" />
-            <Button layoutX="448.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarDisponiveisEmprestimo" prefHeight="45.0" prefWidth="87.0" text="Disponíveis para Empréstimos" />
-            <Button layoutX="82.0" layoutY="67.0" mnemonicParsing="false" onAction="#clicarBuscarEditor" prefHeight="45.0" prefWidth="87.0" text="Buscar por Editor" />
-            <Button layoutX="204.0" layoutY="67.0" mnemonicParsing="false" onAction="#clicarBuscarNumeroJogadores" prefHeight="45.0" prefWidth="87.0" text="Buscar por Numero de jogadores" />
-            <Button layoutX="331.0" layoutY="67.0" mnemonicParsing="false" onAction="#clicarBucarCategoria" prefHeight="45.0" prefWidth="87.0" text="Buscar por categoria" />
-            <Button layoutX="448.0" layoutY="67.0" mnemonicParsing="false" onAction="#clicarBuscarTempoPartida" prefHeight="45.0" prefWidth="87.0" text="Buscar por tempo de Partida" />
-         </children>
-      </AnchorPane>
-   </bottom>
 </BorderPane>

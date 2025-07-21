@@ -4,19 +4,20 @@ import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.event.ActionEvent;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 public class PaginaJogosController {
 
     @FXML
-    public TextArea consoleTextarea;
+    public Label consoleTextarea;
 
     private final ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
     private final VerJogosController verJogosController = VerJogosController.getInstance();
     private final DisponivelEmprestimoController disponivelEmprestimoController = DisponivelEmprestimoController.getInstance();
 
     public void log(String msg) {
-        consoleTextarea.appendText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     public void clicarVoltar(ActionEvent event){

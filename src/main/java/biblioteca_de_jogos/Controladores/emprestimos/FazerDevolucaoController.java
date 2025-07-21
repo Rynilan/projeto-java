@@ -5,6 +5,7 @@ import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -13,7 +14,7 @@ import java.util.Collections;
 public class FazerDevolucaoController {
 
     @FXML
-    public TextArea consoleTextarea;
+    public Label consoleTextarea;
 
     @FXML
     public TextField idEmprestimoField;
@@ -24,7 +25,7 @@ public class FazerDevolucaoController {
     ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
 
     public void log(String msg) {
-        consoleTextarea.appendText(msg + "\n");
+        consoleTextarea.setText(msg + "\n");
     }
 
     public void clicarVoltar(ActionEvent event){
