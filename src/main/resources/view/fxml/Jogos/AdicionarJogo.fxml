@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.AdicionarJogoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.AdicionarJogoController">
    <center>
       <AnchorPane prefHeight="272.0" prefWidth="600.0" styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="503.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="51.0" prefWidth="66.0" styleClass="modern-button-Gerir" text="Ok">
+                  <Button layoutX="493.0" layoutY="134.0" mnemonicParsing="false" onAction="#clicarOk" prefHeight="51.0" prefWidth="66.0" styleClass="modern-button-Gerir" text="Ok">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
@@ -58,6 +58,11 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </TextArea>
+                  <Button layoutX="474.0" layoutY="41.0" mnemonicParsing="false" onAction="#clicarCategorias" prefHeight="51.0" prefWidth="105.0" styleClass="modern-button-Gerir" text="Categorias">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <Label fx:id="consoleTextarea" layoutX="14.0" layoutY="29.0" prefHeight="160.0" prefWidth="480.0" styleClass="ConsoleTextarea" stylesheets="@../css/root.css" text="Adicionar Jogo" textFill="WHITE">

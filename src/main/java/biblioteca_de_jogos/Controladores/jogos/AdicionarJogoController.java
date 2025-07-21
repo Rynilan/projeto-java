@@ -2,6 +2,7 @@ package biblioteca_de_jogos.Controladores.jogos;
 
 import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
+import biblioteca_de_jogos.classes.Categoria;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.control.ControladorDeJogos;
 import javafx.event.ActionEvent;
@@ -29,7 +30,7 @@ public class AdicionarJogoController {
 
 
 
-    private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
+    private final ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
 
     @FXML
@@ -76,6 +77,11 @@ public class AdicionarJogoController {
                 return;
             }
 
+            if (idCategoriaJogo >= 9 || idCategoriaJogo <= 0) {
+                MensagensAvisosErros.mostrarAviso("Categoria inválida","Coloque um número de categoria válida.");
+                return;
+            }
+
 
             Jogo novoJogo = jogosControl.criarJogo(
                     nome, editor, descricao, tempoPartida, minJogadores, maxJogadores, quantidadeCopias, idCategoriaJogo
@@ -98,6 +104,19 @@ public class AdicionarJogoController {
             e.printStackTrace();
         }
     }
+
+    public void clicarCategorias() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Categoria c : Categoria.values()) {
+            sb.append("ID: ").append(c.getId())
+                    .append("\nNome: ").append(c.getNome())
+                    .append("\nDescrição: ").append(c.getDescricao())
+                    .append("\n\n");
+        }
+        MensagensAvisosErros.mostrarInfo("Categorias disponíveis", sb.toString());
+    }
+
 
     private void limparCampos() {
         nomeField.clear();
