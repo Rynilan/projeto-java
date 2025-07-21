@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
@@ -14,19 +15,12 @@ import java.util.Collections;
 public class FazerDevolucaoController {
 
     @FXML
-    public Label consoleTextarea;
-
-    @FXML
     public TextField idEmprestimoField;
 
     @FXML
     public TextField observacaoField;
 
     ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
-
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
 
     public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
@@ -39,14 +33,14 @@ public class FazerDevolucaoController {
 
             Emprestimo emprestimo = ControladorDeEmprestimos.getInstance().buscarEmprestimo(IDemprestimo);
             if (emprestimo == null){
-                log("Empréstimo não encontrado com o ID: " + IDemprestimo);
+                MensagensAvisosErros.mostrarErro("Empréstimo não encontrado","Empréstimo não encontrado com o ID: " + IDemprestimo);
             }
             if (!descricao.isEmpty()){
                 emprestimosControl.fazerDevolucao(IDemprestimo, Collections.singletonList(descricao));
-                log("Devolução feita com sucesso!");
+                MensagensAvisosErros.mostrarInfo("Devolução feita","Devolução feita com sucesso!");
             }else{
                 emprestimosControl.fazerDevolucao(IDemprestimo, null);
-                log("Devolução feita com sucesso!");
+                MensagensAvisosErros.mostrarInfo("Devolução feita","Devolução feita com sucesso!");
             }
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);

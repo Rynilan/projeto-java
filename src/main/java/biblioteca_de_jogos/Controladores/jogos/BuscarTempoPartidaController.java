@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.util.List;
 
@@ -42,6 +43,38 @@ public class BuscarTempoPartidaController {
         colCopias.setCellValueFactory(new PropertyValueFactory<>("qtdCopias"));
         colIdCategoria.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
         colDisponivel.setCellValueFactory(new PropertyValueFactory<>("disponivel"));
+
+        colId.setMinWidth(50);
+        colNome.setMinWidth(50);
+        colEditor.setMinWidth(50);
+        colDescricao.setMinWidth(50);
+        colTempo.setMinWidth(50);
+        colMinJogadores.setMinWidth(50);
+        colMaxJogadores.setMinWidth(50);
+        colCopias.setMinWidth(50);
+        colIdCategoria.setMinWidth(50);
+        colDisponivel.setMinWidth(50);
+        tabelaJogosTempoPartida.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+
+        redimensionarColunas(tabelaJogosTempoPartida);
+    }
+
+    private void redimensionarColunas(TableView<Jogo> tableView) {
+        for (TableColumn<Jogo, ?> column : tableView.getColumns()) {
+            double maxContentWidth = 0;
+
+            Text headerText = new Text(column.getText());
+            maxContentWidth = Math.max(maxContentWidth, headerText.getLayoutBounds().getWidth());
+            for (Jogo item : tableView.getItems()) {
+                Object cellValue = column.getCellData(item);
+                if (cellValue != null) {
+                    Text cellText = new Text(cellValue.toString());
+                    maxContentWidth = Math.max(maxContentWidth, cellText.getLayoutBounds().getWidth());
+                }
+            }
+            double padding = 20;
+            column.setPrefWidth(Math.max(column.getMinWidth(), maxContentWidth + padding));
+        }
     }
 
     public void clicarVoltar(ActionEvent event) {
@@ -60,6 +93,7 @@ public class BuscarTempoPartidaController {
                 MensagensAvisosErros.mostrarInfo("Nenhum jogo encontrado", "Nenhum jogo com tempo de partida igual a " + tempo + " minutos.");
             } else {
                 tabelaJogosTempoPartida.getItems().setAll(encontrados);
+                redimensionarColunas(tabelaJogosTempoPartida);
             }
         } catch (NumberFormatException e) {
             MensagensAvisosErros.mostrarErro("Valor inválido", "Insira um número inteiro válido para o tempo de partida.");

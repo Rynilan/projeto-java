@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.usuarios;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Usuario;
 import biblioteca_de_jogos.control.ControladorDeUsuarios;
@@ -20,10 +21,6 @@ public class AdicionarUsuariosController {
 
     private ControladorDeUsuarios usuariosControl = ControladorDeUsuarios.getInstance();
 
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
-
     public void clicarVoltar(ActionEvent event){
         limparCampos();
         ScreenManager.voltarParaTelaAnterior();
@@ -36,7 +33,7 @@ public class AdicionarUsuariosController {
         String telefone = telefoneField.getText();
 
         if (nome.isEmpty() || email.isEmpty() || telefone.isEmpty()) {
-            log("Todos os campos são obrigatórios!");
+            MensagensAvisosErros.mostrarAviso("Campos obrigatórios","Todos os campos são obrigatórios!");
             return;
         }
 
@@ -44,13 +41,13 @@ public class AdicionarUsuariosController {
             Usuario novoUsuario = usuariosControl.criarUsuario(nome, email, telefone, "ativo");
 
             if (usuariosControl.adicionarUsuario(novoUsuario)) {
-                log("Usuário adicionado com sucesso!");
+                MensagensAvisosErros.mostrarInfo("Usuário adicionado","Usuário adicionado com sucesso!");
                 limparCampos();
             } else {
-                log("Não foi possível adicionar o usuário.");
+                MensagensAvisosErros.mostrarErro("Erro ao adicionar","Não foi possível adicionar o usuário.");
             }
         } catch (Exception e) {
-            log("Ocorreu um erro: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro","Ocorreu um erro: " + e.getMessage());
         }
     }
 

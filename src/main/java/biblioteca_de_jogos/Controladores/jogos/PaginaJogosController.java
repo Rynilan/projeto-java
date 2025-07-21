@@ -40,7 +40,7 @@ public class PaginaJogosController {
 
     public void clicarDisponiveisEmprestimo(ActionEvent event){
         ScreenManager.carregarTela("pagina_Disponivel_emprestimo_jogo", "/view/fxml/Jogos/DisponivelEmprestimoJogo.fxml");
-        verJogosController.atualizarTabela();
+        disponivelEmprestimoController.atualizarTabela();
         ScreenManager.mostrarTela("pagina_Disponivel_emprestimo_jogo");
     }
 

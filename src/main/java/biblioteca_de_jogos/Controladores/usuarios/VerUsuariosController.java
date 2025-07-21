@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 public class VerUsuariosController {
 
@@ -42,10 +43,10 @@ public class VerUsuariosController {
             listaUsuarios.addAll(usuarios.getUsuarios());
             if (tabelaUsuarios != null){
                 tabelaUsuarios.refresh();
+                redimensionarColunas(tabelaUsuarios);
             }
         });
     }
-
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -54,6 +55,32 @@ public class VerUsuariosController {
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+        colId.setMinWidth(50);
+        colNome.setMinWidth(50);
+        colEmail.setMinWidth(50);
+        colTelefone.setMinWidth(50);
+        colStatus.setMinWidth(50);
+        tabelaUsuarios.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+
         tabelaUsuarios.setItems(listaUsuarios);
+        redimensionarColunas(tabelaUsuarios);
+    }
+
+    private void redimensionarColunas(TableView<Usuario> tableView) {
+        for (TableColumn<Usuario, ?> column : tableView.getColumns()) {
+            double maxContentWidth = 0;
+
+            Text headerText = new Text(column.getText());
+            maxContentWidth = Math.max(maxContentWidth, headerText.getLayoutBounds().getWidth());
+            for (Usuario item : tableView.getItems()) {
+                Object cellValue = column.getCellData(item);
+                if (cellValue != null) {
+                    Text cellText = new Text(cellValue.toString());
+                    maxContentWidth = Math.max(maxContentWidth, cellText.getLayoutBounds().getWidth());
+                }
+            }
+            double padding = 20;
+            column.setPrefWidth(Math.max(column.getMinWidth(), maxContentWidth + padding));
+        }
     }
 }

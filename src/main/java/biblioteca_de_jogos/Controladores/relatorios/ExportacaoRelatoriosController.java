@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.relatorios;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.classes.Jogo;
@@ -37,18 +38,14 @@ public class ExportacaoRelatoriosController {
         ScreenManager.mostrarTela("pagina_relatorios");
     }
 
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
-
     @FXML
     public void exportarUsuariosCSV(ActionEvent event) {
         try {
             List<Usuario> usuarios = usuariosControl.getUsuarios();
             ExportadorDeUsuarios.exportarCSV(usuarios);
-            log("Usuários exportados com sucesso para CSV em 'usuarios.csv'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Usuários exportados com sucesso para CSV em 'usuarios.csv'");
         } catch (IOException e) {
-            log("Erro ao exportar usuários para CSV: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar usuários para CSV: " + e.getMessage());
         }
     }
 
@@ -57,9 +54,9 @@ public class ExportacaoRelatoriosController {
         try {
             List<Usuario> usuarios = usuariosControl.getUsuarios();
             ExportadorDeUsuarios.exportarPDF(usuarios);
-            log("Usuários exportados com sucesso para PDF em 'usuarios.pdf'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Usuários exportados com sucesso para PDF em 'usuarios.pdf'");
         } catch (PdfException | IOException e) {
-            log("Erro ao exportar usuários para PDF: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar usuários para PDF: " + e.getMessage());
         }
     }
 
@@ -74,9 +71,9 @@ public class ExportacaoRelatoriosController {
         try {
             List<Jogo> jogos = jogosControl.getJogos();
             ExportadorDeJogos.exportarCSV(jogos);
-            log("Jogos exportados com sucesso para CSV em 'jogos.csv'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Jogos exportados com sucesso para CSV em 'jogos.csv'");
         } catch (IOException e) {
-            log("Erro ao exportar jogos para CSV: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar jogos para CSV: " + e.getMessage());
         }
     }
 
@@ -85,9 +82,9 @@ public class ExportacaoRelatoriosController {
         try {
             List<Jogo> jogos = jogosControl.getJogos();
             ExportadorDeJogos.exportarPDF(jogos);
-            log("Jogos exportados com sucesso para PDF em 'jogos.pdf'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Jogos exportados com sucesso para PDF em 'jogos.pdf'");
         } catch (PdfException | IOException e) {
-            log("Erro ao exportar jogos para PDF: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar jogos para PDF: " + e.getMessage());
         }
     }
 
@@ -102,9 +99,9 @@ public class ExportacaoRelatoriosController {
         try {
             List<Emprestimo> emprestimos = emprestimosControl.getEmprestimos();
             ExportadorDeEmprestimos.exportarCSV(emprestimos);
-            log("Empréstimos exportados com sucesso para CSV em 'emprestimos.csv'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Empréstimos exportados com sucesso para CSV em 'emprestimos.csv'");
         } catch (IOException e) {
-            log("Erro ao exportar empréstimos para CSV: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar empréstimos para CSV: " + e.getMessage());
         }
     }
 
@@ -113,9 +110,9 @@ public class ExportacaoRelatoriosController {
         try {
             List<Emprestimo> emprestimos = emprestimosControl.getEmprestimos();
             ExportadorDeEmprestimos.exportarPDF(emprestimos);
-            log("Empréstimos exportados com sucesso para PDF em 'emprestimos.pdf'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Empréstimos exportados com sucesso para PDF em 'emprestimos.pdf'");
         } catch (PdfException | IOException e) {
-            log("Erro ao exportar empréstimos para PDF: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar empréstimos para PDF: " + e.getMessage());
         }
     }
 
@@ -130,9 +127,9 @@ public class ExportacaoRelatoriosController {
         try {
             Map<YearMonth, Long> picosVales = emprestimosControl.analisarPicosValesEmprestimos();
             ExportadorDeExtremosDeEmprestimos.exportarCSV(picosVales);
-            log("Picos e Vales de Empréstimos exportados com sucesso para CSV em 'picos_vales_emprestimos.csv'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Picos e Vales de Empréstimos exportados com sucesso para CSV em 'picos_vales_emprestimos.csv'");
         } catch (IOException e) {
-            log("Erro ao exportar picos e vales de empréstimos para CSV: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar picos e vales de empréstimos para CSV: " + e.getMessage());
         }
     }
 
@@ -141,9 +138,9 @@ public class ExportacaoRelatoriosController {
         try {
             Map<YearMonth, Long> picosVales = emprestimosControl.analisarPicosValesEmprestimos();
             ExportadorDeExtremosDeEmprestimos.exportarPDF(picosVales);
-            log("Picos e Vales de Empréstimos exportados com sucesso para PDF em 'picos_vales_emprestimos.pdf'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Picos e Vales de Empréstimos exportados com sucesso para PDF em 'picos_vales_emprestimos.pdf'");
         } catch (PdfException | IOException e) {
-            log("Erro ao exportar picos e vales de empréstimos para PDF: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar picos e vales de empréstimos para PDF: " + e.getMessage());
         }
     }
 
@@ -163,13 +160,13 @@ public class ExportacaoRelatoriosController {
                     .collect(Collectors.toMap(
                             Map.Entry::getKey,
                             Map.Entry::getValue,
-                            (e1, e2) -> e1, // Merge function for duplicates (should not happen with distinct keys)
-                            java.util.LinkedHashMap::new // Maintain insertion order
+                            (e1, e2) -> e1,
+                            java.util.LinkedHashMap::new
                     ));
             ExportadorDePopularidadeDeJogos.exportarCSV(popularidadeJogos);
-            log("Popularidade de Jogos exportada com sucesso para CSV em 'popularidade_jogos.csv'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida","Popularidade de Jogos exportada com sucesso para CSV em 'popularidade_jogos.csv'");
         } catch (IOException e) {
-            log("Erro ao exportar popularidade de jogos para CSV: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar popularidade de jogos para CSV: " + e.getMessage());
         }
     }
 
@@ -183,13 +180,13 @@ public class ExportacaoRelatoriosController {
                     .collect(Collectors.toMap(
                             Map.Entry::getKey,
                             Map.Entry::getValue,
-                            (e1, e2) -> e1, // Merge function for duplicates (should not happen with distinct keys)
-                            java.util.LinkedHashMap::new // Maintain insertion order
+                            (e1, e2) -> e1,
+                            java.util.LinkedHashMap::new
                     ));
             ExportadorDePopularidadeDeJogos.exportarPDF(popularidadeJogos);
-            log("Popularidade de Jogos exportada com sucesso para PDF em 'popularidade_jogos.pdf'");
+            MensagensAvisosErros.mostrarInfo("Exportação bem sucedida", "Popularidade de Jogos exportada com sucesso para PDF em 'popularidade_jogos.pdf'");
         } catch (PdfException | IOException e) {
-            log("Erro ao exportar popularidade de jogos para PDF: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro ao exportar","Erro ao exportar popularidade de jogos para PDF: " + e.getMessage());
         }
     }
 

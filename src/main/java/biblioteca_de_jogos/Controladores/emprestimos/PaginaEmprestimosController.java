@@ -20,10 +20,6 @@ public class PaginaEmprestimosController {
     public Label consoleTextarea;
     private final VerEmprestimosEReservasController verEmprestimosEReservasController = VerEmprestimosEReservasController.getInstance();
 
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
-
     public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
     }

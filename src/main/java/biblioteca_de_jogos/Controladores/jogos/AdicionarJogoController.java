@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.jogos;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.control.ControladorDeJogos;
@@ -25,15 +26,11 @@ public class AdicionarJogoController {
     private TextField idCategoriaJogoField;
     @FXML
     private TextArea descricaoJogoArea;
-    @FXML
-    private Label consoleTextarea;
+
 
 
     private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
 
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
 
     @FXML
     private void clicarOk(ActionEvent event) {
@@ -48,7 +45,7 @@ public class AdicionarJogoController {
         if (nome.isEmpty() || editor.isEmpty() || tempoPartidaStr.isEmpty() ||
                 minMaxJogadoresStr.isEmpty() || quantidadeCopiasStr.isEmpty() ||
                 idCategoriaJogoStr.isEmpty() || descricao.isEmpty()) {
-            log("Todos os campos são obrigatórios!");
+            MensagensAvisosErros.mostrarAviso("Campos obrigatórios","Todos os campos são obrigatórios!");
             return;
         }
 
@@ -58,24 +55,24 @@ public class AdicionarJogoController {
             Long idCategoriaJogo = Long.parseLong(idCategoriaJogoStr);
 
             if (tempoPartida <= 0) {
-                log("Tempo de partida deve ser um número positivo.");
+                MensagensAvisosErros.mostrarAviso("Tempo de partida positivo","Tempo de partida deve ser um número positivo.");
                 return;
             }
             if (quantidadeCopias <= 0) {
-                log("Quantidade de cópias deve ser um número positivo.");
+                MensagensAvisosErros.mostrarAviso("Quantidade de cópias positivas","Quantidade de cópias deve ser um número positivo.");
                 return;
             }
 
             String[] jogadores = minMaxJogadoresStr.split("-");
             if (jogadores.length != 2) {
-                log("Formato inválido para 'Min Max Jogadores'. \n Use 'min-max' (ex: 1-4).");
+                MensagensAvisosErros.mostrarAviso("Formato inválido","Formato inválido para 'Min Max Jogadores'. \n Use 'min-max' (ex: 1-4).");
                 return;
             }
             int minJogadores = Integer.parseInt(jogadores[0]);
             int maxJogadores = Integer.parseInt(jogadores[1]);
 
             if (minJogadores <= 0 || minJogadores >= maxJogadores) {
-                log("Jogadores: O número mínimo deve ser positivo e menor que o número máximo.");
+                MensagensAvisosErros.mostrarAviso("Número de jogadores","Jogadores: O número mínimo deve ser positivo e menor que o número máximo.");
                 return;
             }
 
@@ -86,18 +83,18 @@ public class AdicionarJogoController {
 
             if (novoJogo != null) {
                 if (jogosControl.adicionarJogo(novoJogo)) {
-                    log("Jogo adicionado com sucesso!");
+                    MensagensAvisosErros.mostrarInfo("Jogo adicionado","Jogo adicionado com sucesso!");
                     limparCampos();
                 } else {
-                    log("Não foi possível adicionar o jogo. Pode ser um jogo duplicado ou erro interno.");
+                    MensagensAvisosErros.mostrarErro("Erro ao adicionar","Não foi possível adicionar o jogo. Pode ser um jogo duplicado ou erro interno.");
                 }
             } else {
-                log("Não foi possível criar o objeto Jogo. Verifique os valores fornecidos.");
+                MensagensAvisosErros.mostrarErro("Erro ao criar","Não foi possível criar o objeto Jogo. Verifique os valores fornecidos.");
             }
         } catch (NumberFormatException e) {
-            log("Erro: Tempo de partida, quantidade de cópias,\n ID da categoria ou jogadores devem ser números \nválidos.");
+            MensagensAvisosErros.mostrarErro("Números válidos","Erro: Tempo de partida, quantidade de cópias,\n ID da categoria ou jogadores devem ser números \nválidos.");
         } catch (Exception e) {
-            log("Ocorreu um erro inesperado: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro","Ocorreu um erro inesperado: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.PaginaJogosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca_de_jogos.Controladores.jogos.PaginaJogosController">
    <center>
       <AnchorPane styleClass="principal" stylesheets="@../css/root.css" BorderPane.alignment="CENTER">
          <children>
@@ -26,12 +26,12 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="189.0" layoutY="60.0" mnemonicParsing="false" onAction="#clicarVerJogos" prefHeight="32.0" prefWidth="73.0" styleClass="modern-button-Gerir" text="Ver jogos">
+                  <Button layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#clicarVerJogos" prefHeight="32.0" prefWidth="134.0" styleClass="modern-button-Gerir" text="Ver jogos">
                      <font>
                         <Font name="Arial Black" size="11.0" />
                      </font>
                   </Button>
-                  <Button layoutX="401.0" layoutY="60.0" mnemonicParsing="false" onAction="#clicarDisponiveisEmprestimo" prefHeight="32.0" prefWidth="182.0" styleClass="modern-button-Gerir" text="Disponíveis para Empréstimos">
+                  <Button layoutX="334.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicarDisponiveisEmprestimo" prefHeight="32.0" prefWidth="182.0" styleClass="modern-button-Gerir" text="Disponíveis para Empréstimos">
                      <font>
                         <Font name="Arial Black" size="10.0" />
                      </font>
@@ -41,17 +41,17 @@
                         <Font name="Arial Black" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="266.0" layoutY="60.0" mnemonicParsing="false" onAction="#clicarBucarCategoria" prefHeight="32.0" prefWidth="130.0" styleClass="modern-button-Gerir" text="Buscar por categoria">
+                  <Button layoutX="197.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicarBucarCategoria" prefHeight="32.0" prefWidth="132.0" styleClass="modern-button-Gerir" text="Buscar por categoria">
                      <font>
                         <Font name="Arial Black" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="397.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicarBuscarTempoPartida" prefHeight="32.0" prefWidth="191.0" styleClass="modern-button-Gerir" text="Buscar por tempo de Partida">
+                  <Button layoutX="395.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicarBuscarTempoPartida" prefHeight="32.0" prefWidth="191.0" styleClass="modern-button-Gerir" text="Buscar por tempo de Partida">
                      <font>
                         <Font name="Arial Black" size="11.0" />
                      </font>
                   </Button>
-                  <Button layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#clicarBuscarEditor" prefHeight="32.0" prefWidth="134.0" styleClass="modern-button-Gerir" text="Buscar por Editor">
+                  <Button layoutX="197.0" layoutY="137.0" mnemonicParsing="false" onAction="#clicarBuscarEditor" prefHeight="32.0" prefWidth="120.0" styleClass="modern-button-Gerir" text="Buscar por Editor">
                      <font>
                         <Font name="Arial Black" size="11.0" />
                      </font>

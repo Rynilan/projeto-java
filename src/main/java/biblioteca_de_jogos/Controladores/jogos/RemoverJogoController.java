@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.jogos;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.control.ControladorDeJogos;
@@ -13,21 +14,15 @@ public class RemoverJogoController {
 
     @FXML
     private TextField idJogoField;
-    @FXML
-    private Label consoleTextarea;
 
     private ControladorDeJogos jogosControl = ControladorDeJogos.getInstance();
-
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
 
     @FXML
     private void handleRemover(ActionEvent event) {
         String idJogoStr = idJogoField.getText();
 
         if (idJogoStr.isEmpty()) {
-            log("Por favor, digite o ID do jogo para remover.");
+            MensagensAvisosErros.mostrarAviso("Digite ID","Por favor, digite o ID do jogo para remover.");
             return;
         }
 
@@ -38,18 +33,18 @@ public class RemoverJogoController {
 
             if (jogoParaRemover != null) {
                 if (jogosControl.removerJogo(jogoParaRemover)) {
-                    log("Jogo '" + jogoParaRemover.getNome() + "' (ID: " + idJogo + ") removido com sucesso!");
+                    MensagensAvisosErros.mostrarInfo("Removido com sucesso","Jogo '" + jogoParaRemover.getNome() + "' (ID: " + idJogo + ") removido com sucesso!");
                     idJogoField.clear();
                 } else {
-                    log("Não foi possível remover o jogo (ID: " + idJogo + ").");
+                    MensagensAvisosErros.mostrarErro("Não foi possível remover","Não foi possível remover o jogo (ID: " + idJogo + ").");
                 }
             } else {
-                log("Jogo com ID " + idJogo + " não encontrado.");
+                MensagensAvisosErros.mostrarErro("Jogo não encontrado","Jogo com ID " + idJogo + " não encontrado.");
             }
         } catch (NumberFormatException e) {
-            log("Erro: O ID do jogo deve ser um número válido.");
+            MensagensAvisosErros.mostrarAviso("Digite ID válido","O ID do jogo deve ser um número válido.");
         } catch (Exception e) {
-            log("Ocorreu um erro inesperado: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro","Ocorreu um erro inesperado: " + e.getMessage());
             e.printStackTrace();
         }
     }

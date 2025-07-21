@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.util.List;
 
@@ -35,13 +36,41 @@ public class EmprestimosUsuariosController {
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDataEmprestimo.setCellValueFactory(new PropertyValueFactory<>("data"));
-        colDataDevolucao.setCellValueFactory(new PropertyValueFactory<>("devolucao"));
+        colDataDevolucao.setCellValueFactory(new PropertyValueFactory<>("devolucaoString"));
         colRenovacoes.setCellValueFactory(new PropertyValueFactory<>("renovacoes"));
         colIntervalo.setCellValueFactory(new PropertyValueFactory<>("intervalo"));
         colIdUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
         colIdJogo.setCellValueFactory(new PropertyValueFactory<>("idJogo"));
-        colObs.setCellValueFactory(new PropertyValueFactory<>("observacoes"));
+        colObs.setCellValueFactory(new PropertyValueFactory<>("obsString"));
 
+        colId.setMinWidth(50);
+        colDataEmprestimo.setMinWidth(50);
+        colDataDevolucao.setMinWidth(50);
+        colRenovacoes.setMinWidth(50);
+        colIntervalo.setMinWidth(50);
+        colIdUsuario.setMinWidth(50);
+        colIdJogo.setMinWidth(50);
+        colObs.setMinWidth(50);
+        tabelaUsuarioEmprestimos.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+
+    }
+
+    private void redimensionarColunas(TableView<Emprestimo> tableView) {
+        for (TableColumn<Emprestimo, ?> column : tableView.getColumns()) {
+            double maxContentWidth = 0;
+
+            Text headerText = new Text(column.getText());
+            maxContentWidth = Math.max(maxContentWidth, headerText.getLayoutBounds().getWidth());
+            for (Emprestimo item : tableView.getItems()) {
+                Object cellValue = column.getCellData(item);
+                if (cellValue != null) {
+                    Text cellText = new Text(cellValue.toString());
+                    maxContentWidth = Math.max(maxContentWidth, cellText.getLayoutBounds().getWidth());
+                }
+            }
+            double padding = 20;
+            column.setPrefWidth(Math.max(column.getMinWidth(), maxContentWidth + padding));
+        }
     }
 
     public void clicarVoltar(ActionEvent event) {
@@ -76,6 +105,7 @@ public class EmprestimosUsuariosController {
             return;
         }
         tabelaUsuarioEmprestimos.getItems().setAll(emprestimos);
+        redimensionarColunas(tabelaUsuarioEmprestimos);
     }
 }
 

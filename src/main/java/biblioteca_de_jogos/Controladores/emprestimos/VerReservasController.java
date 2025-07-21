@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;
@@ -16,19 +17,12 @@ import javafx.scene.control.TextField;
 public class VerReservasController {
 
     @FXML
-    public Label consoleTextarea;
-
-    @FXML
     public TextField idUsuarioField;
 
     @FXML
     public TextField idJogoField;
 
     private final ControladorDeReservas reservasControl = ControladorDeReservas.getInstance();
-
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
 
     public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
@@ -43,16 +37,16 @@ public class VerReservasController {
             Jogo jogo = ControladorDeJogos.getInstance().buscarJogo(Idjogo);
 
             if (usuario == null){
-                log("Usuário não encontrado com o ID " + IDusuario);
+                MensagensAvisosErros.mostrarErro("Usuário não encontrado","Usuário não encontrado com o ID " + IDusuario);
                 return;
             }
             if (jogo == null){
-                log("Jogo não encontrado com o ID " + Idjogo);
+                MensagensAvisosErros.mostrarErro("Jogo não encontrado","Jogo não encontrado com o ID " + Idjogo);
                 return;
             }
 
             reservasControl.fazerReserva(IDusuario, Idjogo);
-            log("Reserva feita com sucesso!");
+            MensagensAvisosErros.mostrarInfo("Reserva feita","Reserva feita com sucesso!");
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }

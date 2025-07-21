@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 
 public class VerJogosController {
@@ -48,8 +49,27 @@ public class VerJogosController {
             listaJogos.addAll(jogos.getJogos());
             if (tabelaJogos != null){
                 tabelaJogos.refresh();
+                redimensionarColunas(tabelaJogos);
             }
         });
+    }
+
+    private void redimensionarColunas(TableView<Jogo> tableView) {
+        for (TableColumn<Jogo, ?> column : tableView.getColumns()) {
+            double maxContentWidth = 0;
+
+            Text headerText = new Text(column.getText());
+            maxContentWidth = Math.max(maxContentWidth, headerText.getLayoutBounds().getWidth());
+            for (Jogo item : tableView.getItems()) {
+                Object cellValue = column.getCellData(item);
+                if (cellValue != null) {
+                    Text cellText = new Text(cellValue.toString());
+                    maxContentWidth = Math.max(maxContentWidth, cellText.getLayoutBounds().getWidth());
+                }
+            }
+            double padding = 20;
+            column.setPrefWidth(Math.max(column.getMinWidth(), maxContentWidth + padding));
+        }
     }
 
     @FXML
@@ -65,6 +85,19 @@ public class VerJogosController {
         colIdCategoria.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
         colDisponivel.setCellValueFactory(new PropertyValueFactory<>("disponivel"));
 
+        colId.setMinWidth(50);
+        colNome.setMinWidth(50);
+        colEditor.setMinWidth(50);
+        colDescricao.setMinWidth(50);
+        colTempoPartida.setMinWidth(50);
+        colMinJogadores.setMinWidth(50);
+        colMaxJogadores.setMinWidth(50);
+        colQtdCopias.setMinWidth(50);
+        colIdCategoria.setMinWidth(50);
+        colDisponivel.setMinWidth(50);
+        tabelaJogos.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+
         tabelaJogos.setItems(listaJogos);
+        redimensionarColunas(tabelaJogos);
     }
 }

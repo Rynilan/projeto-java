@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.emprestimos;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Jogo;
 import biblioteca_de_jogos.classes.Usuario;
@@ -15,17 +16,11 @@ import javafx.scene.control.TextField;
 public class FazerEmprestimoController {
 
     @FXML
-    public Label consoleTextarea;
-
-    @FXML
     public TextField idUsuarioField;
 
     @FXML
     public TextField idJogoField;
 
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
 
     public void clicarVoltar(ActionEvent event){
         ScreenManager.voltarParaTelaAnterior();
@@ -39,19 +34,19 @@ public class FazerEmprestimoController {
         Jogo jogo = ControladorDeJogos.getInstance().buscarJogo(Idjogo);
 
         if (usuario == null){
-            log("Usuário não encontrado com o ID " + IDusuario);
+            MensagensAvisosErros.mostrarErro("Usuário não encontrado","Usuário não encontrado com o ID " + IDusuario);
             return;
         }
 
         if (jogo == null){
-            log("Jogo não encontrado com o ID\n " + Idjogo);
+            MensagensAvisosErros.mostrarErro("Jogo não encontrado","Jogo não encontrado com o ID\n " + Idjogo);
             return;
         }
 
         ControladorDeEmprestimos emprestimosControl = ControladorDeEmprestimos.getInstance();
 
         emprestimosControl.fazerEmprestimo(usuario, jogo);
-        log("Empréstimo feito com sucesso!");
+        MensagensAvisosErros.mostrarInfo("Empréstimo feito","Empréstimo feito com sucesso!");
 
 
     }

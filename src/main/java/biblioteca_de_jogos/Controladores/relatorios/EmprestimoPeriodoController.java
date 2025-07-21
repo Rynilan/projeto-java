@@ -1,5 +1,6 @@
 package biblioteca_de_jogos.Controladores.relatorios;
 
+import biblioteca_de_jogos.Controladores.MensagensAvisosErros;
 import biblioteca_de_jogos.Controladores.ScreenManager;
 import biblioteca_de_jogos.classes.Emprestimo;
 import biblioteca_de_jogos.control.ControladorDeEmprestimos;
@@ -19,14 +20,8 @@ public class EmprestimoPeriodoController {
     private TextField dataInicialField;
     @FXML
     private TextField dataFinalField;
-    @FXML
-    private Label consoleTextarea;
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    public void log(String msg) {
-        consoleTextarea.setText(msg + "\n");
-    }
 
     public void clicarVoltar(ActionEvent event) {
         ScreenManager.mostrarTela("pagina_relatorios");
@@ -43,20 +38,20 @@ public class EmprestimoPeriodoController {
                     .filter(e -> !e.getData().isBefore(inicio) && !e.getData().isAfter(fim))
                     .toList();
 
-            log("Empréstimos entre " + inicio.format(formatter) + " e " + fim.format(formatter) + ":");
+            MensagensAvisosErros.mostrarInfo("Empréstimos","Empréstimos entre " + inicio.format(formatter) + " e " + fim.format(formatter) + ":");
 
             if (emprestimosFiltrados.isEmpty()) {
-                log("Nenhum empréstimo encontrado no período.");
+                MensagensAvisosErros.mostrarErro("Nenhum empréstimo encontrado","Nenhum empréstimo encontrado no período.");
             } else {
                 for (Emprestimo e : emprestimosFiltrados) {
-                    log(e.toString());
+                    System.out.println(e.toString());
                     ScreenManager.mostrarTela("pagina_Exportacao_relatoriosPicos_vales_emprestimos_periodos");
                 }
             }
         } catch (DateTimeParseException e) {
-            log("Formato de data inválido. Use dd/MM/yyyy.");
+            MensagensAvisosErros.mostrarAviso("Formatação inválida","Formato de data inválido. Use dd/MM/yyyy.");
         } catch (Exception e) {
-            log("Erro inesperado: " + e.getMessage());
+            MensagensAvisosErros.mostrarErro("Erro","Erro inesperado: " + e.getMessage());
         }
 
     }
